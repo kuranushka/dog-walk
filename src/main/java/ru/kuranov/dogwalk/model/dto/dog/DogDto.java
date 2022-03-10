@@ -15,12 +15,14 @@ import ru.kuranov.dogwalk.model.entity.dog.DogDocument;
 import ru.kuranov.dogwalk.model.entity.dog.Gender;
 import ru.kuranov.dogwalk.model.entity.dog.Vet;
 import ru.kuranov.dogwalk.model.entity.dog.WeightGroup;
+import ru.kuranov.dogwalk.model.entity.location.City;
 import ru.kuranov.dogwalk.model.entity.location.WalkingPlace;
 import ru.kuranov.dogwalk.model.entity.time.Schedule;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Set;
 
 @Component
@@ -32,6 +34,8 @@ import java.util.Set;
 public class DogDto {
 
     private Long id;
+
+    private String ownerName;
 
     @NotBlank(message = "ПОЛЕ КЛИЧКА НЕ ЗАПОЛНЕНО")
     private String name;
@@ -48,8 +52,6 @@ public class DogDto {
     @Min(value = 1, message = "ВЕС ПИТОМЦА НЕ ДОЛЖЕН БЫТЬ МЕНЬШЕ 1 КГ")
     private int weight;
 
-    private WeightGroup weightGroup;
-
     private Set<DogDocument> dogDocuments;
 
     @NotBlank(message = "ПОЛЕ АДРЕС ВЕТЕРИНАРНОЙ КЛИНИКИ НЕ ЗАПОЛНЕНО")
@@ -57,8 +59,6 @@ public class DogDto {
 
     @NotBlank(message = "ПОЛЕ ТЕЛЕФОН ВЕТЕРИНАРНОЙ КЛИНИКИ НЕ ЗАПОЛНЕНО")
     private String vetPhone;
-
-    private Vet vet;
 
     private String injury;
 
@@ -86,10 +86,15 @@ public class DogDto {
 
     private String portion;
 
-    @DateTimeFormat(pattern = "d.M HH:mm")
-    private String walkingTime;
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
+    private LocalDate walkDate;
 
-    private Schedule schedule;
+    @DateTimeFormat(pattern = "HH:mm")
+    private LocalTime walkBegin;
+
+    @NonNull()
+    @Min(value = 15, message = "ДЛИТЕЛЬНОСТЬ ПРОГУЛКИ НЕ ДОЛЖНА БЫТЬ МЕНЕЕ 15 МИНУТ")
+    private int walkingPeriod;
 
     private Set<MeetingToWalker> meetingToWalker;
 
@@ -98,5 +103,11 @@ public class DogDto {
     @Length(max = 1024, message = "МАКСИМАЛЬНОЕ КОЛИЧЕСТВО ЗНАКОВ В ПОЛЕ ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ 1024 СИМВОЛА")
     private String additionInfo;
 
-    private Set<WalkingPlace> walkingPlace;
+    @NotBlank(message = "УКАЖИТЕ ГОРОД")
+    private String cityName;
+
+    private boolean isMetro;
+
+    @NotBlank(message = "УКАЖИТЕ МЕСТО")
+    private String location;
 }

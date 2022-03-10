@@ -1,8 +1,10 @@
 package ru.kuranov.dogwalk.model.entity.owner;
 
 import lombok.*;
+import ru.kuranov.dogwalk.model.entity.dog.Dog;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -29,5 +31,11 @@ public class Owner {
 
     @Column(name = "phone")
     private String phone;
+
+    @OneToMany(targetEntity = Dog.class,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            mappedBy = "owner")
+    private Set<Dog> dogs;
 
 }

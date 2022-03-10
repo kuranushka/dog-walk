@@ -9,6 +9,7 @@ import ru.kuranov.dogwalk.model.entity.behavior.PickItUp;
 import ru.kuranov.dogwalk.model.entity.behavior.PickUpFromGround;
 import ru.kuranov.dogwalk.model.entity.behavior.PullingLeash;
 import ru.kuranov.dogwalk.model.entity.location.WalkingPlace;
+import ru.kuranov.dogwalk.model.entity.owner.Owner;
 import ru.kuranov.dogwalk.model.entity.time.Schedule;
 
 import javax.persistence.*;
@@ -28,6 +29,10 @@ public class Dog {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
+
+    @ManyToOne(targetEntity = Owner.class)
+    @JoinColumn(name = "owner_id")
+    private Owner owner;
 
     @Column(name = "name")
     private String name;
@@ -121,8 +126,8 @@ public class Dog {
     @Column(name = "portion")
     private String portion;
 
-    @Column(name = "walking_time")
-    private String walkingTime;
+    @Column(name = "walking_period")
+    private int walkingPeriod;
 
     @OneToOne(targetEntity = Schedule.class,
             cascade = CascadeType.ALL,
