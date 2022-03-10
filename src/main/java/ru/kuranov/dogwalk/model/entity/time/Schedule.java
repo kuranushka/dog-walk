@@ -4,7 +4,7 @@ import lombok.*;
 import ru.kuranov.dogwalk.model.entity.dog.Dog;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -16,7 +16,7 @@ import java.util.List;
 public class Schedule {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
@@ -24,10 +24,9 @@ public class Schedule {
     @JoinColumn(name = "dog_id")
     private Dog dog;
 
-
     @OneToMany(targetEntity = WalkTime.class,
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER,
             mappedBy = "schedule")
-    private List<WalkTime> walkTimeList;
+    private Set<WalkTime> walkTimeList;
 }

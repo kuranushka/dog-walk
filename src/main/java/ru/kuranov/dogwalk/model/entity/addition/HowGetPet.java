@@ -1,8 +1,28 @@
 package ru.kuranov.dogwalk.model.entity.addition;
 
-public enum HowGetPet{
-    HOME_WILL_MEET,
-    THE_KEYS_WILL_BE_IN_A_SECRET_PLACE,
-    HAND_OVER_THE_KEYS_TO_THE_WALKER,
-    YOU_ALREADY_HAVE_THE_KEYS
+import lombok.*;
+import ru.kuranov.dogwalk.model.entity.dog.Dog;
+
+import javax.persistence.*;
+
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
+@Table(name = "how_get_pet")
+public class HowGetPet {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "label")
+    private String label;
+
+    @ManyToOne
+    @JoinColumn(name = "dog_id")
+    private Dog dog;
 }

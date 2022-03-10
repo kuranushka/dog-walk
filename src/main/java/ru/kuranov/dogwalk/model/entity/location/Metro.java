@@ -11,10 +11,10 @@ import javax.persistence.*;
 @Setter
 @Builder
 @Table(name = "metro")
-public class Metro{
+public class Metro {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 

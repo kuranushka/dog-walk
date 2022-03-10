@@ -16,18 +16,18 @@ import java.time.LocalTime;
 public class WalkTime {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "date")
-    private LocalDate date;
+    @Column(name = "walk_date")
+    private LocalDate walkDate;
 
-    @Column(name = "begin")
-    private LocalTime begin;
+    @Column(name = "walk_begin")
+    private LocalTime walkBegin;
 
-    @Column(name = "end")
-    private LocalTime end;
+    @Column(name = "walk_end")
+    private LocalTime walkEnd;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "schedule_id")

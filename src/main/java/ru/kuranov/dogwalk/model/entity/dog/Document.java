@@ -1,7 +1,6 @@
-package ru.kuranov.dogwalk.model.entity.behavior;
+package ru.kuranov.dogwalk.model.entity.dog;
 
 import lombok.*;
-import ru.kuranov.dogwalk.model.entity.dog.Dog;
 
 import javax.persistence.*;
 
@@ -11,16 +10,16 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Builder
-@Table(name = "aggression")
-public class Aggression {
+@Table(name = "document")
+public class Document {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "label")
-    private String label;
+    @Column(name = "name")
+    private String name;
 
     @ManyToOne(targetEntity = Dog.class)
     @JoinColumn(name = "dog_id")

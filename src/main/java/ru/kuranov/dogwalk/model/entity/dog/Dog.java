@@ -13,8 +13,7 @@ import ru.kuranov.dogwalk.model.entity.time.Schedule;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -26,7 +25,7 @@ import java.util.Map;
 public class Dog {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
@@ -51,8 +50,11 @@ public class Dog {
     private WeightGroup weightGroup;
 
     @Column(name = "documents")
-    @ElementCollection(fetch = FetchType.EAGER)
-    private Map<DogDocuments, Boolean> documents;
+    @OneToMany(targetEntity = Document.class,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            mappedBy = "dog")
+    private Set<Document> documents;
 
     @OneToOne(targetEntity = Vet.class,
             cascade = CascadeType.ALL,
@@ -60,30 +62,39 @@ public class Dog {
     @JoinColumn(name = "vet_id")
     private Vet vet;
 
-    @OneToOne(targetEntity = Injury.class,
-            cascade = CascadeType.ALL,
-            optional = false)
-    @JoinColumn(name = "injury_id")
-    private Injury injury;
+    @Column(name = "injury_id")
+    private String injury;
 
     @Column(name = "pulling_leash")
-    @Enumerated(EnumType.STRING)
-    private PullingLeash pullingLeash;
+    @OneToMany(targetEntity = PullingLeash.class,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            mappedBy = "dog")
+    private Set<PullingLeash> pullingLeash;
 
     @Column(name = "pick_up_from_ground")
-    @Enumerated(EnumType.STRING)
-    private PickUpFromGround pickUpFromGround;
+    @OneToMany(targetEntity = PickUpFromGround.class,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            mappedBy = "dog")
+    private Set<PickUpFromGround> pickUpFromGround;
 
     @Column(name = "pick_it_up")
-    @Enumerated(EnumType.STRING)
-    private PickItUp pickItUp;
+    @OneToMany(targetEntity = PickItUp.class,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            mappedBy = "dog")
+    private Set<PickItUp> pickItUp;
 
     @Column(name = "fear")
     private String fear;
 
     @Column(name = "aggression")
-    @Enumerated(EnumType.STRING)
-    private Aggression aggression;
+    @OneToMany(targetEntity = Aggression.class,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            mappedBy = "dog")
+    private Set<Aggression> aggression;
 
     @Column(name = "is_go_without_leash")
     private boolean isGoWithoutLeash;
@@ -95,8 +106,11 @@ public class Dog {
     private boolean isWashPaws;
 
     @Column(name = "wash_paws")
-    @Enumerated(EnumType.STRING)
-    private WashPaws washPaws;
+    @OneToMany(targetEntity = WashPaws.class,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            mappedBy = "dog")
+    private Set<WashPaws> washPaws;
 
     @Column(name = "feed_after_walk")
     private boolean isFeedAfterWalk;
@@ -117,15 +131,26 @@ public class Dog {
     private Schedule schedule;
 
     @Column(name = "meeting_to_walker")
-    @Enumerated(EnumType.STRING)
-    private MeetingToWalker meetingToWalker;
+    @OneToMany(targetEntity = WashPaws.class,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            mappedBy = "dog")
+    private Set<MeetingToWalker> meetingToWalker;
 
     @Column(name = "how_get_pet")
-    private HowGetPet howGetPet;
+    @OneToMany(targetEntity = WashPaws.class,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            mappedBy = "dog")
+    private Set<HowGetPet> howGetPet;
 
-    @Column(name = "addition_info")
+    @Column(name = "addition_info", length = 1024)
     private String additionInfo;
 
-    @OneToMany(mappedBy = "dog")
-    private List<WalkingPlace> walkingPlace;
+    @Column(name = "walking_place")
+    @OneToMany(targetEntity = WashPaws.class,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            mappedBy = "dog")
+    private Set<WalkingPlace> walkingPlace;
 }

@@ -1,12 +1,28 @@
 package ru.kuranov.dogwalk.model.entity.addition;
 
-public enum WashPaws {
-    BATHROOM,
-    SHOWER,
-    LAPO_MOYKA,
-    BUCKET,
-    SINK,
-    WIPE_CLOTH,
-    WIPE_NAPKINS,
-    OTHER
+import lombok.*;
+import ru.kuranov.dogwalk.model.entity.dog.Dog;
+
+import javax.persistence.*;
+
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
+@Table(name = "wash_paws")
+public class WashPaws {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "label")
+    private String label;
+
+    @ManyToOne(targetEntity = Dog.class)
+    @JoinColumn(name = "dog_id")
+    private Dog dog;
 }

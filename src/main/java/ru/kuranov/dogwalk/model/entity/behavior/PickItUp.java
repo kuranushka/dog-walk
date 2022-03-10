@@ -1,7 +1,28 @@
 package ru.kuranov.dogwalk.model.entity.behavior;
 
-public enum PickItUp {
-    YES,
-    NO,
-    BETTER_NOT_RISK_IT
+import lombok.*;
+import ru.kuranov.dogwalk.model.entity.dog.Dog;
+
+import javax.persistence.*;
+
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
+@Table(name = "pick_it_up")
+public class PickItUp {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "label")
+    private String label;
+
+    @ManyToOne(targetEntity = Dog.class)
+    @JoinColumn(name = "dog_id")
+    private Dog dog;
 }

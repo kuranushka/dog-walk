@@ -1,7 +1,28 @@
 package ru.kuranov.dogwalk.model.entity.addition;
 
-public enum MeetingToWalker {
-    ON_THE_FIRST_TEST_DRIVE,
-    BEFORE_THE_FIRST_WALK,
-    NO_INTRODUCTION_REQUIRED
+import lombok.*;
+import ru.kuranov.dogwalk.model.entity.dog.Dog;
+
+import javax.persistence.*;
+
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
+@Table(name = "meeting_to_walker")
+public class MeetingToWalker {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "label")
+    private String label;
+
+    @ManyToOne
+    @JoinColumn(name = "dog_id")
+    private Dog dog;
 }
