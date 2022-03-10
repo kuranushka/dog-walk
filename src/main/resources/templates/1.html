@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en"> <html lang="en"> <html xmlns:th="http://www.thymeleaf.org">
 <!--[if lt IE 7 ]>
 <html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]>
@@ -82,9 +81,9 @@
 <body>
 <!-- Primary Page Layout
 ================================================== -->
-<div class="top">
-    <a href="#home"><img id="rotate" src="images/top.png" width="70" height="70" alt="top"/></a>
-</div>
+<!--<div class="top">-->
+<!--    <a href="#home"><img id="rotate" src="images/top.png" width="70" height="70" alt="top"/></a>-->
+<!--</div>-->
 
 <header>
     <div class="container nav" id="home">
@@ -126,44 +125,44 @@
         </div>
 
         <div class="two-thirds column form">
-            <form action="#" id="commentForm" method="post" name="commentForm">
-                <input class="required name" id="name" name="name" type="text" value="Name*"
-                       onFocus="if(this.value=='Name*') this.value=''"/>
-                <input class="required email" id="email" name="email" type="text" value="Email*"
-                       onFocus="if(this.value=='Email*') this.value=''"/>
-                <input class="phone" id="phone" name="phone" type="text" value="Phone"
-                       onFocus="if(this.value=='Phone') this.value=''"/>
-                <input class="website" id="website" name="website" type="text" value="Website"
-                       onFocus="if(this.value=='Website') this.value=''"/>
-                <textarea class="required message" name="message" onFocus="if(this.value=='Message*') this.value=''">Message*</textarea>
+            <form th:action="@{/test}" id="commentForm" method="post" name="commentForm">
+                <input class="required name" id="name" name="test" type="text" th:value="${message}"
+                       onFocus="if(this.value=='введите Ваше имя ...') this.value=''"/>
+<!--                <input class="required email" id="email" name="email" type="text" value="Email*"-->
+<!--                       onFocus="if(this.value=='Email*') this.value=''"/>-->
+<!--                <input class="phone" id="phone" name="phone" type="text" value="Phone"-->
+<!--                       onFocus="if(this.value=='Phone') this.value=''"/>-->
+<!--                <input class="website" id="website" name="website" type="text" value="Website"-->
+<!--                       onFocus="if(this.value=='Website') this.value=''"/>-->
+<!--                <textarea class="required message" name="message" onFocus="if(this.value=='Message*') this.value=''">Message*</textarea>-->
                 <button class="btn">Send</button>
                 <p class="white">Required fields are marked *</p>
             </form>
         </div>
 
-        <div class="one-third column omega coninfo">
-            <h4 class="left white">Contact Informations</h4>
-            <p class="white">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod erat.</p>
-            <ul>
-                <li>Flat OWL One Page Template</li>
-                <li>Lorum Ipsum Street 19</li>
-                <li>61234 Lorum City</li>
-                <li>+49 xxxx 123456789</li>
-                <li><a href="mailto:">info@lorumipsum.com</a></li>
-            </ul>
-            <h4 class="left white">Follow Us</h4>
-            <a class="social" href="" alt=""><img class="scale-with-grid" src="./images/icons/social/facebook.svg"
-                                                  alt=""></a>
-            <a class="social" href="" alt=""><img class="scale-with-grid" src="./images/icons/social/google.svg" alt=""></a>
-            <a class="social" href="" alt=""><img class="scale-with-grid" src="./images/icons/social/twitter.svg"
-                                                  alt=""></a>
-            <a class="social" href="" alt=""><img class="scale-with-grid" src="./images/icons/social/behance.svg"
-                                                  alt=""></a>
-            <a class="social" href="" alt=""><img class="scale-with-grid" src="./images/icons/social/linkedin.svg"
-                                                  alt=""></a>
-            <a class="social" href="" alt=""><img class="scale-with-grid" src="./images/icons/social/dribbble.svg"
-                                                  alt=""></a>
-        </div>
+<!--        <div class="one-third column omega coninfo">-->
+<!--            <h4 class="left white">Contact Informations</h4>-->
+<!--            <p class="white">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod erat.</p>-->
+<!--            <ul>-->
+<!--                <li>Flat OWL One Page Template</li>-->
+<!--                <li>Lorum Ipsum Street 19</li>-->
+<!--                <li>61234 Lorum City</li>-->
+<!--                <li>+49 xxxx 123456789</li>-->
+<!--                <li><a href="mailto:">info@lorumipsum.com</a></li>-->
+<!--            </ul>-->
+<!--            <h4 class="left white">Follow Us</h4>-->
+<!--            <a class="social" href="" alt=""><img class="scale-with-grid" src="./images/icons/social/facebook.svg"-->
+<!--                                                  alt=""></a>-->
+<!--            <a class="social" href="" alt=""><img class="scale-with-grid" src="./images/icons/social/google.svg" alt=""></a>-->
+<!--            <a class="social" href="" alt=""><img class="scale-with-grid" src="./images/icons/social/twitter.svg"-->
+<!--                                                  alt=""></a>-->
+<!--            <a class="social" href="" alt=""><img class="scale-with-grid" src="./images/icons/social/behance.svg"-->
+<!--                                                  alt=""></a>-->
+<!--            <a class="social" href="" alt=""><img class="scale-with-grid" src="./images/icons/social/linkedin.svg"-->
+<!--                                                  alt=""></a>-->
+<!--            <a class="social" href="" alt=""><img class="scale-with-grid" src="./images/icons/social/dribbble.svg"-->
+<!--                                                  alt=""></a>-->
+<!--        </div>-->
 
     </div>
 </div>
@@ -183,13 +182,13 @@
 <!-- End Document
 ================================================== -->
 
-<script type="text/javascript">
-    $(window).load(function () {
-        $('.flexslider').flexslider({
-            animation: "slide"
-        });
-    });
-</script>
+<!--<script type="text/javascript">-->
+<!--    $(window).load(function () {-->
+<!--        $('.flexslider').flexslider({-->
+<!--            animation: "slide"-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
 
 
 <!-- pretty photo
@@ -203,14 +202,14 @@
 	</script>
 	-->
 
-<script type="text/javascript" charset="utf-8">
-    $(document).ready(function () {
-        $("a[rel^='prettyPhoto']").prettyPhoto({
-            social_tools: false,
-            theme: 'light_square'
-        });
-    });
-</script>
+<!--<script type="text/javascript" charset="utf-8">-->
+<!--    $(document).ready(function () {-->
+<!--        $("a[rel^='prettyPhoto']").prettyPhoto({-->
+<!--            social_tools: false,-->
+<!--            theme: 'light_square'-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
 
 </body>
 </html>
