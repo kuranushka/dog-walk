@@ -10,8 +10,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Builder
-@Table(name = "document")
-public class Document {
+@Table(name = "dog_document")
+public class DogDocument {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

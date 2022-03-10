@@ -50,11 +50,11 @@ public class Dog {
     private WeightGroup weightGroup;
 
     @Column(name = "documents")
-    @OneToMany(targetEntity = Document.class,
+    @OneToMany(targetEntity = DogDocument.class,
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER,
             mappedBy = "dog")
-    private Set<Document> documents;
+    private Set<DogDocument> dogDocuments;
 
     @OneToOne(targetEntity = Vet.class,
             cascade = CascadeType.ALL,
