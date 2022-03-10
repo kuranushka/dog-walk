@@ -31,6 +31,8 @@ import java.util.Set;
 @AllArgsConstructor
 public class DogDto {
 
+    private Long id;
+
     @NotBlank(message = "ПОЛЕ КЛИЧКА НЕ ЗАПОЛНЕНО")
     private String name;
 

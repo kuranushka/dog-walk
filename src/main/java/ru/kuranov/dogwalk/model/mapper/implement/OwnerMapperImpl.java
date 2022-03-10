@@ -9,13 +9,26 @@ import ru.kuranov.dogwalk.model.mapper.interfaces.OwnerMapper;
 @Service
 @RequiredArgsConstructor
 public class OwnerMapperImpl implements OwnerMapper {
+
     @Override
     public Owner getOwner(OwnerDto ownerDto) {
-        return null;
+        return Owner.builder()
+                .id(ownerDto.getId())
+                .name(ownerDto.getName())
+                .surname(ownerDto.getSurname())
+                .mail(ownerDto.getMail())
+                .phone(ownerDto.getPhone())
+                .build();
     }
 
     @Override
     public OwnerDto getOwnerDto(Owner owner) {
-        return null;
+        return OwnerDto.builder()
+                .id(owner.getId())
+                .name(owner.getName())
+                .surname(owner.getSurname())
+                .mail(owner.getMail())
+                .phone(owner.getPhone())
+                .build();
     }
 }

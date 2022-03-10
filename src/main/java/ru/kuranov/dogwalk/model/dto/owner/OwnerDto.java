@@ -15,6 +15,8 @@ import javax.validation.constraints.Pattern;
 @AllArgsConstructor
 public class OwnerDto {
 
+    private Long id;
+
     @NotBlank(message = "ПОЛЕ ТЕЛЕФОН ВЕТЕРИНАРНОЙ КЛИНИКИ НЕ ЗАПОЛНЕНО")
     private String name;
 
