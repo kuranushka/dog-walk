@@ -16,7 +16,7 @@ public class MainController {
     @GetMapping("1")
     public String mainPage(Model model) {
         model.addAttribute("message", "введите Ваше имя ...");
-        return "1";
+        return "registration-owner";
     }
 
     @PostMapping("test")

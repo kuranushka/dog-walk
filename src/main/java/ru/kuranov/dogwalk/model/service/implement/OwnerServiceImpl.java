@@ -20,4 +20,9 @@ public class OwnerServiceImpl implements OwnerService {
         Optional<Owner> optionalOwner = ownerRepository.findByName(ownerName);
         return optionalOwner.orElseThrow(() -> new NoSuchOwnerException(ownerName));
     }
+
+    @Override
+    public void save(Owner owner) {
+        ownerRepository.save(owner);
+    }
 }

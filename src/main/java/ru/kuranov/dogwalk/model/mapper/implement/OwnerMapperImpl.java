@@ -14,6 +14,8 @@ public class OwnerMapperImpl implements OwnerMapper {
     public Owner getOwner(OwnerDto ownerDto) {
         return Owner.builder()
                 .id(ownerDto.getId())
+                .login(ownerDto.getLogin())
+                .password(ownerDto.getPassword())
                 .name(ownerDto.getName())
                 .surname(ownerDto.getSurname())
                 .mail(ownerDto.getMail())
@@ -25,6 +27,8 @@ public class OwnerMapperImpl implements OwnerMapper {
     public OwnerDto getOwnerDto(Owner owner) {
         return OwnerDto.builder()
                 .id(owner.getId())
+                .login(owner.getLogin())
+                .password(owner.getPassword())
                 .name(owner.getName())
                 .surname(owner.getSurname())
                 .mail(owner.getMail())
