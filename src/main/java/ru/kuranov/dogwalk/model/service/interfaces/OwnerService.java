@@ -8,4 +8,6 @@ public interface OwnerService {
     Owner findByName(String ownerName);
 
     void save(Owner owner);
+
+    boolean  isThereSuchLogin(String login);
 }

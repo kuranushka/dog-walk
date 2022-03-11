@@ -18,23 +18,24 @@ public class OwnerDto {
 
     private Long id;
 
-    @NotBlank(message = "ЛОГИН БЫТЬ НЕ МЕНЕЕ 6 СИМВОЛОВ")
-    @Length(min = 6, message = "ЛОГИН БЫТЬ НЕ МЕНЕЕ 6 СИМВОЛОВ")
+    @NotBlank(message = "ПОЛЕ ЛОГИН ДОЛЖНО БЫТЬ ЗАПОЛНЕНО")
+    @Length(min = 6, message = "ЛОГИН МИНИМУМ 6 СИМВОЛОВ")
     private String login;
 
-    @NotBlank(message = "ПАРОЛЬ БЫТЬ НЕ МЕНЕЕ 6 СИМВОЛОВ")
-    @Length(min = 6, message = "ПАРОЛЬ БЫТЬ НЕ МЕНЕЕ 6 СИМВОЛОВ")
+    @NotBlank(message = "ПОЛЕ ПАРОЛЬ ДОЛЖНО БЫТЬ ЗАПОЛНЕНО")
+    @Length(min = 6, message = "ПАРОЛЬ МИНИМУМ 6 СИМВОЛОВ")
     private String password;
 
-//    @NotBlank(message = "ПОЛЕ ТЕЛЕФОН ВЕТЕРИНАРНОЙ КЛИНИКИ НЕ ЗАПОЛНЕНО")
+    @NotBlank(message = "ПОЛЕ ИМЯ НЕ ЗАПОЛНЕНО")
     private String name;
 
-//    @NotBlank(message = "ПОЛЕ ТЕЛЕФОН ВЕТЕРИНАРНОЙ КЛИНИКИ НЕ ЗАПОЛНЕНО")
+    @NotBlank(message = "ПОЛЕ ФАМИЛИЯ НЕ ЗАПОЛНЕНО")
     private String surname;
 
-//    @Email(message = "УКАЖИТЕ ПОЧТОВЫЙ ЯЩИК, ПРИМЕР person@yandex.ru")
+    @NotBlank(message = "УКАЖИТЕ ПОЧТОВЫЙ ЯЩИК")
+    @Email(message = "УКАЖИТЕ ПОЧТОВЫЙ ЯЩИК, ПРИМЕР person@yandex.ru")
     private String mail;
 
-//    @Pattern(regexp = "\\+7\\s[0-9]{3}\\s[0-9]{3}\\s[0-9]{2}\\s[0-9]{2}", message = "УКАЖИТЕ НОМЕР ТЕЛЕФОНА, ПРИМЕР +7 950 250 50 50")
+    @Pattern(regexp = ".*7.*[0-9]{3}.*[0-9]{3}.*[0-9]{2}.*[0-9]{2}", message = "УКАЖИТЕ НОМЕР ТЕЛЕФОНА, НАПРИМЕР +7 950 250 50 50")
     private String phone;
 }

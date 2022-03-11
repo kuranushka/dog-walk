@@ -25,4 +25,9 @@ public class OwnerServiceImpl implements OwnerService {
     public void save(Owner owner) {
         ownerRepository.save(owner);
     }
+
+    @Override
+    public boolean isThereSuchLogin(String login) {
+        return ownerRepository.isThereSuchLogin(login);
+    }
 }
