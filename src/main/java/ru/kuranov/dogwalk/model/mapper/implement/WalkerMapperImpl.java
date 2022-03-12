@@ -17,7 +17,6 @@ public class WalkerMapperImpl implements WalkerMapper {
     private final CityService cityService;
     private final CitizenshipService citizenshipService;
 
-    //TODO не присваивается гражданство
     @Override
     public Walker getWalker(WalkerDto walkerDto) {
         return Walker.builder()

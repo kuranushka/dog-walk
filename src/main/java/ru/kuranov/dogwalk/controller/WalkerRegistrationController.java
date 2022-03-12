@@ -1,12 +1,13 @@
 package ru.kuranov.dogwalk.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import ru.kuranov.dogwalk.exceptions.ErrorMessages;
 import ru.kuranov.dogwalk.model.dto.walker.WalkerDto;
 import ru.kuranov.dogwalk.model.entity.walker.Walker;
@@ -19,7 +20,6 @@ import javax.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/registration/walker")
 public class WalkerRegistrationController {
 
     private final WalkerService walkerService;
@@ -27,7 +27,7 @@ public class WalkerRegistrationController {
     private final CityService cityService;
     private final CitizenshipService citizenshipService;
 
-    @GetMapping
+    @GetMapping("/registration/walker")
     public String registrationWalker(WalkerDto walkerDto, Model model) {
         walkerDto = WalkerDto.builder()
                 .cities(cityService.findAll())
@@ -37,7 +37,7 @@ public class WalkerRegistrationController {
         return "registration-walker";
     }
 
-    @PostMapping
+    @PostMapping("/registration/walker")
     public String registrationWalker(@Valid WalkerDto walkerDto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             walkerDto.setCities(cityService.findAll());
@@ -54,5 +54,10 @@ public class WalkerRegistrationController {
         Walker walker = walkerMapper.getWalker(walkerDto);
         walkerService.save(walker);
         return "redirect:/registration/getmail";
+    }
+
+    @GetMapping("/registration/getmail")
+    public String postRegistrationPage(Model model) {
+        return "registration-getmail";
     }
 }
