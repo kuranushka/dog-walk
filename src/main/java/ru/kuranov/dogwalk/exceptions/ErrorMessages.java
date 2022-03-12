@@ -7,7 +7,10 @@ import lombok.AllArgsConstructor;
 
 public enum ErrorMessages {
     NO_SUCH_OWNER_EXCEPTION("Cannot find owner with name"),
-    USER_WITH_THIS_LOGIN_ALREADY_EXISTS("ТАКОЙ ЛОГИН УЖЕ ЗАНЯТ");
+    NO_SUCH_CITY_EXCEPTION("Cannot find city with name"),
+    NO_SUCH_CITIZENSHIP_EXCEPTION("Cannot find citizenship with name"),
+    NO_SUCH_WALKER_EXCEPTION("Cannot find walker with name"),
+    USER_WITH_THIS_LOGIN_ALREADY_EXISTS("User with such login exists");
 //    CURRENT_USER_DELETE_EXCEPTION ("Cannot delete yourself. Operation denied"),
 //    NO_CURRENT_USER_EXCEPTION("Cannot get current user"),
 //    NO_SUCH_ORDER_EXCEPTION("Cannot find order with id "),

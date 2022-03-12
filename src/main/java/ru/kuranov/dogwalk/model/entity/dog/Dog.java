@@ -26,7 +26,7 @@ import java.util.Set;
 public class Dog {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -158,4 +158,7 @@ public class Dog {
             fetch = FetchType.EAGER,
             mappedBy = "dog")
     private Set<WalkingPlace> walkingPlace;
+
+    @Column(name = "price")
+    private int price;
 }

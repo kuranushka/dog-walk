@@ -22,6 +22,12 @@ public class Walker {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "login")
+    private String login;
+
+    @Column(name = "password")
+    private String password;
+
     @Column(name = "name")
     private String name;
 
@@ -42,9 +48,6 @@ public class Walker {
             fetch = FetchType.EAGER)
     @JoinColumn(name = "city_id")
     private City city;
-
-    @Column(name = "is_have_previous_conviction")
-    private boolean isHavePreviousConviction;
 
     @Column(name = "social_links")
     @ElementCollection(fetch = FetchType.EAGER)

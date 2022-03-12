@@ -27,13 +27,11 @@ import java.util.Collections;
 @PropertySource("classpath:app-values.properties")
 public class DogMapperImpl implements DogMapper {
 
+    private final OwnerService ownerService;
     @Value("${dog.weight.light.max}")
     private int lightWeight;
-
     @Value("${dog.weight.middle.max}")
     private int middleWeight;
-
-    private final OwnerService ownerService;
 
     @Override
     public Dog getDog(DogDto dogDto) {
@@ -116,7 +114,7 @@ public class DogMapperImpl implements DogMapper {
 
     private WalkingPlace getWalkingPlace(String cityName, boolean isMetro, String location) {
         City city = City.builder()
-                .cityName(cityName)
+                .name(cityName)
                 .build();
 
         WalkingPlace walkingPlace = WalkingPlace.builder()

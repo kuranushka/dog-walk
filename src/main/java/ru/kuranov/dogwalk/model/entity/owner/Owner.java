@@ -1,11 +1,9 @@
 package ru.kuranov.dogwalk.model.entity.owner;
 
 import lombok.*;
-import org.hibernate.validator.constraints.Length;
 import ru.kuranov.dogwalk.model.entity.dog.Dog;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 @Entity
@@ -18,7 +16,7 @@ import java.util.Set;
 public class Owner {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 

@@ -4,31 +4,31 @@
 <head>
     <title>ПЁСО ХОД найти выгульщика для собаки</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="apple-touch-icon" href="../assets/img/apple-icon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="../assets/img/apple-icon.png" rel="apple-touch-icon">
+    <link href="assets/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <!-- Load Require CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font CSS -->
     <link href="assets/css/boxicon.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <!-- Load Tempalte CSS -->
-    <link rel="stylesheet" href="assets/css/templatemo.css">
+    <link href="assets/css/templatemo.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/custom.css">
+    <link href="assets/css/custom.css" rel="stylesheet">
 </head>
 
 <body>
 <!-- Header -->
-<nav id="main_nav" class="navbar navbar-expand-lg navbar-light bg-white shadow">
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow" id="main_nav">
     <div class="container d-flex justify-content-between align-items-center">
-        <a class="navbar-brand h1" href="index.html">
+        <a class="navbar-brand h1" href="/">
             <i class='bx bx-buildings bx-sm text-dark'></i>
             <span class="text-dark h4">ПЁСО</span> <span class="text-primary h4">ХОД</span>
         </a>
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbar-toggler-success" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler border-0" data-bs-target="#navbar-toggler-success" data-bs-toggle="collapse"
+                type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -64,14 +64,14 @@
 
 <!-- Start Banner Hero -->
 <div class="banner-wrapper bg-light">
-    <div id="index_banner" class="banner-vertical-center-index container-fluid pt-5">
+    <div class="banner-vertical-center-index container-fluid pt-5" id="index_banner">
 
         <!-- Start slider -->
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel slide" data-bs-ride="carousel" id="carouselExampleIndicators">
             <ol class="carousel-indicators">
-                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+                <li class="active" data-bs-slide-to="0" data-bs-target="#carouselExampleIndicators"></li>
+                <li data-bs-slide-to="1" data-bs-target="#carouselExampleIndicators"></li>
+                <!--                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>-->
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -82,7 +82,7 @@
                                 Погуляем <br><strong>вашего пёсика<br></strong> в удобное время
                             </h1>
                             <p class="banner-body text-muted py-3 mx-0 px-0">
-                                Всё, что Вам нужно, <a rel="nofollow" href="/registration/owner" target="_parent">зарегистрироваться</a>.
+                                Всё, что Вам нужно, <a href="/registration/owner" rel="nofollow" target="_parent">зарегистрироваться</a>.
                                 <br>
                                 Немного рассказать о своём питомце,<br> и выбрать выгульщика из Вашего района.<br>
                                 Мы не берем себе никаких комиссий.
@@ -101,7 +101,7 @@
                                 Хотите <br>подзаработать и <br><strong>весело провести <br></strong>время?
                             </h1>
                             <p class="banner-body text-muted py-3">
-                                Всё, что Вам нужно, <a rel="nofollow" href="/registration/walker" target="_parent">зарегистрироваться</a>.
+                                Всё, что Вам нужно, <a href="/registration/walker" rel="nofollow" target="_parent">зарегистрироваться</a>.
                                 <br>
                                 Немного рассказать о себе,<br> и мы подберем для Вас подходящий вариант <br>в Вашем
                                 районе.<br>
@@ -114,13 +114,13 @@
 
                 </div>
             </div>
-            <a class="carousel-control-prev text-decoration-none" href="#carouselExampleIndicators" role="button"
-               data-bs-slide="prev">
+            <a class="carousel-control-prev text-decoration-none" data-bs-slide="prev" href="#carouselExampleIndicators"
+               role="button">
                 <i class='bx bx-chevron-left'></i>
                 <span class="visually-hidden">Previous</span>
             </a>
-            <a class="carousel-control-next text-decoration-none" href="#carouselExampleIndicators" role="button"
-               data-bs-slide="next">
+            <a class="carousel-control-next text-decoration-none" data-bs-slide="next" href="#carouselExampleIndicators"
+               role="button">
                 <i class='bx bx-chevron-right'></i>
                 <span class="visually-hidden">Next</span>
             </a>
@@ -156,19 +156,19 @@
             <ul class="nav d-flex justify-content-center">
                 <li class="nav-item mx-lg-4">
                     <a class="filter-btn nav-link btn-outline-primary active shadow rounded-pill text-light px-4 light-300"
-                       href="#" data-filter=".project">All</a>
+                       data-filter=".project" href="#">All</a>
                 </li>
                 <li class="nav-item mx-lg-4">
-                    <a class="filter-btn nav-link btn-outline-primary rounded-pill text-light px-4 light-300" href="#"
-                       data-filter=".graphic">Graphics</a>
+                    <a class="filter-btn nav-link btn-outline-primary rounded-pill text-light px-4 light-300" data-filter=".graphic"
+                       href="#">Graphics</a>
                 </li>
                 <li class="filter-btn nav-item mx-lg-4">
-                    <a class="filter-btn nav-link btn-outline-primary rounded-pill text-light px-4 light-300" href="#"
-                       data-filter=".ui">UI/UX</a>
+                    <a class="filter-btn nav-link btn-outline-primary rounded-pill text-light px-4 light-300" data-filter=".ui"
+                       href="#">UI/UX</a>
                 </li>
                 <li class="nav-item mx-lg-4">
-                    <a class="filter-btn nav-link btn-outline-primary rounded-pill text-light px-4 light-300" href="#"
-                       data-filter=".branding">Branding</a>
+                    <a class="filter-btn nav-link btn-outline-primary rounded-pill text-light px-4 light-300" data-filter=".branding"
+                       href="#">Branding</a>
                 </li>
             </ul>
         </div>
@@ -181,8 +181,8 @@
 
         <!-- Start Recent Work -->
         <div class="col-xl-3 col-md-4 col-sm-6 project ui branding">
-            <a href="#" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
-                <img class="service card-img" src="./assets/img/services-01.jpg" alt="Card image">
+            <a class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0" href="#">
+                <img alt="Card image" class="service card-img" src="./assets/img/services-01.jpg">
                 <div class="service-work-vertical card-img-overlay d-flex align-items-end">
                     <div class="service-work-content text-left text-light">
                         <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">UI/UX design</span>
@@ -194,8 +194,8 @@
 
         <!-- Start Recent Work -->
         <div class="col-xl-3 col-md-4 col-sm-6 project ui graphic">
-            <a href="#" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
-                <img class="card-img" src="./assets/img/services-02.jpg" alt="Card image">
+            <a class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0" href="#">
+                <img alt="Card image" class="card-img" src="./assets/img/services-02.jpg">
                 <div class="service-work-vertical card-img-overlay d-flex align-items-end">
                     <div class="service-work-content text-left text-light">
                         <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">Social Media</span>
@@ -207,8 +207,8 @@
 
         <!-- Start Recent Work -->
         <div class="col-xl-3 col-md-4 col-sm-6 project branding">
-            <a href="#" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
-                <img class="card-img" src="./assets/img/services-03.jpg" alt="Card image">
+            <a class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0" href="#">
+                <img alt="Card image" class="card-img" src="./assets/img/services-03.jpg">
                 <div class="service-work-vertical card-img-overlay d-flex align-items-end">
                     <div class="service-work-content text-left text-light">
                         <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">Marketing</span>
@@ -220,8 +220,8 @@
 
         <!-- Start Recent Work -->
         <div class="col-xl-3 col-md-4 col-sm-6 project ui graphic">
-            <a href="#" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
-                <img class="card-img" src="./assets/img/services-04.jpg" alt="Card image">
+            <a class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0" href="#">
+                <img alt="Card image" class="card-img" src="./assets/img/services-04.jpg">
                 <div class="service-work-vertical card-img-overlay d-flex align-items-end">
                     <div class="service-work-content text-left text-light">
                         <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">Graphic</span>
@@ -233,8 +233,8 @@
 
         <!-- Start Recent Work -->
         <div class="col-xl-3 col-md-4 col-sm-6 project ui graphic">
-            <a href="#" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
-                <img class="card-img" src="./assets/img/services-05.jpg" alt="Card image">
+            <a class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0" href="#">
+                <img alt="Card image" class="card-img" src="./assets/img/services-05.jpg">
                 <div class="service-work-vertical card-img-overlay d-flex align-items-end">
                     <div class="service-work-content text-left text-light">
                         <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">Digtal Marketing</span>
@@ -246,8 +246,8 @@
 
         <!-- Start Recent Work -->
         <div class="col-xl-3 col-md-4 col-sm-6 project branding">
-            <a href="#" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
-                <img class="card-img" src="./assets/img/services-06.jpg" alt="Card image">
+            <a class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0" href="#">
+                <img alt="Card image" class="card-img" src="./assets/img/services-06.jpg">
                 <div class="service-work-vertical card-img-overlay d-flex align-items-end">
                     <div class="service-work-content text-left text-light">
                         <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">Market Research</span>
@@ -259,8 +259,8 @@
 
         <!-- Start Recent Work -->
         <div class="col-xl-3 col-md-4 col-sm-6 project branding">
-            <a href="#" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
-                <img class="card-img" src="./assets/img/services-07.jpg" alt="Card image">
+            <a class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0" href="#">
+                <img alt="Card image" class="card-img" src="./assets/img/services-07.jpg">
                 <div class="service-work-vertical card-img-overlay d-flex align-items-end">
                     <div class="service-work-content text-left text-light">
                         <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">Business</span>
@@ -272,8 +272,8 @@
 
         <!-- Start Recent Work -->
         <div class="col-xl-3 col-md-4 col-sm-6 project ui graphic branding">
-            <a href="#" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
-                <img class="card-img" src="./assets/img/services-08.jpg" alt="Card image">
+            <a class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0" href="#">
+                <img alt="Card image" class="card-img" src="./assets/img/services-08.jpg">
                 <div class="service-work-vertical card-img-overlay d-flex align-items-end">
                     <div class="service-work-content text-left text-light">
                         <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">Branding</span>
@@ -300,7 +300,7 @@
                 <p class="light-300">Quis ipsum suspendisse ultrices gravida.</p>
             </div>
             <div class="col-lg-3 col-12 pt-4">
-                <a href="#" class="btn btn-primary rounded-pill btn-block shadow px-4 py-2">View Our Work</a>
+                <a class="btn btn-primary rounded-pill btn-block shadow px-4 py-2" href="#">View Our Work</a>
             </div>
         </div>
     </div>
@@ -317,8 +317,8 @@
 
             <!-- Start Recent Work -->
             <div class="col-md-4 mb-3">
-                <a href="#" class="recent-work card border-0 shadow-lg overflow-hidden">
-                    <img class="recent-work-img card-img" src="./assets/img/recent-work-01.jpg" alt="Card image">
+                <a class="recent-work card border-0 shadow-lg overflow-hidden" href="#">
+                    <img alt="Card image" class="recent-work-img card-img" src="./assets/img/recent-work-01.jpg">
                     <div class="recent-work-vertical card-img-overlay d-flex align-items-end">
                         <div class="recent-work-content text-start mb-3 ml-3 text-dark">
                             <h3 class="card-title light-300">Social Media</h3>
@@ -330,8 +330,8 @@
 
             <!-- Start Recent Work -->
             <div class="col-md-4 mb-3">
-                <a href="#" class="recent-work card border-0 shadow-lg overflow-hidden">
-                    <img class="recent-work-img card-img" src="./assets/img/recent-work-02.jpg" alt="Card image">
+                <a class="recent-work card border-0 shadow-lg overflow-hidden" href="#">
+                    <img alt="Card image" class="recent-work-img card-img" src="./assets/img/recent-work-02.jpg">
                     <div class="recent-work-vertical card-img-overlay d-flex align-items-end">
                         <div class="recent-work-content text-start mb-3 ml-3 text-dark">
                             <h3 class="card-title light-300">Web Marketing</h3>
@@ -343,8 +343,8 @@
 
             <!-- Start Recent Work -->
             <div class="col-md-4 mb-3">
-                <a href="#" class="recent-work card border-0 shadow-lg overflow-hidden">
-                    <img class="recent-work-img card-img" src="./assets/img/recent-work-03.jpg" alt="Card image">
+                <a class="recent-work card border-0 shadow-lg overflow-hidden" href="#">
+                    <img alt="Card image" class="recent-work-img card-img" src="./assets/img/recent-work-03.jpg">
                     <div class="recent-work-vertical card-img-overlay d-flex align-items-end">
                         <div class="recent-work-content text-start mb-3 ml-3 text-dark">
                             <h3 class="card-title light-300">R & D</h3>
@@ -356,8 +356,8 @@
 
             <!-- Start Recent Work -->
             <div class="col-md-4 mb-3">
-                <a href="#" class="recent-work card border-0 shadow-lg overflow-hidden">
-                    <img class="recent-work-img card-img" src="./assets/img/recent-work-04.jpg" alt="Card image">
+                <a class="recent-work card border-0 shadow-lg overflow-hidden" href="#">
+                    <img alt="Card image" class="recent-work-img card-img" src="./assets/img/recent-work-04.jpg">
                     <div class="recent-work-vertical card-img-overlay d-flex align-items-end">
                         <div class="recent-work-content text-start mb-3 ml-3 text-dark">
                             <h3 class="card-title light-300">Public Relation</h3>
@@ -369,8 +369,8 @@
 
             <!-- Start Recent Work -->
             <div class="col-md-4 mb-3">
-                <a href="#" class="recent-work card border-0 shadow-lg overflow-hidden">
-                    <img class="recent-work-img card-img" src="./assets/img/recent-work-05.jpg" alt="Card image">
+                <a class="recent-work card border-0 shadow-lg overflow-hidden" href="#">
+                    <img alt="Card image" class="recent-work-img card-img" src="./assets/img/recent-work-05.jpg">
                     <div class="recent-work-vertical card-img-overlay d-flex align-items-end">
                         <div class="recent-work-content text-start mb-3 ml-3 text-dark">
                             <h3 class="card-title light-300">Branding</h3>
@@ -382,8 +382,8 @@
 
             <!-- Start Recent Work -->
             <div class="col-md-4 mb-3">
-                <a href="#" class="recent-work card border-0 shadow-lg overflow-hidden">
-                    <img class="recent-work-img card-img" src="./assets/img/recent-work-06.jpg" alt="Card image">
+                <a class="recent-work card border-0 shadow-lg overflow-hidden" href="#">
+                    <img alt="Card image" class="recent-work-img card-img" src="./assets/img/recent-work-06.jpg">
                     <div class="recent-work-vertical card-img-overlay d-flex align-items-end">
                         <div class="recent-work-content text-start mb-3 ml-3 text-dark">
                             <h3 class="card-title light-300">Creative Design</h3>
@@ -415,27 +415,27 @@
                 </p>
                 <ul class="list-inline footer-icons light-300">
                     <li class="list-inline-item m-0">
-                        <a class="text-light" target="_blank" href="http://facebook.com/">
+                        <a class="text-light" href="http://facebook.com/" target="_blank">
                             <i class='bx bxl-facebook-square bx-md'></i>
                         </a>
                     </li>
                     <li class="list-inline-item m-0">
-                        <a class="text-light" target="_blank" href="https://www.linkedin.com/">
+                        <a class="text-light" href="https://www.linkedin.com/" target="_blank">
                             <i class='bx bxl-linkedin-square bx-md'></i>
                         </a>
                     </li>
                     <li class="list-inline-item m-0">
-                        <a class="text-light" target="_blank" href="https://www.whatsapp.com/">
+                        <a class="text-light" href="https://www.whatsapp.com/" target="_blank">
                             <i class='bx bxl-whatsapp-square bx-md'></i>
                         </a>
                     </li>
                     <li class="list-inline-item m-0">
-                        <a class="text-light" target="_blank" href="https://www.flickr.com/">
+                        <a class="text-light" href="https://www.flickr.com/" target="_blank">
                             <i class='bx bxl-flickr-square bx-md'></i>
                         </a>
                     </li>
                     <li class="list-inline-item m-0">
-                        <a class="text-light" target="_blank" href="https://www.medium.com/">
+                        <a class="text-light" href="https://www.medium.com/" target="_blank">
                             <i class='bx bxl-medium-square bx-md'></i>
                         </a>
                     </li>
@@ -525,8 +525,8 @@
                 </div>
                 <div class="col-lg-6 col-sm-12">
                     <p class="text-lg-end text-center text-light light-300">
-                        Designed by <a rel="sponsored" class="text-decoration-none text-light"
-                                       href="https://templatemo.com/" target="_blank"><strong>TemplateMo</strong></a>
+                        Designed by <a class="text-decoration-none text-light" href="https://templatemo.com/"
+                                       rel="sponsored" target="_blank"><strong>TemplateMo</strong></a>
                     </p>
                 </div>
             </div>

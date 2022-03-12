@@ -14,12 +14,12 @@ import javax.persistence.*;
 public class City {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "city_name")
-    private String cityName;
+    @Column(name = "name")
+    private String name;
 
     @OneToOne(targetEntity = WalkingPlace.class,
             mappedBy = "city")

@@ -15,12 +15,12 @@ import javax.persistence.*;
 public class Citizenship {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
     @Column(name = "country")
-    private String country;
+    private String name;
 
     @OneToOne(targetEntity = Walker.class)
     @JoinColumn(name = "citizenship")

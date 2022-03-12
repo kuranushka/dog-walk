@@ -8,39 +8,45 @@
 
 
 <div class="two-thirds column form">
-    <form th:action="@{/registration/owner}" id="commentForm" method="post" name="commentForm"
+    <form id="commentForm" method="post" name="commentForm" th:action="@{/registration/owner}"
           th:object="${ownerDto}">
         <div>
-            <p class="center white">ЛОГИН*</p> <input type="text" th:field="*{login}"
-                                                      th:placeholder="${ownerDto.login}"/>
+            <p class="center white">ЛОГИН*</p> <input th:field="*{login}" th:placeholder="${ownerDto.login}"
+                                                      type="text"/>
             <p class="center white" th:if="${errorMessage}" th:text="${errorMessage}"></p>
-            <p th:if="${#fields.hasErrors('login')}" th:errorclass="error" th:errors="*{login}"/>
-        </div><br>
+            <p th:errorclass="error" th:errors="*{login}" th:if="${#fields.hasErrors('login')}"/>
+        </div>
+        <br>
         <div>
-            <p class="center white">ПАРОЛЬ*</p> <input type="password" th:field="*{password}"
-                                                       th:placeholder="${ownerDto.password}"/>
-            <p th:if="${#fields.hasErrors('password')}" th:errorclass="error" th:errors="*{password}"/>
-        </div><br>
+            <p class="center white">ПАРОЛЬ*</p> <input th:field="*{password}" th:placeholder="${ownerDto.password}"
+                                                       type="password"/>
+            <p th:errorclass="error" th:errors="*{password}" th:if="${#fields.hasErrors('password')}"/>
+        </div>
+        <br>
         <div>
-            <p class="center white">ИМЯ*</p> <input type="text" th:field="*{name}"
-                                                    th:placeholder="${ownerDto.name}"/>
-            <p th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="*{name}"/>
-        </div><br>
+            <p class="center white">ИМЯ*</p> <input th:field="*{name}" th:placeholder="${ownerDto.name}"
+                                                    type="text"/>
+            <p th:errorclass="error" th:errors="*{name}" th:if="${#fields.hasErrors('name')}"/>
+        </div>
+        <br>
         <div>
-            <p class="center white">ФАМИЛИЯ*</p> <input type="text" th:field="*{surname}"
-                                                        th:placeholder="${ownerDto.surname}"/>
-            <p th:if="${#fields.hasErrors('surname')}" th:errorclass="error" th:errors="*{surname}"/>
-        </div><br>
+            <p class="center white">ФАМИЛИЯ*</p> <input th:field="*{surname}" th:placeholder="${ownerDto.surname}"
+                                                        type="text"/>
+            <p th:errorclass="error" th:errors="*{surname}" th:if="${#fields.hasErrors('surname')}"/>
+        </div>
+        <br>
         <div>
-            <p class="center white">E-MAIL*</p> <input type="text" th:field="*{mail}"
-                                                       th:placeholder="${ownerDto.mail}"/>
-            <p th:if="${#fields.hasErrors('mail')}" th:errorclass="error" th:errors="*{mail}"/>
-        </div><br>
+            <p class="center white">E-MAIL*</p> <input th:field="*{mail}" th:placeholder="${ownerDto.mail}"
+                                                       type="text"/>
+            <p th:errorclass="error" th:errors="*{mail}" th:if="${#fields.hasErrors('mail')}"/>
+        </div>
+        <br>
         <div>
-            <p class="center white">МОБИЛЬНЫЙ ТЕЛЕФОН*</p> <input type="text" th:field="*{phone}"
-                                                                  th:placeholder="${ownerDto.phone}"/>
-            <p th:if="${#fields.hasErrors('phone')}" th:errorclass="error" th:errors="*{phone}"/>
-        </div><br>
+            <p class="center white">МОБИЛЬНЫЙ ТЕЛЕФОН*</p> <input th:field="*{phone}" th:placeholder="${ownerDto.phone}"
+                                                                  type="text"/>
+            <p th:errorclass="error" th:errors="*{phone}" th:if="${#fields.hasErrors('phone')}"/>
+        </div>
+        <br>
         <button class="btn">Send</button>
         <p class="white">ОБЯЗАТЕЛЬНЫЕ ПОЛЯ *</p>
     </form>

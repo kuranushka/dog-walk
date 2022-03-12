@@ -13,8 +13,23 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping("/owner")
+    public String ownerPage() {
+        return "owner";
+    }
+
+    @GetMapping("/walker")
+    public String walkerPage() {
+        return "walker";
+    }
+
+    @GetMapping("/about")
+    public String aboutPage() {
+        return "aboutPage";
+    }
+
     @GetMapping("/contact")
     public String contactPage() {
-        return "--contact";
+        return "contactPage";
     }
 }

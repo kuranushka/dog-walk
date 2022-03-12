@@ -13,11 +13,6 @@ import ru.kuranov.dogwalk.model.entity.behavior.PickUpFromGround;
 import ru.kuranov.dogwalk.model.entity.behavior.PullingLeash;
 import ru.kuranov.dogwalk.model.entity.dog.DogDocument;
 import ru.kuranov.dogwalk.model.entity.dog.Gender;
-import ru.kuranov.dogwalk.model.entity.dog.Vet;
-import ru.kuranov.dogwalk.model.entity.dog.WeightGroup;
-import ru.kuranov.dogwalk.model.entity.location.City;
-import ru.kuranov.dogwalk.model.entity.location.WalkingPlace;
-import ru.kuranov.dogwalk.model.entity.time.Schedule;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
