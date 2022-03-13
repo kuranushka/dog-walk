@@ -2,6 +2,8 @@ package ru.kuranov.dogwalk.model.entity.owner;
 
 import lombok.*;
 import ru.kuranov.dogwalk.model.entity.dog.Dog;
+import ru.kuranov.dogwalk.model.entity.security.AccountUser;
+import ru.kuranov.dogwalk.model.entity.security.Role;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -13,18 +15,24 @@ import java.util.Set;
 @Setter
 @Builder
 @Table(name = "owner")
-public class Owner {
+public class Owner extends AccountUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "login")
-    private String login;
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "password")
     private String password;
+
+    @Singular
+    @ManyToMany(targetEntity = Role.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinTable(name = "owner_role", joinColumns = @JoinColumn(name = "owner_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private Set<Role> roles;
 
     @Column(name = "name")
     private String name;

@@ -46,7 +46,7 @@ public class WalkerRegistrationController {
             return "registration-walker";
         }
 
-        if (walkerService.isThereSuchLogin(walkerDto.getLogin())) {
+        if (walkerService.isThereSuchLogin(walkerDto.getUsername())) {
             model.addAttribute("walkerDto", walkerDto);
             model.addAttribute("errorMessage", ErrorMessages.USER_WITH_THIS_LOGIN_ALREADY_EXISTS);
         }

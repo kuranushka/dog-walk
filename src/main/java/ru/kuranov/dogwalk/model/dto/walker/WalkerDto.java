@@ -30,7 +30,7 @@ public class WalkerDto {
 
     @NotBlank(message = "ПОЛЕ ЛОГИН ДОЛЖНО БЫТЬ ЗАПОЛНЕНО")
     @Length(min = 6, message = "ЛОГИН МИНИМУМ 6 СИМВОЛОВ")
-    private String login;
+    private String username;
 
     @NotBlank(message = "ПОЛЕ ПАРОЛЬ ДОЛЖНО БЫТЬ ЗАПОЛНЕНО")
     @Length(min = 6, message = "ПАРОЛЬ МИНИМУМ 6 СИМВОЛОВ")

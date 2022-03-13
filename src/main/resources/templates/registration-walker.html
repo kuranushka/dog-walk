@@ -34,11 +34,11 @@
                   th:object="${walkerDto}">
                 <div class="col-12">
                     <div class="form-floating mb-4">
-                        <p>ЛОГИН, НЕ МЕНЕЕ 6 СИМВОЛОВ *</p> <input class="form-control form-control-lg light-300" th:field="*{login}"
-                                             th:placeholder="${walkerDto.login}"
+                        <p>ЛОГИН, НЕ МЕНЕЕ 6 СИМВОЛОВ *</p> <input class="form-control form-control-lg light-300" th:field="*{username}"
+                                             th:placeholder="${walkerDto.username}"
                                              type="text"/>
                         <p th:if="${errorMessage}" th:text="${errorMessage}"></p>
-                        <p th:errorclass="error" th:errors="*{login}" th:if="${#fields.hasErrors('login')}"/>
+                        <p th:errorclass="error" th:errors="*{username}" th:if="${#fields.hasErrors('username')}"/>
                     </div>
                 </div>
                 <div class="col-12">

@@ -34,7 +34,7 @@ public class OwnerRegistrationController {
             return "registration-owner";
         }
 
-        if (ownerService.isThereSuchLogin(ownerDto.getLogin())) {
+        if (ownerService.isThereSuchLogin(ownerDto.getUsername())) {
             model.addAttribute("errorMessage", ErrorMessages.USER_WITH_THIS_LOGIN_ALREADY_EXISTS);
             return "registration-owner";
         }

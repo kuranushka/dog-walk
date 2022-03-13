@@ -21,7 +21,7 @@ public class WalkerMapperImpl implements WalkerMapper {
     public Walker getWalker(WalkerDto walkerDto) {
         return Walker.builder()
                 .id(walkerDto.getId())
-                .login(walkerDto.getLogin())
+                .username(walkerDto.getUsername())
                 .password(walkerDto.getPassword())
                 .name(walkerDto.getName())
                 .surname(walkerDto.getSurname())

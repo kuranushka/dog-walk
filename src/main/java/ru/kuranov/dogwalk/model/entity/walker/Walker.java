@@ -3,6 +3,8 @@ package ru.kuranov.dogwalk.model.entity.walker;
 import lombok.*;
 import ru.kuranov.dogwalk.model.entity.location.Citizenship;
 import ru.kuranov.dogwalk.model.entity.location.City;
+import ru.kuranov.dogwalk.model.entity.security.AccountUser;
+import ru.kuranov.dogwalk.model.entity.security.Role;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -15,18 +17,24 @@ import java.util.Set;
 @Setter
 @Builder
 @Table(name = "walker")
-public class Walker {
+public class Walker extends AccountUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "login")
-    private String login;
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "password")
     private String password;
+
+    @Singular
+    @ManyToMany(targetEntity = Role.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinTable(name = "walker_role", joinColumns = @JoinColumn(name = "walker_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private Set<Role> roles;
 
     @Column(name = "name")
     private String name;
