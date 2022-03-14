@@ -7,6 +7,7 @@ import ru.kuranov.dogwalk.model.entity.walker.Walker;
 import ru.kuranov.dogwalk.model.repository.walker.WalkerRepository;
 import ru.kuranov.dogwalk.model.service.interfaces.WalkerService;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -15,19 +16,25 @@ public class WalkerServiceImpl implements WalkerService {
 
     private final WalkerRepository walkerRepository;
 
-    @Override
-    public Walker findByName(String walkerName) {
-        Optional<Walker> walkerOptional = walkerRepository.findByName(walkerName);
-        return walkerOptional.orElseThrow(() -> new NoSuchWalkerException(walkerName));
-    }
+//    @Override
+//    public Walker findByName(String walkerName) {
+//        Optional<Walker> walkerOptional = walkerRepository.findByName(walkerName);
+//        return walkerOptional.orElseThrow(() -> new NoSuchWalkerException(walkerName));
+//    }
 
     @Override
+    @Transactional
     public void save(Walker walker) {
         walkerRepository.save(walker);
     }
 
-    @Override
-    public boolean isThereSuchLogin(String username) {
-        return walkerRepository.isThereSuchUsername(username);
-    }
+//    @Override
+//    public boolean isThereSuchLogin(String username) {
+//        return walkerRepository.isThereSuchUsername(username);
+//    }
+
+//    @Override
+//    public Optional<Walker> findByUsername(String username) {
+//        return walkerRepository.findByUsername(username);
+//    }
 }

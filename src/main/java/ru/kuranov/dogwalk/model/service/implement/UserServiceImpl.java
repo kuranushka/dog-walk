@@ -3,13 +3,14 @@ package ru.kuranov.dogwalk.model.service.implement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.kuranov.dogwalk.model.entity.security.AccountUser;
 import ru.kuranov.dogwalk.model.entity.security.Role;
-import ru.kuranov.dogwalk.model.service.interfaces.AccountUserService;
+import ru.kuranov.dogwalk.model.repository.security.AccountUserRepository;
 import ru.kuranov.dogwalk.model.service.interfaces.UserService;
 
 import java.util.Collection;
@@ -21,13 +22,13 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService {
 
-    private final AccountUserService accountUserService;
+    private final AccountUserRepository accountUserRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<? extends AccountUser> accountUser = accountUserService.findByUsername(username);
+        Optional<? extends AccountUser> accountUser = accountUserRepository.findByUsername(username);
         if (accountUser.isPresent()) {
-            return new org.springframework.security.core.userdetails.User(
+            return new User(
                     accountUser.get().getUsername(),
                     accountUser.get().getPassword(),
                     mapRolesToAuthorities(accountUser.get().getRoles()));

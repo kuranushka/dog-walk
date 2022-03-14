@@ -16,9 +16,9 @@ public interface OwnerRepository extends JpaRepository<Owner, Long>, AccountUser
 
     Optional<Owner> findByName(String ownerName);
 
-    @Query(value = "SELECT CASE WHEN EXISTS (SELECT * FROM owner WHERE username = ?1) THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END", nativeQuery = true)
-    boolean isThereSuchUsername(String username);
+//    @Query(value = "SELECT CASE WHEN EXISTS (SELECT * FROM owner WHERE username = ?1) THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END", nativeQuery = true)
+//    boolean isThereSuchUsername(String username);
 
     @Override
-    Optional<? extends AccountUser> findByUsername(String username);
+    Optional<Owner> findByUsername(String username);
 }
