@@ -1,28 +1,32 @@
 package ru.kuranov.dogwalk.model.mapper.implement;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.kuranov.dogwalk.model.dto.walker.WalkerDto;
-import ru.kuranov.dogwalk.model.entity.location.Citizenship;
 import ru.kuranov.dogwalk.model.entity.location.City;
 import ru.kuranov.dogwalk.model.entity.walker.Walker;
 import ru.kuranov.dogwalk.model.mapper.interfaces.WalkerMapper;
-import ru.kuranov.dogwalk.model.service.interfaces.CitizenshipService;
 import ru.kuranov.dogwalk.model.service.interfaces.CityService;
+import ru.kuranov.dogwalk.model.service.interfaces.RoleService;
+
+import java.util.Collections;
 
 @Service
 @RequiredArgsConstructor
 public class WalkerMapperImpl implements WalkerMapper {
 
     private final CityService cityService;
-    private final CitizenshipService citizenshipService;
+    private final RoleService roleService;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public Walker getWalker(WalkerDto walkerDto) {
         return Walker.builder()
                 .id(walkerDto.getId())
                 .username(walkerDto.getUsername())
-                .password(walkerDto.getPassword())
+                .password(passwordEncoder.encode(walkerDto.getPassword()))
+                .roles(Collections.singleton(roleService.findByRole("WALKER")))
                 .name(walkerDto.getName())
                 .surname(walkerDto.getSurname())
                 .mail(walkerDto.getMail())
@@ -30,13 +34,9 @@ public class WalkerMapperImpl implements WalkerMapper {
                 .birthday(walkerDto.getBirthday())
                 .city(getCity(walkerDto.getCity()))
                 .socialLinks(walkerDto.getSocialLinks())
-                .citizenship(getCitizenShip(walkerDto.getCitizenship()))
+                .citizenship(walkerDto.getCitizenship())
                 .build();
 
-    }
-
-    private Citizenship getCitizenShip(String citizenship) {
-        return citizenshipService.findByName(citizenship);
     }
 
     private City getCity(String name) {

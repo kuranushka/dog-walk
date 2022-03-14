@@ -1,7 +1,6 @@
 package ru.kuranov.dogwalk.model.entity.walker;
 
 import lombok.*;
-import ru.kuranov.dogwalk.model.entity.location.Citizenship;
 import ru.kuranov.dogwalk.model.entity.location.City;
 import ru.kuranov.dogwalk.model.entity.security.AccountUser;
 import ru.kuranov.dogwalk.model.entity.security.Role;
@@ -31,7 +30,7 @@ public class Walker extends AccountUser {
     private String password;
 
     @Singular
-    @ManyToMany(targetEntity = Role.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = Role.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "walker_role", joinColumns = @JoinColumn(name = "walker_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Set<Role> roles;
@@ -61,9 +60,6 @@ public class Walker extends AccountUser {
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> socialLinks;
 
-    @OneToOne(targetEntity = Citizenship.class,
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER)
-    @JoinColumn(name = "walker")
-    private Citizenship citizenship;
+    @Column(name = "citizenship")
+    private String citizenship;
 }

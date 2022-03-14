@@ -27,7 +27,7 @@ public class WalkerServiceImpl implements WalkerService {
     }
 
     @Override
-    public boolean isThereSuchLogin(String login) {
-        return walkerRepository.isThereSuchLogin(login);
+    public boolean isThereSuchLogin(String username) {
+        return walkerRepository.isThereSuchUsername(username);
     }
 }

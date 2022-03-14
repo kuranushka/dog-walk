@@ -20,6 +20,6 @@ public class Role  {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "permission")
+    @Column(name = "role")
     private String role;
 }

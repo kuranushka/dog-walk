@@ -7,8 +7,10 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import ru.kuranov.dogwalk.model.service.implement.UserServiceImpl;
 
 @Configuration
@@ -28,21 +30,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests((requests) -> {
             requests.antMatchers("/**").permitAll();
+            requests.antMatchers("/profile/owner").hasRole("OWNER");
+            requests.antMatchers("/profile/owner").hasRole("WALKER");
         });
-//        http.authorizeRequests((requests) -> ((ExpressionUrlAuthorizationConfigurer.AuthorizedUrl) requests.anyRequest()).authenticated());
-//        http
-//                .formLogin()
+        http.authorizeRequests((requests) -> ((ExpressionUrlAuthorizationConfigurer.AuthorizedUrl) requests.anyRequest()).authenticated());
+        http
+                .formLogin();
 //                .loginPage("/login")
 //                .loginProcessingUrl("/user-login")
 //                .usernameParameter("username")
 //                .passwordParameter("password")
 //                .defaultSuccessUrl("/app/products");
-//
-//        http
-//                .logout()
+
+        http
+                .logout();
 //                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 //                .logoutSuccessUrl("/app/products");
-//        http.httpBasic();
+        http.httpBasic();
     }
 
     @Bean

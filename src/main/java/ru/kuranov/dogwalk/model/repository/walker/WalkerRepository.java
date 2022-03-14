@@ -14,8 +14,8 @@ public interface WalkerRepository extends JpaRepository<Walker, Long>, AccountUs
 
     Optional<Walker> findByName(String walkerName);
 
-    @Query(value = "SELECT CASE WHEN EXISTS (SELECT * FROM walker WHERE login = ?1) THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END", nativeQuery = true)
-    boolean isThereSuchLogin(String login);
+    @Query(value = "SELECT CASE WHEN EXISTS (SELECT * FROM walker WHERE username = ?1) THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END", nativeQuery = true)
+    boolean isThereSuchUsername(String username);
 
     @Override
     Optional<? extends AccountUser> findByUsername(String username);

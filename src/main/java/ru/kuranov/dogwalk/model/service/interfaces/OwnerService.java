@@ -9,5 +9,5 @@ public interface OwnerService {
 
     void save(Owner owner);
 
-    boolean isThereSuchLogin(String login);
+    boolean isThereSuchUsername(String username);
 }

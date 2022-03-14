@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ПЁСО ХОД найти выгульщика для собаки</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="../assets/img/apple-icon.png" rel="apple-touch-icon">
+    <link href="../assets/img/favicon.ico" rel="shortcut icon" type="../image/x-icon">
+    <!-- Load Require CSS -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font CSS -->
+    <link href="../assets/css/boxicon.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Load Tempalte CSS -->
+    <link href="../assets/css/templatemo.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../assets/css/custom.css" rel="stylesheet">
+</head>
+<body>
+<div th:insert="/component/header.html :: #header"></div>
+<section class="container py-5">
+    <h1 class="col-12 col-xl-8 h2 text-left text-primary pt-3">Вход в систему</h1>
+    <h2 class="col-12 col-xl-8 h4 text-left regular-400">Текст</h2>
+    <p class="col-12 col-xl-8 text-left text-muted pb-5 light-300">Текст</p>
+    <div class="row pb-4">
+        <div class="col-lg-4">
+            <img alt="Card image" class="service card-img" src="../assets/img/services-01.jpg">
+        </div>
+        <div class="col-lg-8 ">
+            <form class="form-signin" method="post" action="/login/owner">
+                <h2 class="col-12 col-xl-8 h4 text-left regular-400">Введите Ваш логин и пароль</h2>
+                <p>
+                    <label for="username" class="sr-only">ЛОГИН</label>
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Username"
+                           required autofocus>
+                </p>
+                <p>
+                    <label for="password" class="sr-only">ПАРОЛЬ</label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Password"
+                           required>
+                </p>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">ВОЙТИ</button>
+            </form>
+        </div>
+    </div>
+</section>
+<div th:insert="/component/footer.html :: #footer"></div>
+<div th:insert="/component/scripts.html :: #footer-scripts"></div>
+</body>
+</html>

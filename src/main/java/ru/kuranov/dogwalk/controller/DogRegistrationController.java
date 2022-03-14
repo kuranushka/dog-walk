@@ -12,6 +12,7 @@ import ru.kuranov.dogwalk.model.mapper.interfaces.DogMapper;
 import ru.kuranov.dogwalk.model.service.interfaces.DogService;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequiredArgsConstructor
@@ -21,7 +22,7 @@ public class DogRegistrationController {
     private final DogMapper dogMapper;
 
     @GetMapping("/registration/dog")
-    public String registrationDog(DogDto dogDto, Model model) {
+    public String registrationDog(DogDto dogDto, Model model, Principal principal) {
         //TODO переписать
         dogDto = DogDto.builder().build();
         model.addAttribute("dogDto", dogDto);
@@ -29,7 +30,8 @@ public class DogRegistrationController {
     }
 
     @PostMapping("/registration/dog")
-    public String registrationDog(@Valid DogDto dogDto, BindingResult bindingResult, Model model) {
+    public String registrationDog(@Valid DogDto dogDto, BindingResult bindingResult,
+                                  Model model, Principal principal) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("dogDto", dogDto);
             return "registration-dog";

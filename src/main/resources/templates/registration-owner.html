@@ -23,7 +23,6 @@
     <h2 class="col-12 col-xl-8 h4 text-left regular-400">Займет меньше 2 минут ...</h2>
     <p class="col-12 col-xl-8 text-left text-muted pb-5 light-300">
         После регистрации, мы отправим Вам на электронную почту письмо с сылкой для подтвержения.<br>
-        Поля отмеченные * необходимо заполнить.
     </p>
     <div class="row pb-4">
         <div class="col-lg-4">
@@ -34,7 +33,7 @@
                   th:object="${ownerDto}">
                 <div class="col-12">
                     <div class="form-floating mb-4">
-                        <p>ЛОГИН, НЕ МЕНЕЕ 6 СИМВОЛОВ *</p> <input class="form-control form-control-lg light-300" th:field="*{username}"
+                        <p>ЛОГИН, НЕ МЕНЕЕ 6 СИМВОЛОВ, ОБЯЗАТЕЛЬНОЕ ПОЛЕ</p> <input class="form-control form-control-lg light-300" th:field="*{username}"
                                              th:placeholder="${ownerDto.username}"
                                              type="text"/>
                         <p th:if="${errorMessage}" th:text="${errorMessage}"></p>
@@ -43,7 +42,7 @@
                 </div>
                 <div class="col-12">
                     <div class="form-floating mb-4">
-                        <p>ПАРОЛЬ, НЕ МЕНЕЕ 6 СИМВОЛОВ *</p> <input class="form-control form-control-lg light-300" th:field="*{password}"
+                        <p>ПАРОЛЬ, НЕ МЕНЕЕ 6 СИМВОЛОВ, ОБЯЗАТЕЛЬНОЕ ПОЛЕ</p> <input class="form-control form-control-lg light-300" th:field="*{password}"
                                               th:placeholder="${ownerDto.password}"
                                               type="password"/>
                         <p th:errorclass="error" th:errors="*{password}" th:if="${#fields.hasErrors('password')}"/>
@@ -51,22 +50,20 @@
                 </div>
                 <div class="col-12">
                     <div class="form-floating mb-4">
-                        <p>ИМЯ*</p> <input class="form-control form-control-lg light-300" th:field="*{name}" th:placeholder="${ownerDto.name}"
+                        <p>ИМЯ</p> <input class="form-control form-control-lg light-300" th:field="*{name}" th:placeholder="${ownerDto.name}"
                                            type="text"/>
-                        <p th:errorclass="error" th:errors="*{name}" th:if="${#fields.hasErrors('name')}"/>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="form-floating mb-4">
-                        <p>ФАМИЛИЯ*</p> <input class="form-control form-control-lg light-300" th:field="*{surname}"
+                        <p>ФАМИЛИЯ</p> <input class="form-control form-control-lg light-300" th:field="*{surname}"
                                                th:placeholder="${ownerDto.surname}"
                                                type="text"/>
-                        <p th:errorclass="error" th:errors="*{surname}" th:if="${#fields.hasErrors('surname')}"/>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="form-floating mb-4">
-                        <p>E-MAIL*</p> <input class="form-control form-control-lg light-300" th:field="*{mail}"
+                        <p>E-MAIL, ОБЯЗАТЕЛЬНОЕ ПОЛЕ</p> <input class="form-control form-control-lg light-300" th:field="*{mail}"
                                               th:placeholder="${ownerDto.mail}"
                                               type="text"/>
                         <p th:errorclass="error" th:errors="*{mail}" th:if="${#fields.hasErrors('mail')}"/>
@@ -74,10 +71,9 @@
                 </div>
                 <div class="col-12">
                     <div class="form-floating mb-4">
-                        <p>МОБИЛЬНЫЙ ТЕЛЕФОН*</p> <input class="form-control form-control-lg light-300" th:field="*{phone}"
+                        <p>МОБИЛЬНЫЙ ТЕЛЕФОН</p> <input class="form-control form-control-lg light-300" th:field="*{phone}"
                                                          th:placeholder="${ownerDto.phone}"
                                                          type="text"/>
-                        <p th:errorclass="error" th:errors="*{phone}" th:if="${#fields.hasErrors('phone')}"/>
                     </div>
                 </div>
                 <div class="col-md-12 col-12 m-auto text-end">
