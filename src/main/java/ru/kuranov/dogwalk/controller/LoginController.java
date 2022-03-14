@@ -2,10 +2,24 @@ package ru.kuranov.dogwalk.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/login")
+@RequestMapping("/user-login")
 public class LoginController {
+
+    @GetMapping
+    public String getLoginPage() {
+        return "login";
+    }
+
+    @PostMapping
+    public String login(@RequestParam String username, @RequestParam String password) {
+        System.out.println();
+        return "redirect:/";
+    }
 }

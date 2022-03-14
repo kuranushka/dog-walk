@@ -21,7 +21,7 @@ public class DogRegistrationController {
     private final DogService dogService;
     private final DogMapper dogMapper;
 
-    @GetMapping("/registration/dog")
+    @GetMapping("/profile/owner/registration/dog")
     public String registrationDog(DogDto dogDto, Model model, Principal principal) {
         //TODO переписать
         dogDto = DogDto.builder().build();
@@ -29,7 +29,7 @@ public class DogRegistrationController {
         return "registration-dog";
     }
 
-    @PostMapping("/registration/dog")
+    @PostMapping("/profile/owner/registration/dog")
     public String registrationDog(@Valid DogDto dogDto, BindingResult bindingResult,
                                   Model model, Principal principal) {
         if (bindingResult.hasErrors()) {
