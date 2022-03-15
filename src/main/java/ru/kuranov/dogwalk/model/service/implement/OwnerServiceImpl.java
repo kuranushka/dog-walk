@@ -3,8 +3,8 @@ package ru.kuranov.dogwalk.model.service.implement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.kuranov.dogwalk.exceptions.NoSuchOwnerException;
-import ru.kuranov.dogwalk.model.entity.owner.Owner;
-import ru.kuranov.dogwalk.model.repository.owner.OwnerRepository;
+import ru.kuranov.dogwalk.model.entity.main.Owner;
+import ru.kuranov.dogwalk.model.repository.main.OwnerRepository;
 import ru.kuranov.dogwalk.model.service.interfaces.OwnerService;
 
 import javax.transaction.Transactional;

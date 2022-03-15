@@ -37,7 +37,7 @@
                             class="form-control form-control-lg light-300" th:field="*{username}"
                             th:placeholder="${ownerDto.username}"
                             type="text"/>
-                        <p th:if="${errorMessage}" th:text="${errorMessage}"></p>
+                        <h5 th:if="${errorMessage}" th:text="${errorMessage}"></h5>
                         <h5 th:errorclass="error" th:errors="*{username}" th:if="${#fields.hasErrors('username')}"/>
                     </div>
                 </div>

@@ -5,14 +5,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import ru.kuranov.dogwalk.model.dto.dog.DogDto;
-import ru.kuranov.dogwalk.model.entity.dog.Dog;
-import ru.kuranov.dogwalk.model.entity.dog.Vet;
-import ru.kuranov.dogwalk.model.entity.dog.WeightGroup;
+import ru.kuranov.dogwalk.model.entity.addition.WeightGroup;
 import ru.kuranov.dogwalk.model.entity.location.City;
-import ru.kuranov.dogwalk.model.entity.location.District;
-import ru.kuranov.dogwalk.model.entity.location.Metro;
 import ru.kuranov.dogwalk.model.entity.location.WalkingPlace;
-import ru.kuranov.dogwalk.model.entity.owner.Owner;
+import ru.kuranov.dogwalk.model.entity.main.Dog;
+import ru.kuranov.dogwalk.model.entity.main.Owner;
 import ru.kuranov.dogwalk.model.entity.time.Schedule;
 import ru.kuranov.dogwalk.model.entity.time.WalkTime;
 import ru.kuranov.dogwalk.model.mapper.interfaces.DogMapper;
@@ -34,19 +31,19 @@ public class DogMapperImpl implements DogMapper {
     private int middleWeight;
 
     @Override
-    public Dog getDog(DogDto dogDto) {
+    public Dog getDog(DogDto dogDto, Owner owner) {
 
         return Dog.builder()
                 .id(dogDto.getId())
-                .owner(getOwner(dogDto.getOwnerName()))
+                .owner(owner)
                 .name(dogDto.getName())
                 .breed(dogDto.getBreed())
-                .birthday(dogDto.getBirthday())
+                .age(dogDto.getAge())
                 .gender(dogDto.getGender())
                 .weight(dogDto.getWeight())
                 .weightGroup(getWeightGroup(dogDto))
                 .dogDocuments(dogDto.getDogDocuments())
-                .vet(getVet(dogDto.getVetAddress(), dogDto.getVetPhone()))
+                .vet(dogDto.getVet())
                 .injury(dogDto.getInjury())
                 .pullingLeash(dogDto.getPullingLeash())
                 .pickUpFromGround(dogDto.getPickUpFromGround())
@@ -55,25 +52,23 @@ public class DogMapperImpl implements DogMapper {
                 .aggression(dogDto.getAggression())
                 .isGoWithoutLeash(dogDto.isGoWithoutLeash())
                 .isInteractWithOtherDogs(dogDto.isInteractWithOtherDogs())
-                .isWashPaws(dogDto.isWashPaws())
                 .washPaws(dogDto.getWashPaws())
                 .isFeedAfterWalk(dogDto.isFeedAfterWalk())
                 .feed(dogDto.getFeed())
-                .portion(dogDto.getPortion())
                 .walkingPeriod(dogDto.getWalkingPeriod())
                 .schedule(
                         getSchedule(dogDto.getWalkDate(),
                                 dogDto.getWalkBegin(),
                                 dogDto.getWalkingPeriod()))
                 .meetingToWalker(dogDto.getMeetingToWalker())
-                .howGetPet(dogDto.getHowGetPet())
+                .howGetKeys(dogDto.getHowGetKeys())
                 .additionInfo(dogDto.getAdditionInfo())
                 .walkingPlace(Collections
                         .singleton(
                                 getWalkingPlace(
                                         dogDto.getCityName(),
-                                        dogDto.isMetro(),
-                                        dogDto.getLocation())))
+                                        dogDto.getLocation(),
+                                        dogDto.getAddress())))
                 .build();
     }
 
@@ -82,12 +77,6 @@ public class DogMapperImpl implements DogMapper {
         return null;
     }
 
-    private Vet getVet(String vetAddress, String vetPhone) {
-        return Vet.builder()
-                .address(vetAddress)
-                .phone(vetPhone)
-                .build();
-    }
 
     private WeightGroup getWeightGroup(DogDto dogDto) {
         WeightGroup weightGroup;
@@ -112,30 +101,15 @@ public class DogMapperImpl implements DogMapper {
                 .build();
     }
 
-    private WalkingPlace getWalkingPlace(String cityName, boolean isMetro, String location) {
+    private WalkingPlace getWalkingPlace(String cityName, String location, String address) {
         City city = City.builder()
                 .name(cityName)
                 .build();
 
-        WalkingPlace walkingPlace = WalkingPlace.builder()
+        return WalkingPlace.builder()
                 .city(city)
+                .location(location)
+                .address(address)
                 .build();
-
-        if (isMetro) {
-            Metro metro = Metro.builder()
-                    .metroName(location)
-                    .build();
-            walkingPlace.setMetro(metro);
-        } else {
-            District district = District.builder()
-                    .districtName(location)
-                    .build();
-            walkingPlace.setDistrict(district);
-        }
-        return walkingPlace;
-    }
-
-    private Owner getOwner(String ownerName) {
-        return ownerService.findByName(ownerName);
     }
 }

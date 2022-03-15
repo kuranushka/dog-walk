@@ -1,28 +1,21 @@
 package ru.kuranov.dogwalk.model.entity.addition;
 
-import lombok.*;
-import ru.kuranov.dogwalk.model.entity.dog.Dog;
+import lombok.AllArgsConstructor;
 
-import javax.persistence.*;
-
-@Entity
-@NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@Builder
-@Table(name = "wash_paws")
-public class WashPaws {
+public enum WashPaws {
+    BATHROOM("В ванной"),
+    SHOWER("В душе"),
+    LAPOMOYKA("В лапомойке"),
+    BUCKET("В ведре"),
+    SINK("В раковине"),
+    WIPE_WITH_CLOTH("Протереть трякочкой"),
+    WIPE_WITH_NAPKINS("Протереть салфетками"),
+    OTHER("Другое");
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    private String name;
 
-    @Column(name = "label")
-    private String label;
-
-    @ManyToOne(targetEntity = Dog.class)
-    @JoinColumn(name = "dog_id")
-    private Dog dog;
+    public String getName() {
+        return name;
+    }
 }

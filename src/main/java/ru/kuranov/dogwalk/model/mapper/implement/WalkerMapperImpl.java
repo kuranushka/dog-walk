@@ -5,7 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.kuranov.dogwalk.model.dto.walker.WalkerDto;
 import ru.kuranov.dogwalk.model.entity.location.City;
-import ru.kuranov.dogwalk.model.entity.walker.Walker;
+import ru.kuranov.dogwalk.model.entity.main.Walker;
 import ru.kuranov.dogwalk.model.mapper.interfaces.WalkerMapper;
 import ru.kuranov.dogwalk.model.service.interfaces.CityService;
 import ru.kuranov.dogwalk.model.service.interfaces.RoleService;

@@ -7,7 +7,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.kuranov.dogwalk.model.dto.dog.DogDto;
-import ru.kuranov.dogwalk.model.entity.dog.Dog;
 import ru.kuranov.dogwalk.model.mapper.interfaces.DogMapper;
 import ru.kuranov.dogwalk.model.service.interfaces.DogService;
 
@@ -36,9 +35,9 @@ public class DogRegistrationController {
             model.addAttribute("dogDto", dogDto);
             return "registration-dog";
         }
-
-        Dog dog = dogMapper.getDog(dogDto);
-        dogService.save(dog);
+        //TODO дбавить Owner и дописать
+//        Dog dog = dogMapper.getDog(dogDto, );
+//        dogService.save(dog);
         return "redirect:/owner/profile";
     }
 }

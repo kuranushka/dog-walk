@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.kuranov.dogwalk.model.dto.owner.OwnerDto;
-import ru.kuranov.dogwalk.model.entity.owner.Owner;
+import ru.kuranov.dogwalk.model.entity.main.Owner;
 import ru.kuranov.dogwalk.model.mapper.interfaces.OwnerMapper;
 import ru.kuranov.dogwalk.model.service.interfaces.RoleService;
 

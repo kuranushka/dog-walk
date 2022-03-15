@@ -1,7 +1,7 @@
 package ru.kuranov.dogwalk.model.entity.location;
 
 import lombok.*;
-import ru.kuranov.dogwalk.model.entity.dog.Dog;
+import ru.kuranov.dogwalk.model.entity.main.Dog;
 
 import javax.persistence.*;
 
@@ -30,17 +30,9 @@ public class WalkingPlace {
     @JoinColumn(name = "city_id")
     private City city;
 
-    @OneToOne(targetEntity = Metro.class,
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
-            optional = false)
-    @JoinColumn(name = "metro_id")
-    private Metro metro;
+    @Column(name = "location")
+    private String location;
 
-    @OneToOne(targetEntity = District.class,
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
-            optional = false)
-    @JoinColumn(name = "district_id")
-    private District district;
+    @Column(name = "address")
+    private String address;
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.kuranov.dogwalk.exceptions.ErrorMessages;
 import ru.kuranov.dogwalk.model.dto.walker.WalkerDto;
-import ru.kuranov.dogwalk.model.entity.walker.Walker;
+import ru.kuranov.dogwalk.model.entity.main.Walker;
 import ru.kuranov.dogwalk.model.mapper.interfaces.WalkerMapper;
 import ru.kuranov.dogwalk.model.repository.security.AccountUserService;
 import ru.kuranov.dogwalk.model.service.interfaces.CityService;

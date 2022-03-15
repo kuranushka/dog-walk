@@ -1,4 +1,4 @@
-package ru.kuranov.dogwalk.model.entity.dog;
+package ru.kuranov.dogwalk.model.entity.addition;
 
 public enum WeightGroup {
     LIGHT_WEIGHT,

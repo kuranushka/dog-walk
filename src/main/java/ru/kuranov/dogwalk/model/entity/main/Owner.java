@@ -1,7 +1,7 @@
-package ru.kuranov.dogwalk.model.entity.owner;
+package ru.kuranov.dogwalk.model.entity.main;
 
 import lombok.*;
-import ru.kuranov.dogwalk.model.entity.dog.Dog;
+import ru.kuranov.dogwalk.model.entity.main.Dog;
 import ru.kuranov.dogwalk.model.entity.security.AccountUser;
 import ru.kuranov.dogwalk.model.entity.security.Role;
 
@@ -18,7 +18,7 @@ import java.util.Set;
 public class Owner extends AccountUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 

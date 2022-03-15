@@ -1,7 +1,7 @@
 package ru.kuranov.dogwalk.model.entity.time;
 
 import lombok.*;
-import ru.kuranov.dogwalk.model.entity.dog.Dog;
+import ru.kuranov.dogwalk.model.entity.main.Dog;
 
 import javax.persistence.*;
 import java.util.Set;

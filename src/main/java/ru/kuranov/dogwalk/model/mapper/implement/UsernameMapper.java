@@ -1,4 +1,4 @@
-package ru.kuranov.dogwalk.model.repository;
+package ru.kuranov.dogwalk.model.mapper.implement;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.RowMapper;

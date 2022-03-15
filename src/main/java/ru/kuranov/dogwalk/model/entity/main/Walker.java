@@ -1,4 +1,4 @@
-package ru.kuranov.dogwalk.model.entity.walker;
+package ru.kuranov.dogwalk.model.entity.main;
 
 import lombok.*;
 import ru.kuranov.dogwalk.model.entity.location.City;
@@ -19,7 +19,7 @@ import java.util.Set;
 public class Walker extends AccountUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 

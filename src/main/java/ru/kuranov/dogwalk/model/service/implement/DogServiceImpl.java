@@ -2,8 +2,8 @@ package ru.kuranov.dogwalk.model.service.implement;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.kuranov.dogwalk.model.entity.dog.Dog;
-import ru.kuranov.dogwalk.model.repository.dog.DogRepository;
+import ru.kuranov.dogwalk.model.entity.main.Dog;
+import ru.kuranov.dogwalk.model.repository.main.DogRepository;
 import ru.kuranov.dogwalk.model.service.interfaces.DogService;
 
 @Service
