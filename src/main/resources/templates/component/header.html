@@ -32,11 +32,13 @@
                         </li>
                     </ul>
                 </div>
-                <!--            <div class="navbar align-self-center d-flex">-->
-                <!--                <a class="nav-link" href="#"><i class='bx bx-bell bx-sm bx-tada-hover text-primary'></i></a>-->
-                <!--                <a class="nav-link" href="#"><i class='bx bx-cog bx-sm text-primary'></i></a>-->
-                <!--                <a class="nav-link" href="#"><i class='bx bx-user-circle bx-sm text-primary'></i></a>-->
-                <!--            </div>-->
+                <div sec:authorize="isAuthenticated()" class="navbar align-self-center d-flex">
+                    <a class="nav-link" href="#"><i class='bx bx-bell bx-sm bx-tada-hover text-primary'></i></a>
+                    <a class="nav-link" href="#"><i class='bx bx-cog bx-sm text-primary'></i></a>
+                    <a class="nav-link" href="#"><i class='bx bx-user-circle bx-sm text-primary'></i></a>
+                    <a class="nav-link" href="/logout"><i class='bx bxs-log-out bx-sm text-primary'></i></a>
+                    <p sec:authentication='principal.authorities'></p>
+                </div>
             </div>
         </div>
     </nav>

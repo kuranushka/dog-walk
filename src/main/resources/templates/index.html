@@ -19,49 +19,7 @@
 </head>
 
 <body>
-<!-- Header -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow" id="main_nav">
-    <div class="container d-flex justify-content-between align-items-center">
-        <a class="navbar-brand h1" href="/">
-            <i class='bx bx-buildings bx-sm text-dark'></i>
-            <span class="text-dark h4">ПЁСО</span> <span class="text-primary h4">ХОД</span>
-        </a>
-        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-                class="navbar-toggler border-0" data-bs-target="#navbar-toggler-success" data-bs-toggle="collapse"
-                type="button">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
-             id="navbar-toggler-success">
-            <div class="flex-fill mx-xl-5 mb-2">
-                <ul class="nav navbar-nav d-flex justify-content-between mx-xl-5 text-center text-dark">
-                    <li class="nav-item">
-                        <a class="nav-link btn-outline-primary rounded-pill px-3" href="/owner">Я ВЛАДЕЛЕЦ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn-outline-primary rounded-pill px-3" href="/walker">Я ВЫГУЛЬЩИК</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn-outline-primary rounded-pill px-3" href="/about">ЧТО ЗДЕСЬ
-                            ПРОИСХОДИТ?</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn-outline-primary rounded-pill px-3" href="/contact">КОНТАКТЫ</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="navbar align-self-center d-flex">
-                <a class="nav-link" href="#"><i class='bx bx-bell bx-sm bx-tada-hover text-primary'></i></a>
-                <a class="nav-link" href="#"><i class='bx bx-cog bx-sm text-primary'></i></a>
-                <a class="nav-link" href="#"><i class='bx bx-user-circle bx-sm text-primary'></i></a>
-            </div>
-        </div>
-    </div>
-</nav>
-<!-- Close Header -->
-
-
+<div th:insert="/component/header.html :: #header"></div>
 <!-- Start Banner Hero -->
 <div class="banner-wrapper bg-light">
     <div class="banner-vertical-center-index container-fluid pt-5" id="index_banner">
