@@ -11,7 +11,7 @@ import ru.kuranov.dogwalk.exceptions.ErrorMessages;
 import ru.kuranov.dogwalk.model.dto.owner.OwnerDto;
 import ru.kuranov.dogwalk.model.entity.owner.Owner;
 import ru.kuranov.dogwalk.model.mapper.interfaces.OwnerMapper;
-import ru.kuranov.dogwalk.model.repository.security.AccountUserRepository;
+import ru.kuranov.dogwalk.model.repository.security.AccountUserService;
 import ru.kuranov.dogwalk.model.service.interfaces.OwnerService;
 
 import javax.validation.Valid;
@@ -23,7 +23,7 @@ public class OwnerRegistrationController {
 
     private final OwnerService ownerService;
     private final OwnerMapper ownerMapper;
-    private final AccountUserRepository accountUserRepository;
+    private final AccountUserService accountUserService;
 
     @GetMapping
     public String registrationOwner(OwnerDto ownerDto) {
@@ -36,7 +36,7 @@ public class OwnerRegistrationController {
             return "registration-owner";
         }
 
-        if (accountUserRepository.isThereSuchUsername(ownerDto.getUsername())) {
+        if (accountUserService.isThereSuchUsername(ownerDto.getUsername())) {
             model.addAttribute("errorMessage", ErrorMessages.USER_WITH_THIS_LOGIN_ALREADY_EXISTS);
             return "registration-owner";
         }

@@ -2,13 +2,11 @@ package ru.kuranov.dogwalk.model.service.implement;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.kuranov.dogwalk.exceptions.NoSuchWalkerException;
 import ru.kuranov.dogwalk.model.entity.walker.Walker;
 import ru.kuranov.dogwalk.model.repository.walker.WalkerRepository;
 import ru.kuranov.dogwalk.model.service.interfaces.WalkerService;
 
 import javax.transaction.Transactional;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

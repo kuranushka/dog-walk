@@ -6,7 +6,7 @@ import lombok.Getter;
 import static ru.kuranov.dogwalk.exceptions.ErrorMessages.NO_SUCH_ROLE_EXCEPTION;
 
 @AllArgsConstructor
-public class NoSuchRoleException extends RuntimeException{
+public class NoSuchRoleException extends RuntimeException {
 
     private String role;
 

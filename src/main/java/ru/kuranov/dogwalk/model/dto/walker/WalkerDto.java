@@ -37,6 +37,7 @@ public class WalkerDto {
     @Email(message = "УКАЖИТЕ ПОЧТОВЫЙ ЯЩИК, ПРИМЕР person@yandex.ru")
     private String mail;
 
+    @NotBlank(message = "УКАЖИТЕ НОМЕР ТЕЛЕФОНА")
     private String phone;
 
     private LocalDate birthday;

@@ -3,15 +3,7 @@ package ru.kuranov.dogwalk.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import ru.kuranov.dogwalk.model.entity.security.AccountUser;
-import ru.kuranov.dogwalk.model.entity.walker.Walker;
-import ru.kuranov.dogwalk.model.service.interfaces.AccountUserService;
 import ru.kuranov.dogwalk.model.service.interfaces.WalkerService;
-
-import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor

@@ -19,7 +19,8 @@
 <body>
 <div th:insert="/component/header.html :: #header"></div>
 <section class="container py-5">
-    <h1 class="col-12 col-xl-8 h2 text-left text-primary pt-3">Мы уже зарегистировали Вас, пришла очередь Вашей собачки</h1>
+    <h1 class="col-12 col-xl-8 h2 text-left text-primary pt-3">Мы уже зарегистировали Вас, пришла очередь Вашей
+        собачки</h1>
     <h2 class="col-12 col-xl-8 h4 text-left regular-400">Займет меньше 5 минут ...</h2>
     <p class="col-12 col-xl-8 text-left text-muted pb-5 light-300">
         Расскажите нам по-подробнее о Вашем питомце.<br>
@@ -29,108 +30,108 @@
         <div class="col-lg-4">
             <img alt="Card image" class="service card-img" src="../assets/img/services-01.jpg">
         </div>
-<!--        <div class="col-lg-8 ">-->
-<!--            <form class="contact-form row" method="post" role="form" th:action="@{/registration/walker}"-->
-<!--                  th:object="${walkerDto}">-->
-<!--                <div class="col-12">-->
-<!--                    <div class="form-floating mb-4">-->
-<!--                        <p>ЛОГИН, НЕ МЕНЕЕ 6 СИМВОЛОВ *</p> <input class="form-control form-control-lg light-300" th:field="*{login}"-->
-<!--                                             th:placeholder="${walkerDto.login}"-->
-<!--                                             type="text"/>-->
-<!--                        <p th:if="${errorMessage}" th:text="${errorMessage}"></p>-->
-<!--                        <p th:errorclass="error" th:errors="*{login}" th:if="${#fields.hasErrors('login')}"/>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12">-->
-<!--                    <div class="form-floating mb-4">-->
-<!--                        <p>ПАРОЛЬ, НЕ МЕНЕЕ 6 СИМВОЛОВ *</p> <input class="form-control form-control-lg light-300" th:field="*{password}"-->
-<!--                                              th:placeholder="${walkerDto.password}"-->
-<!--                                              type="password"/>-->
-<!--                        <p th:errorclass="error" th:errors="*{password}" th:if="${#fields.hasErrors('password')}"/>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12">-->
-<!--                    <div class="form-floating mb-4">-->
-<!--                        <p>ИМЯ*</p> <input class="form-control form-control-lg light-300" th:field="*{name}"-->
-<!--                                           th:placeholder="${walkerDto.name}"-->
-<!--                                           type="text"/>-->
-<!--                        <p th:errorclass="error" th:errors="*{name}" th:if="${#fields.hasErrors('name')}"/>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12">-->
-<!--                    <div class="form-floating mb-4">-->
-<!--                        <p>ФАМИЛИЯ*</p> <input class="form-control form-control-lg light-300" th:field="*{surname}"-->
-<!--                                               th:placeholder="${walkerDto.surname}"-->
-<!--                                               type="text"/>-->
-<!--                        <p th:errorclass="error" th:errors="*{surname}" th:if="${#fields.hasErrors('surname')}"/>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12">-->
-<!--                    <div class="form-floating mb-4">-->
-<!--                        <p>E-MAIL*</p> <input class="form-control form-control-lg light-300" th:field="*{mail}"-->
-<!--                                              th:placeholder="${walkerDto.mail}"-->
-<!--                                              type="text"/>-->
-<!--                        <p th:errorclass="error" th:errors="*{mail}" th:if="${#fields.hasErrors('mail')}"/>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12">-->
-<!--                    <div class="form-floating mb-4">-->
-<!--                        <p>МОБИЛЬНЫЙ ТЕЛЕФОН*</p> <input class="form-control form-control-lg light-300"-->
-<!--                                                         th:field="*{phone}"-->
-<!--                                                         th:placeholder="${walkerDto.phone}"-->
-<!--                                                         type="text"/>-->
-<!--                        <p th:errorclass="error" th:errors="*{phone}" th:if="${#fields.hasErrors('phone')}"/>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12">-->
-<!--                    <div class="form-floating mb-4">-->
-<!--                        <p>ДАТА РОЖДЕНИЯ В ФОРМАТЕ 10.10.2010 *</p> <input class="form-control form-control-lg light-300"-->
-<!--                                                     th:field="*{birthday}"-->
-<!--                                                     th:placeholder="${walkerDto.birthday}"-->
-<!--                                                     type="text"/>-->
-<!--                        <p th:if="${#fields.hasErrors('birthday')}">ЗАПОЛНИТЕ ПОЛЕ В ФОРМАТЕ 10.10.2010</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12">-->
-<!--                    <div class="form-floating mb-4">-->
-<!--                        <p>ГОРОД*</p>-->
-<!--                        <select class="form-control form-control-lg light-300" th:field="*{city}"-->
-<!--                                th:placeholder="${walkerDto.city}">-->
-<!--                            <option value="" selected>ВЫБЕРИТЕ ИЗ СПИСКА</option>-->
-<!--                            <option th:each="c:${walkerDto.cities}" th:value="${c.name}"  th:text="${c.name}"></option>-->
-<!--                        </select>-->
-<!--                        <p th:errorclass="error" th:errors="*{city}" th:if="${#fields.hasErrors('city')}"/>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12">-->
-<!--                    <div class="form-floating mb-4">-->
-<!--                        <p>ГРАЖДАНСТВО*</p>-->
-<!--                        <select class="form-control form-control-lg light-300" th:field="*{citizenship}"-->
-<!--                                th:placeholder="${walkerDto.citizenship}">-->
-<!--                            <option value="" selected>ВЫБЕРИТЕ ИЗ СПИСКА</option>-->
-<!--                            <option th:each="c:${walkerDto.citizenships}" th:value="${c.name}" th:text="${c.name}"></option>-->
-<!--                        </select>-->
-<!--                        <p th:errorclass="error" th:errors="*{citizenship}"-->
-<!--                           th:if="${#fields.hasErrors('citizenship')}"/>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12">-->
-<!--                    <div class="form-floating mb-4">-->
-<!--                        <p>ССЫЛКИ НА ВАШИ СТРАНИЧКИ В СОЦСЕТЯХ</p> <textarea class="form-control light-300"-->
-<!--                                                                             id="floatingtextarea"-->
-<!--                                                                             th:field="*{socialLinks}"-->
-<!--                                                                             th:placeholder="${walkerDto.socialLinks}"-->
-<!--                                                                             rows="8"/>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-md-12 col-12 m-auto text-end">-->
-<!--                    <button class="btn btn-secondary rounded-pill px-md-5 px-4 py-2 radius-0 text-light light-300"-->
-<!--                            type="submit">-->
-<!--                        Отправить-->
-<!--                    </button>-->
-<!--                </div>-->
-<!--            </form>-->
-<!--        </div>-->
+        <!--        <div class="col-lg-8 ">-->
+        <!--            <form class="contact-form row" method="post" role="form" th:action="@{/registration/walker}"-->
+        <!--                  th:object="${walkerDto}">-->
+        <!--                <div class="col-12">-->
+        <!--                    <div class="form-floating mb-4">-->
+        <!--                        <p>ЛОГИН, НЕ МЕНЕЕ 6 СИМВОЛОВ *</p> <input class="form-control form-control-lg light-300" th:field="*{login}"-->
+        <!--                                             th:placeholder="${walkerDto.login}"-->
+        <!--                                             type="text"/>-->
+        <!--                        <p th:if="${errorMessage}" th:text="${errorMessage}"></p>-->
+        <!--                        <p th:errorclass="error" th:errors="*{login}" th:if="${#fields.hasErrors('login')}"/>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--                <div class="col-12">-->
+        <!--                    <div class="form-floating mb-4">-->
+        <!--                        <p>ПАРОЛЬ, НЕ МЕНЕЕ 6 СИМВОЛОВ *</p> <input class="form-control form-control-lg light-300" th:field="*{password}"-->
+        <!--                                              th:placeholder="${walkerDto.password}"-->
+        <!--                                              type="password"/>-->
+        <!--                        <p th:errorclass="error" th:errors="*{password}" th:if="${#fields.hasErrors('password')}"/>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--                <div class="col-12">-->
+        <!--                    <div class="form-floating mb-4">-->
+        <!--                        <p>ИМЯ*</p> <input class="form-control form-control-lg light-300" th:field="*{name}"-->
+        <!--                                           th:placeholder="${walkerDto.name}"-->
+        <!--                                           type="text"/>-->
+        <!--                        <p th:errorclass="error" th:errors="*{name}" th:if="${#fields.hasErrors('name')}"/>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--                <div class="col-12">-->
+        <!--                    <div class="form-floating mb-4">-->
+        <!--                        <p>ФАМИЛИЯ*</p> <input class="form-control form-control-lg light-300" th:field="*{surname}"-->
+        <!--                                               th:placeholder="${walkerDto.surname}"-->
+        <!--                                               type="text"/>-->
+        <!--                        <p th:errorclass="error" th:errors="*{surname}" th:if="${#fields.hasErrors('surname')}"/>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--                <div class="col-12">-->
+        <!--                    <div class="form-floating mb-4">-->
+        <!--                        <p>E-MAIL*</p> <input class="form-control form-control-lg light-300" th:field="*{mail}"-->
+        <!--                                              th:placeholder="${walkerDto.mail}"-->
+        <!--                                              type="text"/>-->
+        <!--                        <p th:errorclass="error" th:errors="*{mail}" th:if="${#fields.hasErrors('mail')}"/>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--                <div class="col-12">-->
+        <!--                    <div class="form-floating mb-4">-->
+        <!--                        <p>МОБИЛЬНЫЙ ТЕЛЕФОН*</p> <input class="form-control form-control-lg light-300"-->
+        <!--                                                         th:field="*{phone}"-->
+        <!--                                                         th:placeholder="${walkerDto.phone}"-->
+        <!--                                                         type="text"/>-->
+        <!--                        <p th:errorclass="error" th:errors="*{phone}" th:if="${#fields.hasErrors('phone')}"/>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--                <div class="col-12">-->
+        <!--                    <div class="form-floating mb-4">-->
+        <!--                        <p>ДАТА РОЖДЕНИЯ В ФОРМАТЕ 10.10.2010 *</p> <input class="form-control form-control-lg light-300"-->
+        <!--                                                     th:field="*{birthday}"-->
+        <!--                                                     th:placeholder="${walkerDto.birthday}"-->
+        <!--                                                     type="text"/>-->
+        <!--                        <p th:if="${#fields.hasErrors('birthday')}">ЗАПОЛНИТЕ ПОЛЕ В ФОРМАТЕ 10.10.2010</p>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--                <div class="col-12">-->
+        <!--                    <div class="form-floating mb-4">-->
+        <!--                        <p>ГОРОД*</p>-->
+        <!--                        <select class="form-control form-control-lg light-300" th:field="*{city}"-->
+        <!--                                th:placeholder="${walkerDto.city}">-->
+        <!--                            <option value="" selected>ВЫБЕРИТЕ ИЗ СПИСКА</option>-->
+        <!--                            <option th:each="c:${walkerDto.cities}" th:value="${c.name}"  th:text="${c.name}"></option>-->
+        <!--                        </select>-->
+        <!--                        <p th:errorclass="error" th:errors="*{city}" th:if="${#fields.hasErrors('city')}"/>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--                <div class="col-12">-->
+        <!--                    <div class="form-floating mb-4">-->
+        <!--                        <p>ГРАЖДАНСТВО*</p>-->
+        <!--                        <select class="form-control form-control-lg light-300" th:field="*{citizenship}"-->
+        <!--                                th:placeholder="${walkerDto.citizenship}">-->
+        <!--                            <option value="" selected>ВЫБЕРИТЕ ИЗ СПИСКА</option>-->
+        <!--                            <option th:each="c:${walkerDto.citizenships}" th:value="${c.name}" th:text="${c.name}"></option>-->
+        <!--                        </select>-->
+        <!--                        <p th:errorclass="error" th:errors="*{citizenship}"-->
+        <!--                           th:if="${#fields.hasErrors('citizenship')}"/>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--                <div class="col-12">-->
+        <!--                    <div class="form-floating mb-4">-->
+        <!--                        <p>ССЫЛКИ НА ВАШИ СТРАНИЧКИ В СОЦСЕТЯХ</p> <textarea class="form-control light-300"-->
+        <!--                                                                             id="floatingtextarea"-->
+        <!--                                                                             th:field="*{socialLinks}"-->
+        <!--                                                                             th:placeholder="${walkerDto.socialLinks}"-->
+        <!--                                                                             rows="8"/>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--                <div class="col-md-12 col-12 m-auto text-end">-->
+        <!--                    <button class="btn btn-secondary rounded-pill px-md-5 px-4 py-2 radius-0 text-light light-300"-->
+        <!--                            type="submit">-->
+        <!--                        Отправить-->
+        <!--                    </button>-->
+        <!--                </div>-->
+        <!--            </form>-->
+        <!--        </div>-->
     </div>
 </section>
 <div th:insert="/component/footer.html :: #footer"></div>

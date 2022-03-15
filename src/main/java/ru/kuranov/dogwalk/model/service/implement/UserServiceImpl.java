@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.kuranov.dogwalk.model.entity.security.AccountUser;
 import ru.kuranov.dogwalk.model.entity.security.Role;
 import ru.kuranov.dogwalk.model.repository.security.AccountUserRepository;
 import ru.kuranov.dogwalk.model.service.interfaces.UserService;
@@ -26,14 +25,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<? extends AccountUser> accountUser = accountUserRepository.findByUsername(username);
-        if (accountUser.isPresent()) {
-            return new User(
-                    accountUser.get().getUsername(),
-                    accountUser.get().getPassword(),
-                    mapRolesToAuthorities(accountUser.get().getRoles()));
+        Optional<User> optionalUser = accountUserRepository.findByUsername(username);
+        if (optionalUser.isPresent()) {
+            return optionalUser.get();
         } else {
-            throw new UsernameNotFoundException(String.format("User %s not found", accountUser.get().getUsername()));
+            throw new UsernameNotFoundException(String.format("User %s not found", optionalUser.get().getUsername()));
         }
     }
 

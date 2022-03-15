@@ -23,4 +23,8 @@ public class RoleServiceImpl implements RoleService {
             throw new NoSuchRoleException(role);
         }
     }
+
+    public Optional<Role> findById(Long id) {
+        return roleRepository.findById(id);
+    }
 }

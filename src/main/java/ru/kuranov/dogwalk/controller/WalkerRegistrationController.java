@@ -10,7 +10,7 @@ import ru.kuranov.dogwalk.exceptions.ErrorMessages;
 import ru.kuranov.dogwalk.model.dto.walker.WalkerDto;
 import ru.kuranov.dogwalk.model.entity.walker.Walker;
 import ru.kuranov.dogwalk.model.mapper.interfaces.WalkerMapper;
-import ru.kuranov.dogwalk.model.repository.security.AccountUserRepository;
+import ru.kuranov.dogwalk.model.repository.security.AccountUserService;
 import ru.kuranov.dogwalk.model.service.interfaces.CityService;
 import ru.kuranov.dogwalk.model.service.interfaces.WalkerService;
 
@@ -23,7 +23,7 @@ public class WalkerRegistrationController {
     private final WalkerService walkerService;
     private final WalkerMapper walkerMapper;
     private final CityService cityService;
-    private final AccountUserRepository accountUserRepository;
+    private final AccountUserService accountUserService;
 
     @GetMapping("/registration/walker")
     public String registrationWalker(WalkerDto walkerDto, Model model) {
@@ -42,7 +42,7 @@ public class WalkerRegistrationController {
             return "registration-walker";
         }
 
-        if (accountUserRepository.isThereSuchUsername(walkerDto.getUsername())) {
+        if (accountUserService.isThereSuchUsername(walkerDto.getUsername())) {
             model.addAttribute("walkerDto", walkerDto);
             walkerDto.setCities(cityService.findAll());
             model.addAttribute("errorMessage", ErrorMessages.USER_WITH_THIS_LOGIN_ALREADY_EXISTS);

@@ -30,14 +30,14 @@
             <form class="form-signin" method="post" th:action="@{/user-login}">
                 <h2 class="col-12 col-xl-8 h4 text-left regular-400">Введите Ваш логин и пароль</h2>
                 <p>
-                    <label for="username" class="sr-only">ЛОГИН</label>
-                    <input type="text" id="username" name="username" class="form-control"
-                           required autofocus>
+                    <label class="sr-only" for="username">ЛОГИН</label>
+                    <input autofocus class="form-control" id="username" name="username"
+                           required type="text">
                 </p>
                 <p>
-                    <label for="password" class="sr-only">ПАРОЛЬ</label>
-                    <input type="password" id="password" name="password" class="form-control"
-                           required>
+                    <label class="sr-only" for="password">ПАРОЛЬ</label>
+                    <input class="form-control" id="password" name="password" required
+                           type="password">
                 </p>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">ВОЙТИ</button>
             </form>

@@ -1,10 +1,8 @@
 package ru.kuranov.dogwalk.model.entity.security;
 
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -13,7 +11,7 @@ import java.util.Set;
 @Setter
 @Builder
 @Table(name = "role")
-public class Role  {
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

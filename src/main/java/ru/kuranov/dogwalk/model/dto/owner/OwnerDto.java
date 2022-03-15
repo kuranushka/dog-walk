@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 
 @Component
 @Getter
@@ -34,5 +33,6 @@ public class OwnerDto {
     @Email(message = "УКАЖИТЕ ПОЧТОВЫЙ ЯЩИК, ПРИМЕР person@yandex.ru")
     private String mail;
 
+    @NotBlank(message = "УКАЖИТЕ НОМЕР ТЕЛЕФОНА")
     private String phone;
 }

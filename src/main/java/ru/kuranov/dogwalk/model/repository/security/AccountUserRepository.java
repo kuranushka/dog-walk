@@ -1,21 +1,37 @@
 package ru.kuranov.dogwalk.model.repository.security;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
-import ru.kuranov.dogwalk.model.entity.security.AccountUser;
-import ru.kuranov.dogwalk.model.entity.walker.Walker;
+import lombok.RequiredArgsConstructor;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.stereotype.Component;
+import ru.kuranov.dogwalk.model.repository.UsernameMapper;
 
+import java.util.List;
 import java.util.Optional;
 
-@Repository
-public interface AccountUserRepository extends JpaRepository<Walker, Long> {
+@Component
+@RequiredArgsConstructor
+public class AccountUserRepository implements AccountUserService {
 
-    @Query(value = "SELECT CASE WHEN EXISTS (SELECT * FROM (SELECT username FROM walker UNION SELECT username FROM owner) as a WHERE username=?1) THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END", nativeQuery = true)
-    boolean isThereSuchUsername(String username);
+    private final JdbcTemplate jdbcTemplate;
+    private final UsernameMapper usernameMapper;
 
-//    @Query(value = "SELECT a.username, a.password FROM (SELECT username, password FROM owner UNION SELECT username, password FROM walker) as a WHERE a.username = ?1", nativeQuery = true)
-//    Optional<? extends AccountUser> findByUsername(String username);
+    public Optional<User> findByUsername(String username) {
+        String query = "SELECT a.id, a.username, a.password, r.role_id as role " +
+                "FROM (SELECT id, username, password FROM owner UNION SELECT id, username, password FROM walker) as a " +
+                "         JOIN (SELECT owner_id as id, role_id FROM owner_role " +
+                "UNION SELECT walker_id, role_id FROM walker_role) as r ON a.id=r.id " +
+                "WHERE a.username = ?";
+        return Optional.ofNullable(jdbcTemplate.queryForObject(query, usernameMapper, username));
+    }
 
-    Optional<? extends AccountUser> findByUsername(String username);
+    public boolean isThereSuchUsername(String username) {
+        String query = "SELECT * FROM (SELECT username FROM owner UNION SELECT username FROM walker) as a WHERE username = ?";
+        List<String> result = jdbcTemplate.queryForList(query, String.class, username);
+        if (result.size() == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

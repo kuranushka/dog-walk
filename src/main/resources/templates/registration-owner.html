@@ -33,47 +33,53 @@
                   th:object="${ownerDto}">
                 <div class="col-12">
                     <div class="form-floating mb-4">
-                        <p>ЛОГИН, НЕ МЕНЕЕ 6 СИМВОЛОВ, ОБЯЗАТЕЛЬНОЕ ПОЛЕ</p> <input class="form-control form-control-lg light-300" th:field="*{username}"
-                                             th:placeholder="${ownerDto.username}"
-                                             type="text"/>
+                        <p>ЛОГИН, НЕ МЕНЕЕ 6 СИМВОЛОВ, ОБЯЗАТЕЛЬНОЕ ПОЛЕ</p> <input
+                            class="form-control form-control-lg light-300" th:field="*{username}"
+                            th:placeholder="${ownerDto.username}"
+                            type="text"/>
                         <p th:if="${errorMessage}" th:text="${errorMessage}"></p>
-                        <p th:errorclass="error" th:errors="*{username}" th:if="${#fields.hasErrors('username')}"/>
+                        <h5 th:errorclass="error" th:errors="*{username}" th:if="${#fields.hasErrors('username')}"/>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="form-floating mb-4">
-                        <p>ПАРОЛЬ, НЕ МЕНЕЕ 6 СИМВОЛОВ, ОБЯЗАТЕЛЬНОЕ ПОЛЕ</p> <input class="form-control form-control-lg light-300" th:field="*{password}"
-                                              th:placeholder="${ownerDto.password}"
-                                              type="password"/>
-                        <p th:errorclass="error" th:errors="*{password}" th:if="${#fields.hasErrors('password')}"/>
+                        <p>ПАРОЛЬ, НЕ МЕНЕЕ 6 СИМВОЛОВ, ОБЯЗАТЕЛЬНОЕ ПОЛЕ</p> <input
+                            class="form-control form-control-lg light-300" th:field="*{password}"
+                            th:placeholder="${ownerDto.password}"
+                            type="password"/>
+                        <h5 th:errorclass="error" th:errors="*{password}" th:if="${#fields.hasErrors('password')}"/>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="form-floating mb-4">
-                        <p>ИМЯ</p> <input class="form-control form-control-lg light-300" th:field="*{name}" th:placeholder="${ownerDto.name}"
-                                           type="text"/>
+                        <p>ИМЯ</p> <input class="form-control form-control-lg light-300" th:field="*{name}"
+                                          th:placeholder="${ownerDto.name}"
+                                          type="text"/>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>ФАМИЛИЯ</p> <input class="form-control form-control-lg light-300" th:field="*{surname}"
-                                               th:placeholder="${ownerDto.surname}"
-                                               type="text"/>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="form-floating mb-4">
-                        <p>E-MAIL, ОБЯЗАТЕЛЬНОЕ ПОЛЕ</p> <input class="form-control form-control-lg light-300" th:field="*{mail}"
-                                              th:placeholder="${ownerDto.mail}"
+                                              th:placeholder="${ownerDto.surname}"
                                               type="text"/>
-                        <p th:errorclass="error" th:errors="*{mail}" th:if="${#fields.hasErrors('mail')}"/>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="form-floating mb-4">
-                        <p>МОБИЛЬНЫЙ ТЕЛЕФОН</p> <input class="form-control form-control-lg light-300" th:field="*{phone}"
-                                                         th:placeholder="${ownerDto.phone}"
-                                                         type="text"/>
+                        <p>E-MAIL, ОБЯЗАТЕЛЬНОЕ ПОЛЕ</p> <input class="form-control form-control-lg light-300"
+                                                                th:field="*{mail}"
+                                                                th:placeholder="${ownerDto.mail}"
+                                                                type="text"/>
+                        <h5 th:errorclass="error" th:errors="*{mail}" th:if="${#fields.hasErrors('mail')}"/>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>МОБИЛЬНЫЙ ТЕЛЕФОН, ОБЯЗАТЕЛЬНОЕ ПОЛЕ</p> <input class="form-control form-control-lg light-300"
+                                                        th:field="*{phone}"
+                                                        th:placeholder="${ownerDto.phone}"
+                                                        type="text"/>
+                        <h5 th:errorclass="error" th:errors="*{phone}" th:if="${#fields.hasErrors('phone')}"/>
                     </div>
                 </div>
                 <div class="col-md-12 col-12 m-auto text-end">
