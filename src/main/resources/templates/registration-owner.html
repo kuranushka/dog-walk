@@ -75,10 +75,11 @@
                 </div>
                 <div class="col-12">
                     <div class="form-floating mb-4">
-                        <p>МОБИЛЬНЫЙ ТЕЛЕФОН, ОБЯЗАТЕЛЬНОЕ ПОЛЕ</p> <input class="form-control form-control-lg light-300"
-                                                        th:field="*{phone}"
-                                                        th:placeholder="${ownerDto.phone}"
-                                                        type="text"/>
+                        <p>МОБИЛЬНЫЙ ТЕЛЕФОН, ОБЯЗАТЕЛЬНОЕ ПОЛЕ</p> <input
+                            class="form-control form-control-lg light-300"
+                            th:field="*{phone}"
+                            th:placeholder="${ownerDto.phone}"
+                            type="text"/>
                         <h5 th:errorclass="error" th:errors="*{phone}" th:if="${#fields.hasErrors('phone')}"/>
                     </div>
                 </div>

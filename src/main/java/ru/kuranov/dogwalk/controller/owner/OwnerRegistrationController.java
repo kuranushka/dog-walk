@@ -1,4 +1,4 @@
-package ru.kuranov.dogwalk.controller;
+package ru.kuranov.dogwalk.controller.owner;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

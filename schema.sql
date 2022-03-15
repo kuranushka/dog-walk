@@ -21,24 +21,17 @@ values (1, 'Москва'),
        (3, 'Нижний Новгород');
 
 
-SELECT a.id, a.username, a.password, r.role_id
-FROM (SELECT id, username, password FROM owner UNION SELECT id, username, password FROM walker) as a
-         JOIN (SELECT owner_id as id, role_id FROM owner_role UNION SELECT walker_id, role_id FROM walker_role) as r
-              ON a.id = r.id
-WHERE a.username = ?1;
-
 insert into owner (id, name, password, username)
 values (1, 'Андрей', '$2a$12$yWRpJY12bNvkHUlW0Nx0r.FdyaWGm7AtNFS7LgfV6CVssGXby1Qbi', 'owner');
 insert into owner_role (owner_id, role_id)
 values (1, 1);
-insert into owner (id, name, password, username)
-values (2, 'Андрей', '$2a$12$yWRpJY12bNvkHUlW0Nx0r.FdyaWGm7AtNFS7LgfV6CVssGXby1Qbi', 'walker');
-insert into owner_role (owner_id, role_id)
-values (2, 2);
+
 insert into walker (id, name, password, username)
 values (3, 'Валентина', '$2a$12$yWRpJY12bNvkHUlW0Nx0r.FdyaWGm7AtNFS7LgfV6CVssGXby1Qbi', 'walker');
 insert into walker_role (walker_id, role_id)
 values (3, 2);
+
+
 
 SELECT CASE
            WHEN EXISTS(SELECT a.username

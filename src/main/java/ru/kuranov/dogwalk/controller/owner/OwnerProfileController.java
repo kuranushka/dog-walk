@@ -1,4 +1,4 @@
-package ru.kuranov.dogwalk.controller;
+package ru.kuranov.dogwalk.controller.owner;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/profile/walker")
-public class WalkerProfileController {
+@RequestMapping("/profile/owner")
+public class OwnerProfileController {
 
     @GetMapping
     public String getProfilePage() {
-        return "walker";
+        return "owner";
     }
 }

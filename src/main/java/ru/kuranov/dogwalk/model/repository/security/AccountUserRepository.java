@@ -18,7 +18,8 @@ public class AccountUserRepository implements AccountUserService {
 
     public Optional<User> findByUsername(String username) {
         String query = "SELECT a.id, a.username, a.password, r.role_id as role " +
-                "FROM (SELECT id, username, password FROM owner UNION SELECT id, username, password FROM walker) as a " +
+                "FROM (SELECT id, username, password FROM owner " +
+                "UNION SELECT id, username, password FROM walker) as a " +
                 "         JOIN (SELECT owner_id as id, role_id FROM owner_role " +
                 "UNION SELECT walker_id, role_id FROM walker_role) as r ON a.id=r.id " +
                 "WHERE a.username = ?";
@@ -26,12 +27,10 @@ public class AccountUserRepository implements AccountUserService {
     }
 
     public boolean isThereSuchUsername(String username) {
-        String query = "SELECT * FROM (SELECT username FROM owner UNION SELECT username FROM walker) as a WHERE username = ?";
+        String query = "SELECT * FROM (SELECT username FROM owner " +
+                "UNION SELECT username FROM walker) as a " +
+                "WHERE a.username = ?";
         List<String> result = jdbcTemplate.queryForList(query, String.class, username);
-        if (result.size() == 0) {
-            return false;
-        } else {
-            return true;
-        }
+        return result.size() != 0;
     }
 }

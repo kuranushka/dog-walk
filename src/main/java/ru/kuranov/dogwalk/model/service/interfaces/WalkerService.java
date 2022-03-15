@@ -5,11 +5,6 @@ import ru.kuranov.dogwalk.model.entity.walker.Walker;
 
 @Service
 public interface WalkerService {
-//    Walker findByName(String walkerName);
 
     void save(Walker walker);
-
-//    boolean isThereSuchLogin(String login);
-
-//    Optional<Walker> findByUsername(String username);
 }
