@@ -1,24 +1,11 @@
 package ru.kuranov.dogwalk.model.dto.dog;
 
 import lombok.*;
-import org.hibernate.validator.constraints.Length;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
-import ru.kuranov.dogwalk.model.entity.addition.HowGetKeys;
-import ru.kuranov.dogwalk.model.entity.addition.MeetingToWalker;
-import ru.kuranov.dogwalk.model.entity.addition.WashPaws;
-import ru.kuranov.dogwalk.model.entity.addition.Aggression;
-import ru.kuranov.dogwalk.model.entity.addition.PickItUp;
-import ru.kuranov.dogwalk.model.entity.addition.PickUpFromGround;
-import ru.kuranov.dogwalk.model.entity.addition.PullingLeash;
-import ru.kuranov.dogwalk.model.entity.addition.DogDocument;
-import ru.kuranov.dogwalk.model.entity.addition.Gender;
+import ru.kuranov.dogwalk.model.entity.addition.*;
 import ru.kuranov.dogwalk.model.entity.location.City;
 
-import javax.validation.constraints.FutureOrPresent;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -32,14 +19,14 @@ public class DogDto {
 
     private Long id;
 
-    @NotBlank(message = "ПОЛЕ КЛИЧКА НЕ ЗАПОЛНЕНО")
+    //    @NotBlank(message = "ПОЛЕ КЛИЧКА НЕ ЗАПОЛНЕНО")
     private String name;
 
     private String breed;
 
     private String age;
 
-    private Gender gender;
+    private List<Gender> gender;
 
     private int weight;
 
@@ -59,38 +46,39 @@ public class DogDto {
 
     private List<Aggression> aggression;
 
-    private boolean isGoWithoutLeash;
+    private List<GoWithoutLeash> goWithoutLeash;
 
-    private boolean isInteractWithOtherDogs;
+    private List<InteractWithOtherDogs> interactWithOtherDogs;
 
     private List<WashPaws> washPaws;
 
     private String feedAfterWalk;
 
-    @DateTimeFormat(pattern = "dd.MM.yyyy")
-    @FutureOrPresent(message = "УКАЖИТЕ ДАТУ ПРОГУЛКИ, СЕГОДНЯ ЛИБО ПОЗЖЕ")
-    private LocalDate walkDate;
-
-    @DateTimeFormat(pattern = "HH:mm")
-    @FutureOrPresent(message = "ВРЕМЯ ПРОГУЛКИ, СЕЙЧАС ЛИБО ПОЗЖЕ")
+    //    @DateTimeFormat(pattern = "dd.MM.yyyy")
+//    @FutureOrPresent(message = "УКАЖИТЕ ДАТУ ПРОГУЛКИ, СЕГОДНЯ ЛИБО ПОЗЖЕ")
+    @NotBlank(message = "НЕ ВЫБРАНА ДАТА ПРОГУЛКИ")
+    private String walkDate;
+    //private String walkDate;
+//    @DateTimeFormat(pattern = "HH:mm")
+//    @FutureOrPresent(message = "ВРЕМЯ ПРОГУЛКИ, СЕЙЧАС ЛИБО ПОЗЖЕ")
     private LocalTime walkBegin;
 
-    @Min(value = 20, message = "ДЛИТЕЛЬНОСТЬ ПРОГУЛКИ НЕ ДОЛЖНА БЫТЬ МЕНЕЕ 20 МИНУТ")
+    //    @Min(value = 20, message = "ДЛИТЕЛЬНОСТЬ ПРОГУЛКИ НЕ ДОЛЖНА БЫТЬ МЕНЕЕ 20 МИНУТ")
     private int walkingPeriod;
 
     private List<MeetingToWalker> meetingToWalker;
 
     private List<HowGetKeys> howGetKeys;
 
-    @Length(max = 1024, message = "МАКСИМАЛЬНОЕ КОЛИЧЕСТВО ЗНАКОВ В ПОЛЕ ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ 1024 СИМВОЛА")
+    //    @Length(max = 1024, message = "МАКСИМАЛЬНОЕ КОЛИЧЕСТВО ЗНАКОВ В ПОЛЕ ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ 1024 СИМВОЛА")
     private String additionInfo;
 
-    @NotBlank(message = "УКАЖИТЕ ГОРОД")
+    //    @NotBlank(message = "УКАЖИТЕ ГОРОД")
     private String city;
 
     private List<City> cities;
 
-    @NotBlank(message = "УКАЖИТЕ МЕТРО ИЛИ РАЙОН")
+    //    @NotBlank(message = "УКАЖИТЕ МЕТРО ИЛИ РАЙОН")
     private String location;
 
     private String address;

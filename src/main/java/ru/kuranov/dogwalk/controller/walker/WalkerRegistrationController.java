@@ -36,7 +36,9 @@ public class WalkerRegistrationController {
     }
 
     @PostMapping("/registration/walker")
-    public String registrationWalker(@Valid WalkerDto walkerDto, BindingResult bindingResult, Model model) {
+    public String registrationWalker(@Valid WalkerDto walkerDto,
+                                     BindingResult bindingResult,
+                                     Model model) {
         if (bindingResult.hasErrors()) {
             walkerDto.setCities(cityService.findAll());
             model.addAttribute("walkerDto", walkerDto);

@@ -44,7 +44,7 @@ public class DogDtoMapperImpl implements DogDtoMapper {
                 .name(dogDto.getName())
                 .breed(dogDto.getBreed())
                 .age(dogDto.getAge())
-                .gender(dogDto.getGender())
+//                .gender(dogDto.getGender())
                 .weight(dogDto.getWeight())
                 .weightGroup(getWeightGroup(dogDto))
 //                .dogDocuments(dogDto.getDogDocuments())
@@ -55,16 +55,16 @@ public class DogDtoMapperImpl implements DogDtoMapper {
 //                .pickItUp(dogDto.getPickItUp())
                 .fear(dogDto.getFear())
 //                .aggression(dogDto.getAggression())
-                .isGoWithoutLeash(dogDto.isGoWithoutLeash())
-                .isInteractWithOtherDogs(dogDto.isInteractWithOtherDogs())
+//                .isGoWithoutLeash(dogDto.isGoWithoutLeash())
+//                .isInteractWithOtherDogs(dogDto.isInteractWithOtherDogs())
 //                .washPaws(dogDto.getWashPaws())
 //                .isFeedAfterWalk(dogDto.isFeedAfterWalk())
 //                .feed(dogDto.getFeedAfterWalk())
-                .walkingPeriod(dogDto.getWalkingPeriod())
-                .schedule(
-                        getSchedule(dogDto.getWalkDate(),
-                                dogDto.getWalkBegin(),
-                                dogDto.getWalkingPeriod()))
+//                .walkingPeriod(dogDto.getWalkingPeriod())
+//                .schedule(
+//                        getSchedule(dogDto.getWalkDate(),
+//                                dogDto.getWalkBegin(),
+//                                dogDto.getWalkingPeriod()))
 //                .meetingToWalker(dogDto.getMeetingToWalker())
 //                .howGetKeys(dogDto.getHowGetKeys())
                 .additionInfo(dogDto.getAdditionInfo())
@@ -86,12 +86,29 @@ public class DogDtoMapperImpl implements DogDtoMapper {
                 .pickUpFromGround(getPickUpFromGround())
                 .pickItUp(getPickItUp())
                 .aggression(getAggression())
+                .goWithoutLeash(getGoWithoutLeash())
+                .interactWithOtherDogs(getInteractWithOtherDogs())
                 .washPaws(getWashPaws())
                 .meetingToWalker(getMeetingToWalker())
                 .howGetKeys(getHowGetKeys())
                 .cities(getCities())
                 .build();
 
+    }
+
+    private List<InteractWithOtherDogs> getInteractWithOtherDogs() {
+        InteractWithOtherDogs[] values = InteractWithOtherDogs.values();
+        return Arrays.stream(values).collect(Collectors.toList());
+    }
+
+    private List<GoWithoutLeash> getGoWithoutLeash() {
+        GoWithoutLeash[] values = GoWithoutLeash.values();
+        return Arrays.stream(values).collect(Collectors.toList());
+    }
+
+    private List<Gender> getGender() {
+        Gender[] values = Gender.values();
+        return Arrays.stream(values).collect(Collectors.toList());
     }
 
 
