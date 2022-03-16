@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.kuranov.dogwalk.exceptions.ErrorMessages;
 import ru.kuranov.dogwalk.model.dto.owner.OwnerDto;
 import ru.kuranov.dogwalk.model.entity.main.Owner;
-import ru.kuranov.dogwalk.model.mapper.interfaces.OwnerMapper;
+import ru.kuranov.dogwalk.model.mapper.interfaces.OwnerDtoMapper;
 import ru.kuranov.dogwalk.model.repository.security.AccountUserService;
 import ru.kuranov.dogwalk.model.service.interfaces.OwnerService;
 
@@ -22,7 +22,7 @@ import javax.validation.Valid;
 public class OwnerRegistrationController {
 
     private final OwnerService ownerService;
-    private final OwnerMapper ownerMapper;
+    private final OwnerDtoMapper ownerDtoMapper;
     private final AccountUserService accountUserService;
 
     @GetMapping
@@ -41,7 +41,7 @@ public class OwnerRegistrationController {
             return "registration-owner";
         }
 
-        Owner owner = ownerMapper.getOwner(ownerDto);
+        Owner owner = ownerDtoMapper.getOwner(ownerDto);
         ownerService.save(owner);
         return "redirect:/registration/getmail";
     }

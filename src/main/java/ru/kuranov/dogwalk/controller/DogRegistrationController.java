@@ -7,7 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.kuranov.dogwalk.model.dto.dog.DogDto;
-import ru.kuranov.dogwalk.model.mapper.interfaces.DogMapper;
+import ru.kuranov.dogwalk.model.mapper.interfaces.DogDtoMapper;
 import ru.kuranov.dogwalk.model.service.interfaces.DogService;
 
 import javax.validation.Valid;
@@ -18,12 +18,11 @@ import java.security.Principal;
 public class DogRegistrationController {
 
     private final DogService dogService;
-    private final DogMapper dogMapper;
+    private final DogDtoMapper dogDtoMapper;
 
     @GetMapping("/profile/owner/registration/dog")
     public String registrationDog(DogDto dogDto, Model model, Principal principal) {
-        //TODO переписать
-        dogDto = DogDto.builder().build();
+        dogDto = dogDtoMapper.getDogDto();
         model.addAttribute("dogDto", dogDto);
         return "registration-dog";
     }

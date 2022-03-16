@@ -5,26 +5,31 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import ru.kuranov.dogwalk.model.dto.dog.DogDto;
-import ru.kuranov.dogwalk.model.entity.addition.WeightGroup;
+import ru.kuranov.dogwalk.model.entity.addition.*;
 import ru.kuranov.dogwalk.model.entity.location.City;
 import ru.kuranov.dogwalk.model.entity.location.WalkingPlace;
 import ru.kuranov.dogwalk.model.entity.main.Dog;
 import ru.kuranov.dogwalk.model.entity.main.Owner;
 import ru.kuranov.dogwalk.model.entity.time.Schedule;
 import ru.kuranov.dogwalk.model.entity.time.WalkTime;
-import ru.kuranov.dogwalk.model.mapper.interfaces.DogMapper;
+import ru.kuranov.dogwalk.model.mapper.interfaces.DogDtoMapper;
+import ru.kuranov.dogwalk.model.service.interfaces.CityService;
 import ru.kuranov.dogwalk.model.service.interfaces.OwnerService;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 @PropertySource("classpath:app-values.properties")
-public class DogMapperImpl implements DogMapper {
+public class DogDtoMapperImpl implements DogDtoMapper {
 
     private final OwnerService ownerService;
+    private final CityService citiService;
     @Value("${dog.weight.light.max}")
     private int lightWeight;
     @Value("${dog.weight.middle.max}")
@@ -42,39 +47,94 @@ public class DogMapperImpl implements DogMapper {
                 .gender(dogDto.getGender())
                 .weight(dogDto.getWeight())
                 .weightGroup(getWeightGroup(dogDto))
-                .dogDocuments(dogDto.getDogDocuments())
+//                .dogDocuments(dogDto.getDogDocuments())
                 .vet(dogDto.getVet())
                 .injury(dogDto.getInjury())
-                .pullingLeash(dogDto.getPullingLeash())
-                .pickUpFromGround(dogDto.getPickUpFromGround())
-                .pickItUp(dogDto.getPickItUp())
+//                .pullingLeash(dogDto.getPullingLeash())
+//                .pickUpFromGround(dogDto.getPickUpFromGround())
+//                .pickItUp(dogDto.getPickItUp())
                 .fear(dogDto.getFear())
-                .aggression(dogDto.getAggression())
+//                .aggression(dogDto.getAggression())
                 .isGoWithoutLeash(dogDto.isGoWithoutLeash())
                 .isInteractWithOtherDogs(dogDto.isInteractWithOtherDogs())
-                .washPaws(dogDto.getWashPaws())
-                .isFeedAfterWalk(dogDto.isFeedAfterWalk())
-                .feed(dogDto.getFeed())
+//                .washPaws(dogDto.getWashPaws())
+//                .isFeedAfterWalk(dogDto.isFeedAfterWalk())
+//                .feed(dogDto.getFeedAfterWalk())
                 .walkingPeriod(dogDto.getWalkingPeriod())
                 .schedule(
                         getSchedule(dogDto.getWalkDate(),
                                 dogDto.getWalkBegin(),
                                 dogDto.getWalkingPeriod()))
-                .meetingToWalker(dogDto.getMeetingToWalker())
-                .howGetKeys(dogDto.getHowGetKeys())
+//                .meetingToWalker(dogDto.getMeetingToWalker())
+//                .howGetKeys(dogDto.getHowGetKeys())
                 .additionInfo(dogDto.getAdditionInfo())
                 .walkingPlace(Collections
                         .singleton(
                                 getWalkingPlace(
-                                        dogDto.getCityName(),
+                                        dogDto.getCity(),
                                         dogDto.getLocation(),
                                         dogDto.getAddress())))
                 .build();
     }
 
     @Override
-    public DogDto getDogDto(Dog dog) {
-        return null;
+    public DogDto getDogDto() {
+        return DogDto.builder()
+                .dogDocuments(getDogDocuments())
+                .pullingLeash(getPullingLeash())
+                .pickUpFromGround(getPickUpFromGround())
+                .pickItUp(getPickItUp())
+                .aggression(getAggression())
+                .washPaws(getWashPaws())
+                .meetingToWalker(getMeetingToWalker())
+                .howGetKeys(getHowGetKeys())
+                .cities(getCities())
+                .build();
+
+    }
+
+    private List<City> getCities() {
+        return citiService.findAll();
+    }
+
+    private List<HowGetKeys> getHowGetKeys() {
+        HowGetKeys[] values = HowGetKeys.values();
+        return Arrays.stream(values).collect(Collectors.toList());
+    }
+
+    private List<MeetingToWalker> getMeetingToWalker() {
+        MeetingToWalker[] values = MeetingToWalker.values();
+        return Arrays.stream(values).collect(Collectors.toList());
+    }
+
+    private List<WashPaws> getWashPaws() {
+        WashPaws[] values = WashPaws.values();
+        return Arrays.stream(values).collect(Collectors.toList());
+    }
+
+    private List<Aggression> getAggression() {
+        Aggression[] values = Aggression.values();
+        return Arrays.stream(values).collect(Collectors.toList());
+    }
+
+    private List<PickItUp> getPickItUp() {
+        PickItUp[] values = PickItUp.values();
+        return Arrays.stream(values).collect(Collectors.toList());
+    }
+
+    private List<PickUpFromGround> getPickUpFromGround() {
+        PickUpFromGround[] values = PickUpFromGround.values();
+        return Arrays.stream(values).collect(Collectors.toList());
+    }
+
+    private List<PullingLeash> getPullingLeash() {
+        PullingLeash[] values = PullingLeash.values();
+        return Arrays.stream(values).collect(Collectors.toList());
+    }
+
+    private List<DogDocument> getDogDocuments() {
+        DogDocument[] values = DogDocument.values();
+        return Arrays.stream(values).collect(Collectors.toList());
     }
 
 

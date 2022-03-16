@@ -29,7 +29,7 @@ values (1, 1);
 insert into walker ( name, password, username)
 values ('Валентина', '$2a$12$yWRpJY12bNvkHUlW0Nx0r.FdyaWGm7AtNFS7LgfV6CVssGXby1Qbi', 'walker');
 insert into walker_role (walker_id, role_id)
-values (3, 2);
+values (2, 2);
 
 
 

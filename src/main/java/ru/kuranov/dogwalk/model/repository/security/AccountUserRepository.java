@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
-import ru.kuranov.dogwalk.model.mapper.implement.UsernameMapper;
+import ru.kuranov.dogwalk.model.mapper.implement.UsernameRowMapper;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +14,7 @@ import java.util.Optional;
 public class AccountUserRepository implements AccountUserService {
 
     private final JdbcTemplate jdbcTemplate;
-    private final UsernameMapper usernameMapper;
+    private final UsernameRowMapper usernameRowMapper;
 
     public Optional<User> findByUsername(String username) {
         String query = "SELECT a.id, a.username, a.password, r.role_id as role " +
@@ -23,7 +23,7 @@ public class AccountUserRepository implements AccountUserService {
                 "         JOIN (SELECT owner_id as id, role_id FROM owner_role " +
                 "UNION SELECT walker_id, role_id FROM walker_role) as r ON a.id=r.id " +
                 "WHERE a.username = ?";
-        return Optional.ofNullable(jdbcTemplate.queryForObject(query, usernameMapper, username));
+        return Optional.ofNullable(jdbcTemplate.queryForObject(query, usernameRowMapper, username));
     }
 
     public boolean isThereSuchUsername(String username) {

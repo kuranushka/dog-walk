@@ -11,8 +11,7 @@ public enum Aggression {
     CHILDREN("К детям"),
     MOTORCYCLISTS("К мотоциклистам"),
     CYCLISTS("К велосипедистам"),
-    CARS("К автомобилям"),
-    NO_AGGRESSION("Нет агрессии");
+    CARS("К автомобилям");
 
     private String name;
 

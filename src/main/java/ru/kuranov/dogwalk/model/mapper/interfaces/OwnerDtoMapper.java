@@ -5,7 +5,7 @@ import ru.kuranov.dogwalk.model.dto.owner.OwnerDto;
 import ru.kuranov.dogwalk.model.entity.main.Owner;
 
 @Service
-public interface OwnerMapper {
+public interface OwnerDtoMapper {
 
     Owner getOwner(OwnerDto ownerDto);
 

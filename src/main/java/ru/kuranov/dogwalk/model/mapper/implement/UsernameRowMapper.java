@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class UsernameMapper implements RowMapper<User> {
+public class UsernameRowMapper implements RowMapper<User> {
 
     private final RoleService roleService;
 

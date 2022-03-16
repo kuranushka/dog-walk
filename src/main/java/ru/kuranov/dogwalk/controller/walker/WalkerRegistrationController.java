@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ru.kuranov.dogwalk.exceptions.ErrorMessages;
 import ru.kuranov.dogwalk.model.dto.walker.WalkerDto;
 import ru.kuranov.dogwalk.model.entity.main.Walker;
-import ru.kuranov.dogwalk.model.mapper.interfaces.WalkerMapper;
+import ru.kuranov.dogwalk.model.mapper.interfaces.WalkerDtoMapper;
 import ru.kuranov.dogwalk.model.repository.security.AccountUserService;
 import ru.kuranov.dogwalk.model.service.interfaces.CityService;
 import ru.kuranov.dogwalk.model.service.interfaces.WalkerService;
@@ -21,10 +21,11 @@ import javax.validation.Valid;
 public class WalkerRegistrationController {
 
     private final WalkerService walkerService;
-    private final WalkerMapper walkerMapper;
+    private final WalkerDtoMapper walkerDtoMapper;
     private final CityService cityService;
     private final AccountUserService accountUserService;
 
+    //TODO переписать вывести логику создания WalkerDto в WalkerMapper
     @GetMapping("/registration/walker")
     public String registrationWalker(WalkerDto walkerDto, Model model) {
         walkerDto = WalkerDto.builder()
@@ -49,7 +50,7 @@ public class WalkerRegistrationController {
             return "registration-walker";
         }
 
-        Walker walker = walkerMapper.getWalker(walkerDto);
+        Walker walker = walkerDtoMapper.getWalker(walkerDto);
         walkerService.save(walker);
         return "redirect:/registration/getmail";
     }

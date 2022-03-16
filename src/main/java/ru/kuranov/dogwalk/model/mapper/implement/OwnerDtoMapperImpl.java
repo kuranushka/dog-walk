@@ -5,14 +5,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.kuranov.dogwalk.model.dto.owner.OwnerDto;
 import ru.kuranov.dogwalk.model.entity.main.Owner;
-import ru.kuranov.dogwalk.model.mapper.interfaces.OwnerMapper;
+import ru.kuranov.dogwalk.model.mapper.interfaces.OwnerDtoMapper;
 import ru.kuranov.dogwalk.model.service.interfaces.RoleService;
 
 import java.util.Collections;
 
 @Service
 @RequiredArgsConstructor
-public class OwnerMapperImpl implements OwnerMapper {
+public class OwnerDtoMapperImpl implements OwnerDtoMapper {
 
     private final PasswordEncoder passwordEncoder;
     private final RoleService roleService;

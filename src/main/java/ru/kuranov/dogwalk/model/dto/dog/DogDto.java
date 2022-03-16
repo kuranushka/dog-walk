@@ -13,13 +13,14 @@ import ru.kuranov.dogwalk.model.entity.addition.PickUpFromGround;
 import ru.kuranov.dogwalk.model.entity.addition.PullingLeash;
 import ru.kuranov.dogwalk.model.entity.addition.DogDocument;
 import ru.kuranov.dogwalk.model.entity.addition.Gender;
+import ru.kuranov.dogwalk.model.entity.location.City;
 
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Set;
+import java.util.List;
 
 @Component
 @Getter
@@ -38,60 +39,59 @@ public class DogDto {
 
     private String age;
 
-    @NotNull
     private Gender gender;
 
-    @Min(value = 1, message = "ВЕС ПИТОМЦА НЕ ДОЛЖЕН БЫТЬ МЕНЬШЕ 1 КГ")
     private int weight;
 
-    private Set<DogDocument> dogDocuments;
+    private List<DogDocument> dogDocuments;
 
     private String vet;
 
     private String injury;
 
-    private PullingLeash pullingLeash;
+    private List<PullingLeash> pullingLeash;
 
-    private PickUpFromGround pickUpFromGround;
+    private List<PickUpFromGround> pickUpFromGround;
 
-    private PickItUp pickItUp;
+    private List<PickItUp> pickItUp;
 
     private String fear;
 
-    private Set<Aggression> aggression;
+    private List<Aggression> aggression;
 
     private boolean isGoWithoutLeash;
 
     private boolean isInteractWithOtherDogs;
 
-    private WashPaws washPaws;
+    private List<WashPaws> washPaws;
 
-    private boolean isFeedAfterWalk;
-
-    private String feed;
+    private String feedAfterWalk;
 
     @DateTimeFormat(pattern = "dd.MM.yyyy")
+    @FutureOrPresent(message = "УКАЖИТЕ ДАТУ ПРОГУЛКИ, СЕГОДНЯ ЛИБО ПОЗЖЕ")
     private LocalDate walkDate;
 
     @DateTimeFormat(pattern = "HH:mm")
+    @FutureOrPresent(message = "ВРЕМЯ ПРОГУЛКИ, СЕЙЧАС ЛИБО ПОЗЖЕ")
     private LocalTime walkBegin;
 
     @Min(value = 20, message = "ДЛИТЕЛЬНОСТЬ ПРОГУЛКИ НЕ ДОЛЖНА БЫТЬ МЕНЕЕ 20 МИНУТ")
     private int walkingPeriod;
 
-    private MeetingToWalker meetingToWalker;
+    private List<MeetingToWalker> meetingToWalker;
 
-    private HowGetKeys howGetKeys;
+    private List<HowGetKeys> howGetKeys;
 
     @Length(max = 1024, message = "МАКСИМАЛЬНОЕ КОЛИЧЕСТВО ЗНАКОВ В ПОЛЕ ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ 1024 СИМВОЛА")
     private String additionInfo;
 
     @NotBlank(message = "УКАЖИТЕ ГОРОД")
-    private String cityName;
+    private String city;
+
+    private List<City> cities;
 
     @NotBlank(message = "УКАЖИТЕ МЕТРО ИЛИ РАЙОН")
     private String location;
 
-    @NotBlank(message = "УКАЖИТЕ ТОЧНЫЙ АДРЕС")
     private String address;
 }

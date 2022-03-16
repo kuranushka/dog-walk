@@ -5,7 +5,7 @@ import ru.kuranov.dogwalk.model.dto.walker.WalkerDto;
 import ru.kuranov.dogwalk.model.entity.main.Walker;
 
 @Service
-public interface WalkerMapper {
+public interface WalkerDtoMapper {
 
     Walker getWalker(WalkerDto walkerDto);
 

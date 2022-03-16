@@ -7,8 +7,7 @@ public enum DogDocument {
     VETERINARY_PASSPORT("Ветпаспорт"),
     VACCINATIONS("Сертификат о прививках"),
     TICK_PROTECTION("Защита от клещей"),
-    CASTRATION_OR_STERILIZATION("Кастрация или стерилизация"),
-    NONE("Ничего");
+    CASTRATION_OR_STERILIZATION("Кастрация или стерилизация");
 
     private String name;
 

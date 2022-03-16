@@ -6,7 +6,6 @@ import ru.kuranov.dogwalk.model.entity.location.WalkingPlace;
 import ru.kuranov.dogwalk.model.entity.time.Schedule;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -88,11 +87,8 @@ public class Dog {
     @Enumerated(value = EnumType.STRING)
     private WashPaws washPaws;
 
-    @Column(name = "feed_after_walk")
-    private boolean isFeedAfterWalk;
-
     @Column(name = "feed")
-    private String feed;
+    private String feedAfterWalk;
 
     @Column(name = "walking_period")
     private int walkingPeriod;

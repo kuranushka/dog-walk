@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.kuranov.dogwalk.model.dto.walker.WalkerDto;
 import ru.kuranov.dogwalk.model.entity.location.City;
 import ru.kuranov.dogwalk.model.entity.main.Walker;
-import ru.kuranov.dogwalk.model.mapper.interfaces.WalkerMapper;
+import ru.kuranov.dogwalk.model.mapper.interfaces.WalkerDtoMapper;
 import ru.kuranov.dogwalk.model.service.interfaces.CityService;
 import ru.kuranov.dogwalk.model.service.interfaces.RoleService;
 
@@ -14,7 +14,7 @@ import java.util.Collections;
 
 @Service
 @RequiredArgsConstructor
-public class WalkerMapperImpl implements WalkerMapper {
+public class WalkerDtoMapperImpl implements WalkerDtoMapper {
 
     private final CityService cityService;
     private final RoleService roleService;

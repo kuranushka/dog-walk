@@ -10,8 +10,7 @@ public enum WashPaws {
     BUCKET("В ведре"),
     SINK("В раковине"),
     WIPE_WITH_CLOTH("Протереть трякочкой"),
-    WIPE_WITH_NAPKINS("Протереть салфетками"),
-    OTHER("Другое");
+    WIPE_WITH_NAPKINS("Протереть салфетками");
 
     private String name;
 

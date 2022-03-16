@@ -15,6 +15,26 @@
     <link href="../assets/css/templatemo.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="../assets/css/custom.css" rel="stylesheet">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+
+    <!--    &lt;!&ndash; 1. Подключить CSS-файл Bootstrap 3 &ndash;&gt;-->
+    <!--    <link rel="stylesheet" href="css/bootstrap.min.css"/>-->
+    <!--    &lt;!&ndash; 2. Подключить CSS-файл библиотеки Bootstrap 3 DateTimePicker &ndash;&gt;-->
+    <!--    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css"/>-->
+
+    <!--    &lt;!&ndash; 3. Подключить библиотеку jQuery &ndash;&gt;-->
+    <!--    <script src="js/jquery.min.js"></script>-->
+    <!--    &lt;!&ndash; 4. Подключить библиотеку moment &ndash;&gt;-->
+    <!--    <script src="js/moment-with-locales.min.js"></script>-->
+    <!--    &lt;!&ndash; 5. Подключить js-файл фреймворка Bootstrap 3 &ndash;&gt;-->
+    <!--    <script src="js/bootstrap.min.js"></script>-->
+    <!--    &lt;!&ndash; 6. Подключить js-файл библиотеки Bootstrap 3 DateTimePicker &ndash;&gt;-->
+    <!--    <script src="js/bootstrap-datetimepicker.min.js"></script>-->
+
+
 </head>
 <body>
 <div th:insert="/component/header.html :: #header"></div>
@@ -24,117 +44,315 @@
     <h2 class="col-12 col-xl-8 h4 text-left regular-400">Займет меньше 5 минут ...</h2>
     <p class="col-12 col-xl-8 text-left text-muted pb-5 light-300">
         Расскажите нам по-подробнее о Вашем питомце.<br>
-        Поля отмеченные * необходимо заполнить.
     </p>
     <div class="row pb-4">
         <div class="col-lg-4">
             <img alt="Card image" class="service card-img" src="../assets/img/services-01.jpg">
         </div>
-        <!--        <div class="col-lg-8 ">-->
-        <!--            <form class="contact-form row" method="post" role="form" th:action="@{/registration/walker}"-->
-        <!--                  th:object="${walkerDto}">-->
-        <!--                <div class="col-12">-->
-        <!--                    <div class="form-floating mb-4">-->
-        <!--                        <p>ЛОГИН, НЕ МЕНЕЕ 6 СИМВОЛОВ *</p> <input class="form-control form-control-lg light-300" th:field="*{login}"-->
-        <!--                                             th:placeholder="${walkerDto.login}"-->
-        <!--                                             type="text"/>-->
-        <!--                        <p th:if="${errorMessage}" th:text="${errorMessage}"></p>-->
-        <!--                        <p th:errorclass="error" th:errors="*{login}" th:if="${#fields.hasErrors('login')}"/>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--                <div class="col-12">-->
-        <!--                    <div class="form-floating mb-4">-->
-        <!--                        <p>ПАРОЛЬ, НЕ МЕНЕЕ 6 СИМВОЛОВ *</p> <input class="form-control form-control-lg light-300" th:field="*{password}"-->
-        <!--                                              th:placeholder="${walkerDto.password}"-->
-        <!--                                              type="password"/>-->
-        <!--                        <p th:errorclass="error" th:errors="*{password}" th:if="${#fields.hasErrors('password')}"/>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--                <div class="col-12">-->
-        <!--                    <div class="form-floating mb-4">-->
-        <!--                        <p>ИМЯ*</p> <input class="form-control form-control-lg light-300" th:field="*{name}"-->
-        <!--                                           th:placeholder="${walkerDto.name}"-->
-        <!--                                           type="text"/>-->
-        <!--                        <p th:errorclass="error" th:errors="*{name}" th:if="${#fields.hasErrors('name')}"/>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--                <div class="col-12">-->
-        <!--                    <div class="form-floating mb-4">-->
-        <!--                        <p>ФАМИЛИЯ*</p> <input class="form-control form-control-lg light-300" th:field="*{surname}"-->
-        <!--                                               th:placeholder="${walkerDto.surname}"-->
-        <!--                                               type="text"/>-->
-        <!--                        <p th:errorclass="error" th:errors="*{surname}" th:if="${#fields.hasErrors('surname')}"/>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--                <div class="col-12">-->
-        <!--                    <div class="form-floating mb-4">-->
-        <!--                        <p>E-MAIL*</p> <input class="form-control form-control-lg light-300" th:field="*{mail}"-->
-        <!--                                              th:placeholder="${walkerDto.mail}"-->
-        <!--                                              type="text"/>-->
-        <!--                        <p th:errorclass="error" th:errors="*{mail}" th:if="${#fields.hasErrors('mail')}"/>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--                <div class="col-12">-->
-        <!--                    <div class="form-floating mb-4">-->
-        <!--                        <p>МОБИЛЬНЫЙ ТЕЛЕФОН*</p> <input class="form-control form-control-lg light-300"-->
-        <!--                                                         th:field="*{phone}"-->
-        <!--                                                         th:placeholder="${walkerDto.phone}"-->
-        <!--                                                         type="text"/>-->
-        <!--                        <p th:errorclass="error" th:errors="*{phone}" th:if="${#fields.hasErrors('phone')}"/>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--                <div class="col-12">-->
-        <!--                    <div class="form-floating mb-4">-->
-        <!--                        <p>ДАТА РОЖДЕНИЯ В ФОРМАТЕ 10.10.2010 *</p> <input class="form-control form-control-lg light-300"-->
-        <!--                                                     th:field="*{birthday}"-->
-        <!--                                                     th:placeholder="${walkerDto.birthday}"-->
-        <!--                                                     type="text"/>-->
-        <!--                        <p th:if="${#fields.hasErrors('birthday')}">ЗАПОЛНИТЕ ПОЛЕ В ФОРМАТЕ 10.10.2010</p>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--                <div class="col-12">-->
-        <!--                    <div class="form-floating mb-4">-->
-        <!--                        <p>ГОРОД*</p>-->
-        <!--                        <select class="form-control form-control-lg light-300" th:field="*{city}"-->
-        <!--                                th:placeholder="${walkerDto.city}">-->
-        <!--                            <option value="" selected>ВЫБЕРИТЕ ИЗ СПИСКА</option>-->
-        <!--                            <option th:each="c:${walkerDto.cities}" th:value="${c.name}"  th:text="${c.name}"></option>-->
-        <!--                        </select>-->
-        <!--                        <p th:errorclass="error" th:errors="*{city}" th:if="${#fields.hasErrors('city')}"/>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--                <div class="col-12">-->
-        <!--                    <div class="form-floating mb-4">-->
-        <!--                        <p>ГРАЖДАНСТВО*</p>-->
-        <!--                        <select class="form-control form-control-lg light-300" th:field="*{citizenship}"-->
-        <!--                                th:placeholder="${walkerDto.citizenship}">-->
-        <!--                            <option value="" selected>ВЫБЕРИТЕ ИЗ СПИСКА</option>-->
-        <!--                            <option th:each="c:${walkerDto.citizenships}" th:value="${c.name}" th:text="${c.name}"></option>-->
-        <!--                        </select>-->
-        <!--                        <p th:errorclass="error" th:errors="*{citizenship}"-->
-        <!--                           th:if="${#fields.hasErrors('citizenship')}"/>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--                <div class="col-12">-->
-        <!--                    <div class="form-floating mb-4">-->
-        <!--                        <p>ССЫЛКИ НА ВАШИ СТРАНИЧКИ В СОЦСЕТЯХ</p> <textarea class="form-control light-300"-->
-        <!--                                                                             id="floatingtextarea"-->
-        <!--                                                                             th:field="*{socialLinks}"-->
-        <!--                                                                             th:placeholder="${walkerDto.socialLinks}"-->
-        <!--                                                                             rows="8"/>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--                <div class="col-md-12 col-12 m-auto text-end">-->
-        <!--                    <button class="btn btn-secondary rounded-pill px-md-5 px-4 py-2 radius-0 text-light light-300"-->
-        <!--                            type="submit">-->
-        <!--                        Отправить-->
-        <!--                    </button>-->
-        <!--                </div>-->
-        <!--            </form>-->
-        <!--        </div>-->
+        <div class="col-lg-8 ">
+            <form class="contact-form row" method="post" role="form" th:action="@{/registration/owner/registration/dog}"
+                  th:object="${dogDto}">
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>КЛИЧКА ПИТОМЦА, ОБЯЗАТЕЛЬНОЕ ПОЛЕ</p> <input class="form-control form-control-lg light-300"
+                                                                        th:field="*{name}"
+                                                                        th:placeholder="${dogDto.name}"
+                                                                        type="text"/>
+                        <p th:if="${errorMessage}" th:text="${errorMessage}"></p>
+                        <p th:errorclass="error" th:errors="*{name}" th:if="${#fields.hasErrors('name')}"/>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>ПОРОДА</p> <input class="form-control form-control-lg light-300" th:field="*{breed}"
+                                             th:placeholder="${dogDto.breed}"
+                                             type="text"/>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>ВОЗРАСТ</p> <input class="form-control form-control-lg light-300" th:field="*{age}"
+                                              th:placeholder="${dogDto.age}"
+                                              type="text"/>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>ПОЛ</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="genderRadio"
+                                   th:value="${dogDto.gender}" id="genderRadio1" checked>
+                            <label class="form-check-label" for="genderRadio1">
+                                САМЕЦ
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="genderRadio"
+                                   th:value="${dogDto.gender}" id="genderRadio2">
+                            <label class="form-check-label" for="genderRadio2">
+                                САМОЧКА
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>ВЕС</p> <input class="form-control form-control-lg light-300" th:field="*{weight}"
+                                          th:placeholder="${dogDto.weight}"
+                                          type="text"/>
+                        <p th:if="${errorMessage}" th:text="${errorMessage}"></p>
+                        <p th:errorclass="error" th:errors="*{weight}" th:if="${#fields.hasErrors('weight')}"/>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>ДОКУМЕНТЫ</p>
+                        <th:block th:each="doc : ${dogDto.dogDocuments}">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="${doc}" th:id="${doc.name}">
+                                <label class="form-check-label" th:for="${doc.name}" th:text="${doc.name}">
+                                </label>
+                            </div>
+                        </th:block>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>ВЕТЕРИНАРНАЯ КЛИНИКА, К КОТОРОЙ ПРИВЯЗАН ВАШ ПИТОМЕЦ</p> <input
+                            class="form-control form-control-lg light-300" th:field="*{vet}"
+                            th:placeholder="${dogDto.vet}"
+                            type="text"/>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>ТРАВМЫ ИЛИ БОЛЕЗНИ ВАШЕГО ПИТОМЦА</p> <input
+                            class="form-control form-control-lg light-300" th:field="*{injury}"
+                            th:placeholder="${dogDto.injury}"
+                            type="text"/>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>ТЯНЕТ ЛИ ПИТОМЕЦ ЗА ПОВОДОК НА ПРОГУЛКЕ?</p>
+                        <th:block th:each="pull : ${dogDto.pullingLeash}">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="pullRadio"
+                                       th:value="${pull.name}" th:id="${pull.name}">
+                                <label class="form-check-label" th:for="${pull.name}" th:text="${pull.name}"></label>
+                                </label>
+                            </div>
+                        </th:block>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>ПОДБИРАЕТ ЛИ ПИТОМЕЦ С ЗЕМЛИ ВО ВРЕМЯ ПРОГУЛКИ?</p>
+                        <th:block th:each="pick : ${dogDto.pickUpFromGround}">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="pullRadio"
+                                       th:value="${pick.name}" th:id="${pick.name}">
+                                <label class="form-check-label" th:for="${pick.name}" th:text="${pick.name}"></label>
+                                </label>
+                            </div>
+                        </th:block>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>ОТБИРАТЬ ЛИ ТО, ЧТО ПИТОМЕЦ ПОДОБРАЛ С ЗЕМЛИ ВО ВРЕМЯ ПРОГУЛКИ?</p>
+                        <th:block th:each="pick : ${dogDto.pickItUp}">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="pullRadio"
+                                       th:value="${pick.name}" th:id="${pick.name}">
+                                <label class="form-check-label" th:for="${pick.name}" th:text="${pick.name}"></label>
+                                </label>
+                            </div>
+                        </th:block>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>ЧЕГО БОИТСЯ ВАШ ПИТОМЕЦ?</p> <input
+                            class="form-control form-control-lg light-300" th:field="*{fear}"
+                            th:placeholder="${dogDto.fear}"
+                            type="text"/>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>К КОМУ ИЛИ ЧЕМУ ПИТОМЕЦ ИСПЫТЫВАЕТ АГРЕССИЮ?</p>
+                        <th:block th:each="aggr : ${dogDto.aggression}">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="${doc}" th:id="${aggr.name}">
+                                <label class="form-check-label" th:for="${aggr.name}" th:text="${aggr.name}">
+                                </label>
+                            </div>
+                        </th:block>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>МОЖНО ЛИ ОТПУСКАТЬ ПИТОМЦА БЕЗ ПОВОДКА НА СОБАЧЬЕЙ ПЛОЩАДКЕ?</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="goWithoutLeashRadio"
+                                   th:value="${dogDto.isGoWithoutLeash()}" id="goWithoutLeashRadio1" checked>
+                            <label class="form-check-label" for="goWithoutLeashRadio1">МОЖНО</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="goWithoutLeashRadio"
+                                   th:value="${dogDto.isGoWithoutLeash()}" id="goWithoutLeashRadio2">
+                            <label class="form-check-label" for="goWithoutLeashRadio2">НЕЛЬЗЯ</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>МОЖНО ЛИ КОНТАКТИРОВАТЬ С ДРУГИМИ СОБАКАМИ?</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="interactWithOtherDogs"
+                                   th:value="${dogDto.isInteractWithOtherDogs()}" id="interactWithOtherDogs1" checked>
+                            <label class="form-check-label" for="interactWithOtherDogs1">МОЖНО</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="interactWithOtherDogs"
+                                   th:value="${dogDto.isInteractWithOtherDogs()}" id="interactWithOtherDogs2">
+                            <label class="form-check-label" for="interactWithOtherDogs2">НЕЛЬЗЯ</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>НУЖНО ЛИ МЫТЬ ЛАПКИ ПОСЛЕ ПРОГУЛКИ?</p>
+                        <th:block th:each="wash : ${dogDto.washPaws}">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="washPaws"
+                                       th:value="${wash.name}" th:id="${wash.name}">
+                                <label class="form-check-label" th:for="${wash.name}" th:text="${wash.name}"></label>
+                            </div>
+                        </th:block>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>НУЖНО ЛИ КОРМИТЬ И ПОИТЬ ПИТОМЦА ПОСЛЕ ПРОГУЛКИ? ЧЕМ? СКОЛЬКО?</p>
+                        <textarea class="form-control light-300" id="feedAfterWalk" rows="8"
+                                  th:field="*{feedAfterWalk}" th:placeholder="${dogDto.feedAfterWalk}"/>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>ПРЕДПОЛАГАЕМАЯ ДАТА ПРОГУЛКИ, ФОРМАТ 10.10.2022</p> <input
+                            class="form-control form-control-lg light-300" th:field="*{walkDate}"
+                            th:placeholder="${dogDto.walkDate}"
+                            type="text"/>
+                        <p th:if="${errorMessage}" th:text="${errorMessage}"></p>
+                        <p th:errorclass="error" th:errors="*{weight}" th:if="${#fields.hasErrors('weight')}"/>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <p>ВЫБЕРИТЕ ДАТУ ПРОГУЛКИ</p>
+                    <div class="form-floating mb-4">
+                        <label for="walkDate"></label>
+                        <input type="date" class="form-check-label" th:field="${dogDto.walkDate}">
+                        <p th:if="${errorMessage}" th:text="${errorMessage}"></p>
+                        <p th:errorclass="error" th:errors="*{walkDate}" th:if="${#fields.hasErrors('walkDate')}"/>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <p>ВЫБЕРИТЕ ВРЕМЯ ПРОГУЛКИ</p>
+                    <div class="form-floating mb-4">
+                        <label for="walkBegin"></label>
+                        <input type="time" class="form-control" th:field="${dogDto.walkBegin}">
+                        <p th:if="${errorMessage}" th:text="${errorMessage}"></p>
+                        <p th:errorclass="error" th:errors="*{walkBegin}" th:if="${#fields.hasErrors('walkBegin')}"/>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>ДЛИТЕЛЬНОСТЬ ПРОГУЛКИ, МИНИМУМ 20 МИНУТ</p> <input
+                            class="form-control form-control-lg light-300" th:field="*{walkingPeriod}"
+                            th:placeholder="${dogDto.walkingPeriod}"
+                            type="text"/>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>КАК ВЫ ПЛНИРУЕТЕ ПОЗНАКОМИТЬСЯ С ВЫГУЛЬЩИКОМ?</p>
+                        <th:block th:each="meet : ${dogDto.meetingToWalker}">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="washPaws"
+                                       th:value="${meet.name}" th:id="${meet.name}">
+                                <label class="form-check-label" th:for="${meet.name}" th:text="${meet.name}"></label>
+                            </div>
+                        </th:block>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>КАК ПОПАСТЬ К ПИТОМЦУ?</p>
+                        <th:block th:each="getKeys : ${dogDto.howGetKeys}">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="washPaws"
+                                       th:value="${getKeys.name}" th:id="${getKeys.name}">
+                                <label class="form-check-label" th:for="${getKeys.name}"
+                                       th:text="${getKeys.name}"></label>
+                            </div>
+                        </th:block>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>ЧТО НАМ ЕЩЕ НУЖНО ЗНАТЬ?</p>
+                        <textarea class="form-control light-300" id="additionInfo" rows="8" th:field="*{additionInfo}"
+                                  th:placeholder="${dogDto.additionInfo}"/>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>ГОРОД, ОБЯЗАТЕЛЬНОЕ ПОЛЕ</p>
+                        <select class="form-control form-control-lg light-300" th:field="*{city}"
+                                th:placeholder="${dogDto.city}">
+                            <option selected value="">ВЫБЕРИТЕ ИЗ СПИСКА</option>
+                            <option th:each="c:${dogDto.cities}" th:text="${c.name}" th:value="${c.name}"></option>
+                        </select>
+                        <h5 th:errorclass="error" th:errors="*{city}" th:if="${#fields.hasErrors('city')}"/>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>МЕСТО ПРОГУЛКИ, РАЙОН ГОРОДА, МЕТРО</p> <input
+                            class="form-control form-control-lg light-300" th:field="*{location}"
+                            th:placeholder="${dogDto.location}"
+                            type="text"/>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        <p>АДРЕС, ГДЕ БУДЕТ НАХОДИТСЯ СОБАКА</p> <input
+                            class="form-control form-control-lg light-300" th:field="*{address}"
+                            th:placeholder="${dogDto.address}"
+                            type="text"/>
+                    </div>
+                </div>
+                <div class="col-md-12 col-12 m-auto text-end">
+                    <button class="btn btn-secondary rounded-pill px-md-5 px-4 py-2 radius-0 text-light light-300"
+                            type="submit">
+                        Отправить
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </section>
 <div th:insert="/component/footer.html :: #footer"></div>
 <div th:insert="/component/scripts.html :: #footer-scripts"></div>
+
+<script>
+    $(function () {
+        // идентификатор элемента (например: #datetimepicker1), для которого необходимо инициализировать виджет Bootstrap DateTimePicker
+        $('#datetimepicker1').datetimepicker();
+    });
+</script>
 </body>
 </html>
