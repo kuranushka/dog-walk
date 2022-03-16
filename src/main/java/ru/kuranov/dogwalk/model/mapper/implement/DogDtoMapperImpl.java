@@ -80,6 +80,7 @@ public class DogDtoMapperImpl implements DogDtoMapper {
     @Override
     public DogDto getDogDto() {
         return DogDto.builder()
+                .gender(getGender())
                 .dogDocuments(getDogDocuments())
                 .pullingLeash(getPullingLeash())
                 .pickUpFromGround(getPickUpFromGround())
@@ -92,6 +93,7 @@ public class DogDtoMapperImpl implements DogDtoMapper {
                 .build();
 
     }
+
 
     private List<City> getCities() {
         return citiService.findAll();
