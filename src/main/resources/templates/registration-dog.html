@@ -51,6 +51,8 @@
         <div class="col-lg-8 ">
             <form class="contact-form row" method="post" role="form" th:action="@{/profile/owner/registration/dog}"
                   th:object="${dogDto}">
+
+                <!--КЛИЧКА-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>КЛИЧКА ПИТОМЦА, ОБЯЗАТЕЛЬНОЕ ПОЛЕ</p>
@@ -62,6 +64,8 @@
                         <p th:errorclass="error" th:errors="*{name}" th:if="${#fields.hasErrors('name')}"/>
                     </div>
                 </div>
+
+                <!--ПОРОДА-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>ПОРОДА</p>
@@ -70,6 +74,8 @@
                                type="text"/>
                     </div>
                 </div>
+
+                <!--ВОЗРАСТ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>ВОЗРАСТ</p>
@@ -78,35 +84,48 @@
                                type="text"/>
                     </div>
                 </div>
+
+                <!--ПОЛ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>ПОЛ</p>
-                        <div th:each="gender : ${dogDto.getGender()}">
-                            <input name="gender" type="radio" th:value="${gender}" th:id="${gender.name}" th:checked="${gender}"/>
-                            <label th:for="${gender.name}" th:text="${gender.name}"></label>
+                        <div th:each="gender : ${dogDto.gender}">
+                            <input th:field="*{returnedGender}" type="radio" th:value="${gender.getKey()}" th:id="${gender.key}"
+                                   th:checked="${gender}"/>
+                            <label th:for="${gender.key}" th:text="${gender.key}"></label>
                         </div>
                     </div>
                 </div>
+
+                <!--ВЕС-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>ВЕС</p>
                         <input class="form-control form-control-lg light-300" th:field="*{weight}"
-                               th:placeholder="${dogDto.weight}"
+                               th:placeholder="#{dogDto.weight}"
                                type="text"/>
                         <p th:if="${errorMessage}" th:text="${errorMessage}"></p>
                         <p th:errorclass="error" th:errors="*{weight}" th:if="${#fields.hasErrors('weight')}"/>
                     </div>
                 </div>
+
+                <!--ДОКУМЕНТЫ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>ДОКУМЕНТЫ</p>
-                        <div th:each="dogDocuments : ${dogDto.getDogDocuments()}">
-                            <input name="dogDocuments" type="checkbox" th:value="${dogDocuments}"
-                                   th:id="${dogDocuments.name}" th:checked="${dogDocuments}"/>
-                            <label th:for="${dogDocuments.name}" th:text="${dogDocuments.name}"></label>
+                        <div th:each="item : ${dogDto.dogDocuments}">
+                            <input type="checkbox"
+                                   th:value="item.value"
+                                   th:field="*{dogDocuments['__${item.key}__']}"
+                                   th:id="${item.key}"
+                                   th:checked="*{dogDocuments['__${item.key}__']}"/>
+                            <label th:for="${item.key}"
+                                   th:text="${item.key}"></label>
                         </div>
                     </div>
                 </div>
+
+                <!--КЛИНИКА-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>ВЕТЕРИНАРНАЯ КЛИНИКА, К КОТОРОЙ ПРИВЯЗАН ВАШ ПИТОМЕЦ</p>
@@ -116,6 +135,8 @@
                                 type="text"/>
                     </div>
                 </div>
+
+                <!--БОЛЕЗНИ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>ТРАВМЫ ИЛИ БОЛЕЗНИ ВАШЕГО ПИТОМЦА</p>
@@ -125,16 +146,21 @@
                                 type="text"/>
                     </div>
                 </div>
+
+                <!--ПОВОДОК-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>ТЯНЕТ ЛИ ПИТОМЕЦ ЗА ПОВОДОК НА ПРОГУЛКЕ?</p>
-                        <div th:each="pullingLeash : ${dogDto.getPullingLeash()}">
-                            <input name="pullingLeash" type="radio" th:value="${pullingLeash}"
-                                   th:id="${pullingLeash.name}">
-                            <label th:for="${pullingLeash.name}" th:text="${pullingLeash.name}"></label>
+                        <div th:each="pullingLeash : ${dogDto.pullingLeash}">
+                            <input th:field="*{returnedPullingLeash}" type="radio" th:value="${pullingLeash.getKey()}" th:id="${pullingLeash.key}"
+                                   th:checked="${pullingLeash}"/>
+                            <label th:for="${pullingLeash.key}" th:text="${pullingLeash.key}"></label>
                         </div>
                     </div>
                 </div>
+
+
+                <!--ПОДБИРАЕТ ЛИ С ЗЕМЛИ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>ПОДБИРАЕТ ЛИ ПИТОМЕЦ С ЗЕМЛИ ВО ВРЕМЯ ПРОГУЛКИ?</p>
@@ -145,6 +171,8 @@
                         </div>
                     </div>
                 </div>
+
+                <!--ОТБИРАТЬ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>ОТБИРАТЬ ЛИ ТО, ЧТО ПИТОМЕЦ ПОДОБРАЛ С ЗЕМЛИ ВО ВРЕМЯ ПРОГУЛКИ?</p>
@@ -154,6 +182,8 @@
                         </div>
                     </div>
                 </div>
+
+                <!--ЧЕГО БОИТСЯ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>ЧЕГО БОИТСЯ ВАШ ПИТОМЕЦ?</p>
@@ -163,6 +193,8 @@
                                 type="text"/>
                     </div>
                 </div>
+
+                <!--АГРЕССИЯ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>К КОМУ ИЛИ ЧЕМУ ПИТОМЕЦ ИСПЫТЫВАЕТ АГРЕССИЮ?</p>
@@ -177,24 +209,33 @@
                         </div>
                     </div>
                 </div>
+
+                <!--МОЖНО ДИ ОТПУСКАТЬ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>МОЖНО ЛИ ОТПУСКАТЬ ПИТОМЦА БЕЗ ПОВОДКА НА СОБАЧЬЕЙ ПЛОЩАДКЕ?</p>
                         <div th:each="goWithoutLeash : ${dogDto.getGoWithoutLeash()}">
-                            <input name="goWithoutLeash" type="radio" th:value="${goWithoutLeash}" th:id="${goWithoutLeash.name}"/>
+                            <input name="goWithoutLeash" type="radio" th:value="${goWithoutLeash}"
+                                   th:id="${goWithoutLeash.name}"/>
                             <label th:for="${goWithoutLeash.name}" th:text="${goWithoutLeash.name}"></label>
                         </div>
                     </div>
                 </div>
+
+                <!--КОНТАКТИРОВАТЬ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>МОЖНО ЛИ КОНТАКТИРОВАТЬ С ДРУГИМИ СОБАКАМИ?</p>
                         <div th:each="interactWithOtherDogs : ${dogDto.getInteractWithOtherDogs()}">
-                            <input name="interactWithOtherDogs" type="radio" th:value="${interactWithOtherDogs}" th:id="${interactWithOtherDogs.name}"/>
-                            <label th:for="${interactWithOtherDogs.name}" th:text="${interactWithOtherDogs.name}"></label>
+                            <input name="interactWithOtherDogs" type="radio" th:value="${interactWithOtherDogs}"
+                                   th:id="${interactWithOtherDogs.name}"/>
+                            <label th:for="${interactWithOtherDogs.name}"
+                                   th:text="${interactWithOtherDogs.name}"></label>
                         </div>
                     </div>
                 </div>
+
+                <!--МЫТЬ ЛАПЫ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>НУЖНО ЛИ МЫТЬ ЛАПКИ ПОСЛЕ ПРОГУЛКИ?</p>
@@ -204,6 +245,8 @@
                         </div>
                     </div>
                 </div>
+
+                <!--КОРМИТЬ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>НУЖНО ЛИ КОРМИТЬ И ПОИТЬ ПИТОМЦА ПОСЛЕ ПРОГУЛКИ? ЧЕМ? СКОЛЬКО?</p>
@@ -213,25 +256,17 @@
                 </div>
 
 
-
-
-
-
-
-
-
-<!--                <div class="col-12">-->
-<!--                    <div class="form-floating mb-4">-->
-<!--                        <p>ПРЕДПОЛАГАЕМАЯ ДАТА ПРОГУЛКИ, ФОРМАТ 10.10.2022</p>-->
-<!--                        <input-->
-<!--                                class="form-control form-control-lg light-300" th:field="*{walkDate}"-->
-<!--                                th:placeholder="${dogDto.walkDate}"-->
-<!--                                type="text"/>-->
-<!--                        <p th:if="${errorMessage}" th:text="${errorMessage}"></p>-->
-<!--                        <p th:errorclass="error" th:errors="*{weight}" th:if="${#fields.hasErrors('weight')}"/>-->
-<!--                    </div>-->
-<!--                </div>-->
-
+                <!--                <div class="col-12">-->
+                <!--                    <div class="form-floating mb-4">-->
+                <!--                        <p>ПРЕДПОЛАГАЕМАЯ ДАТА ПРОГУЛКИ, ФОРМАТ 10.10.2022</p>-->
+                <!--                        <input-->
+                <!--                                class="form-control form-control-lg light-300" th:field="*{walkDate}"-->
+                <!--                                th:placeholder="${dogDto.walkDate}"-->
+                <!--                                type="text"/>-->
+                <!--                        <p th:if="${errorMessage}" th:text="${errorMessage}"></p>-->
+                <!--                        <p th:errorclass="error" th:errors="*{weight}" th:if="${#fields.hasErrors('weight')}"/>-->
+                <!--                    </div>-->
+                <!--                </div>-->
 
 
                 <div class="col-12">
@@ -254,6 +289,9 @@
                         <p th:errorclass="error" th:errors="*{walkBegin}" th:if="${#fields.hasErrors('walkBegin')}"/>
                     </div>
                 </div>
+
+
+                <!--ДЛИТЕЛЬНОСТЬ ПРОГУЛКИ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>ДЛИТЕЛЬНОСТЬ ПРОГУЛКИ, МИНИМУМ 20 МИНУТ</p>
@@ -263,6 +301,8 @@
                                 type="text"/>
                     </div>
                 </div>
+
+                <!--КАК ПОЗНАКОМИТСЯ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>КАК ВЫ ПЛНИРУЕТЕ ПОЗНАКОМИТЬСЯ С ВЫГУЛЬЩИКОМ?</p>
@@ -275,6 +315,8 @@
                         </th:block>
                     </div>
                 </div>
+
+                <!--КАК ПОПАСТЬ К ПИТОМЦУ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>КАК ПОПАСТЬ К ПИТОМЦУ?</p>
@@ -288,6 +330,8 @@
                         </th:block>
                     </div>
                 </div>
+
+                <!--ЧТО ЕЩЕ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>ЧТО НАМ ЕЩЕ НУЖНО ЗНАТЬ?</p>
@@ -295,6 +339,8 @@
                                   th:placeholder="${dogDto.additionInfo}"/>
                     </div>
                 </div>
+
+                <!--ГОРОД-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>ГОРОД, ОБЯЗАТЕЛЬНОЕ ПОЛЕ</p>
@@ -306,6 +352,8 @@
                         <h5 th:errorclass="error" th:errors="*{city}" th:if="${#fields.hasErrors('city')}"/>
                     </div>
                 </div>
+
+                <!--МЕСТО-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>МЕСТО ПРОГУЛКИ, РАЙОН ГОРОДА, МЕТРО</p>
@@ -315,6 +363,8 @@
                                 type="text"/>
                     </div>
                 </div>
+
+                <!--АДРЕС-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>АДРЕС, ГДЕ БУДЕТ НАХОДИТСЯ СОБАКА</p>
@@ -324,6 +374,8 @@
                                 type="text"/>
                     </div>
                 </div>
+
+
                 <div class="col-md-12 col-12 m-auto text-end">
                     <button class="btn btn-secondary rounded-pill px-md-5 px-4 py-2 radius-0 text-light light-300"
                             type="submit">
@@ -336,7 +388,6 @@
 </section>
 <div th:insert="/component/footer.html :: #footer"></div>
 <div th:insert="/component/scripts.html :: #footer-scripts"></div>
-
 
 
 <script>

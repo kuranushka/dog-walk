@@ -18,9 +18,7 @@ import ru.kuranov.dogwalk.model.service.interfaces.OwnerService;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -81,7 +79,7 @@ public class DogDtoMapperImpl implements DogDtoMapper {
     public DogDto getDogDto() {
         return DogDto.builder()
                 .gender(getGender())
-                .dogDocuments(getDogDocuments())
+                .dogDocuments(getDogDocumentsMap())
                 .pullingLeash(getPullingLeash())
                 .pickUpFromGround(getPickUpFromGround())
                 .pickItUp(getPickItUp())
@@ -106,9 +104,9 @@ public class DogDtoMapperImpl implements DogDtoMapper {
         return Arrays.stream(values).collect(Collectors.toList());
     }
 
-    private List<Gender> getGender() {
-        Gender[] values = Gender.values();
-        return Arrays.stream(values).collect(Collectors.toList());
+    private Map<String, Boolean> getGender() {
+        return Arrays.stream(Gender.values())
+                .collect(Collectors.toMap(Gender::getName, v -> false));
     }
 
 
@@ -146,14 +144,14 @@ public class DogDtoMapperImpl implements DogDtoMapper {
         return Arrays.stream(values).collect(Collectors.toList());
     }
 
-    private List<PullingLeash> getPullingLeash() {
-        PullingLeash[] values = PullingLeash.values();
-        return Arrays.stream(values).collect(Collectors.toList());
+    private Map<String, Boolean> getPullingLeash() {
+        return Arrays.stream(PullingLeash.values())
+                .collect(Collectors.toMap(PullingLeash::getName, v -> false));
     }
 
-    private List<DogDocument> getDogDocuments() {
-        DogDocument[] values = DogDocument.values();
-        return Arrays.stream(values).collect(Collectors.toList());
+    private Map<String, Boolean> getDogDocumentsMap() {
+        return Arrays.stream(DogDocument.values())
+                .collect(Collectors.toMap(DogDocument::getName, v -> false));
     }
 
 

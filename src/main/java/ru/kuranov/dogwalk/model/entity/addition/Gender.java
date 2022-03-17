@@ -1,6 +1,7 @@
 package ru.kuranov.dogwalk.model.entity.addition;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 @AllArgsConstructor
 public enum Gender {

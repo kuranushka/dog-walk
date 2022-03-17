@@ -8,6 +8,7 @@ import ru.kuranov.dogwalk.model.entity.location.City;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Map;
 
 @Component
 @Getter
@@ -26,17 +27,20 @@ public class DogDto {
 
     private String age;
 
-    private List<Gender> gender;
+    private Map<String, Boolean> gender;
+
+    private String returnedGender;
 
     private int weight;
 
-    private List<DogDocument> dogDocuments;
+    public Map<String, Boolean> dogDocuments;
 
     private String vet;
 
     private String injury;
 
-    private List<PullingLeash> pullingLeash;
+    private Map<String, Boolean> pullingLeash;
+    private String returnedPullingLeash;
 
     private List<PickUpFromGround> pickUpFromGround;
 
