@@ -1,9 +1,11 @@
 package ru.kuranov.dogwalk.model.dto.dog;
 
 import lombok.*;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Component;
 import ru.kuranov.dogwalk.model.entity.location.City;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalTime;
 import java.util.List;
@@ -19,7 +21,7 @@ public class DogDto {
 
     private Long id;
 
-    //    @NotBlank(message = "ПОЛЕ КЛИЧКА НЕ ЗАПОЛНЕНО")
+    @NotBlank(message = "ПОЛЕ КЛИЧКА НЕ ЗАПОЛНЕНО")
     private String name;
 
     private String breed;
@@ -77,7 +79,7 @@ public class DogDto {
 //    @FutureOrPresent(message = "ВРЕМЯ ПРОГУЛКИ, СЕЙЧАС ЛИБО ПОЗЖЕ")
     private LocalTime walkBegin;
 
-    //    @Min(value = 20, message = "ДЛИТЕЛЬНОСТЬ ПРОГУЛКИ НЕ ДОЛЖНА БЫТЬ МЕНЕЕ 20 МИНУТ")
+    @Min(value = 20, message = "ДЛИТЕЛЬНОСТЬ ПРОГУЛКИ НЕ ДОЛЖНА БЫТЬ МЕНЕЕ 20 МИНУТ")
     private int walkingPeriod;
 
     private Map<String, Boolean> meetingToWalker;
@@ -88,15 +90,15 @@ public class DogDto {
 
     private String returnedHowGetKeys;
 
-    //    @Length(max = 1024, message = "МАКСИМАЛЬНОЕ КОЛИЧЕСТВО ЗНАКОВ В ПОЛЕ ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ 1024 СИМВОЛА")
+    @Length(max = 1024, message = "МАКСИМАЛЬНОЕ КОЛИЧЕСТВО ЗНАКОВ В ПОЛЕ ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ 1024 СИМВОЛА")
     private String additionInfo;
 
-    //    @NotBlank(message = "УКАЖИТЕ ГОРОД")
+    @NotBlank(message = "УКАЖИТЕ ГОРОД")
     private String city;
 
     private List<City> cities;
 
-    //    @NotBlank(message = "УКАЖИТЕ МЕТРО ИЛИ РАЙОН")
+    @NotBlank(message = "УКАЖИТЕ МЕТРО ИЛИ РАЙОН")
     private String location;
 
     private String address;

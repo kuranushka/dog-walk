@@ -60,8 +60,8 @@
                                th:field="*{name}"
                                th:placeholder="${dogDto.name}"
                                type="text"/>
-                        <p th:if="${errorMessage}" th:text="${errorMessage}"></p>
-                        <p th:errorclass="error" th:errors="*{name}" th:if="${#fields.hasErrors('name')}"/>
+                        <h5 th:if="${errorMessage}" th:text="${errorMessage}"></h5>
+                        <h5 th:errorclass="error" th:errors="*{name}" th:if="${#fields.hasErrors('name')}"/>
                     </div>
                 </div>
 
@@ -104,8 +104,8 @@
                         <input class="form-control form-control-lg light-300" th:field="*{weight}"
                                th:placeholder="#{dogDto.weight}"
                                type="text"/>
-                        <p th:if="${errorMessage}" th:text="${errorMessage}"></p>
-                        <p th:errorclass="error" th:errors="*{weight}" th:if="${#fields.hasErrors('weight')}"/>
+                        <h5 th:if="${errorMessage}" th:text="${errorMessage}"></h5>
+                        <h5 th:errorclass="error" th:errors="*{weight}" th:if="${#fields.hasErrors('weight')}"/>
                     </div>
                 </div>
 
@@ -223,7 +223,6 @@
                 </div>
 
 
-
                 <!--КОНТАКТИРОВАТЬ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
@@ -235,7 +234,6 @@
                         </div>
                     </div>
                 </div>
-
 
 
                 <!--МЫТЬ ЛАПЫ-->
@@ -275,23 +273,23 @@
 
 
                 <div class="col-12">
-                    <p>ВЫБЕРИТЕ ДАТУ ПРОГУЛКИ</p>
+                    <p>ВЫБЕРИТЕ ДАТУ ПРОГУЛКИ, ОБЯЗАТЕЛЬНОЕ ПОЛЕ</p>
                     <div class="form-floating mb-4">
                         <label for="walkDate"></label>
                         <input type="date" class="form-check-label" th:field="${dogDto.walkDate}">
-                        <p th:if="${errorMessage}" th:text="${errorMessage}"></p>
-                        <p th:errorclass="error" th:errors="*{walkDate}" th:if="${#fields.hasErrors('walkDate')}"/>
+                        <h5 th:if="${errorMessage}" th:text="${errorMessage}"></h5>
+                        <h5 th:errorclass="error" th:errors="*{walkDate}" th:if="${#fields.hasErrors('walkDate')}"/>
                     </div>
                 </div>
 
 
                 <div class="col-12">
-                    <p>ВЫБЕРИТЕ ВРЕМЯ ПРОГУЛКИ</p>
+                    <p>ВЫБЕРИТЕ ВРЕМЯ ПРОГУЛКИ, ОБЯЗАТЕЛЬНОЕ ПОЛЕ</p>
                     <div class="form-floating mb-4">
                         <label for="walkBegin"></label>
                         <input type="time" class="form-control" th:field="${dogDto.walkBegin}">
-                        <p th:if="${errorMessage}" th:text="${errorMessage}"></p>
-                        <p th:errorclass="error" th:errors="*{walkBegin}" th:if="${#fields.hasErrors('walkBegin')}"/>
+                        <h5 th:if="${errorMessage}" th:text="${errorMessage}"></h5>
+                        <h5 th:errorclass="error" th:errors="*{walkBegin}" th:if="${#fields.hasErrors('walkBegin')}"/>
                     </div>
                 </div>
 
@@ -299,7 +297,7 @@
                 <!--ДЛИТЕЛЬНОСТЬ ПРОГУЛКИ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
-                        <p>ДЛИТЕЛЬНОСТЬ ПРОГУЛКИ, МИНИМУМ 20 МИНУТ</p>
+                        <p>ДЛИТЕЛЬНОСТЬ ПРОГУЛКИ, МИНИМУМ 20 МИНУТ, ОБЯЗАТЕЛЬНОЕ ПОЛЕ</p>
                         <input
                                 class="form-control form-control-lg light-300" th:field="*{walkingPeriod}"
                                 th:placeholder="${dogDto.walkingPeriod}"
@@ -318,7 +316,6 @@
                         </div>
                     </div>
                 </div>
-
 
 
                 <!--КАК ПОПАСТЬ К ПИТОМЦУ-->
@@ -359,7 +356,7 @@
                 <!--МЕСТО-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
-                        <p>МЕСТО ПРОГУЛКИ, РАЙОН ГОРОДА, МЕТРО</p>
+                        <p>МЕСТО ПРОГУЛКИ, РАЙОН ГОРОДА, МЕТРО, ОБЯЗАТЕЛЬНОЕ ПОЛЕ</p>
                         <input
                                 class="form-control form-control-lg light-300" th:field="*{location}"
                                 th:placeholder="${dogDto.location}"

@@ -41,6 +41,9 @@ public class DogRegistrationController {
                                   Model model)
             throws NoSuchFieldException, IllegalAccessException {
 
+        if (dogDtoHandler.validDate(dogDto.getWalkDate())) {
+            model.addAttribute("noValidDate", "ВЫ МОЖЕТЕ ВЫБРТЬ СЕГОДНЯШНЕЕ ЧИСЛО ИЛИ БОЛЛЕЕ ПОЗНИЕ ДАТЫ");
+        }
         if (bindingResult.hasErrors()) {
             model.addAttribute("dogDto", dogDtoHandler.updateDogDto(dogDto));
             return "registration-dog";

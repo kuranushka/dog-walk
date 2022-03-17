@@ -7,6 +7,8 @@ import ru.kuranov.dogwalk.model.entity.addition.*;
 import ru.kuranov.dogwalk.model.service.interfaces.CityService;
 
 import java.lang.reflect.Field;
+import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -65,5 +67,10 @@ public class DogDtoHandler {
             }
         }
         return properties;
+    }
+
+    public boolean validDate(String walkDate) {
+        LocalDate date = LocalDate.parse(walkDate);
+        return date.isBefore(ChronoLocalDate.from(date));
     }
 }
