@@ -46,7 +46,7 @@ public class DogDtoMapperImpl implements DogDtoMapper {
                 .name(dogDto.getName())
                 .breed(dogDto.getBreed())
                 .age(dogDto.getAge())
-//                .gender(dogDto.getGender())
+                .gender(getPropertySingle(dogDto.getGender()))
                 .weight(dogDto.getWeight())
                 .weightGroup(getWeightGroup(dogDto))
 //                .dogDocuments(dogDto.getDogDocuments())
@@ -101,6 +101,16 @@ public class DogDtoMapperImpl implements DogDtoMapper {
 
     private List<City> getCities() {
         return citiService.findAll();
+    }
+
+    private Class<? extends Enum> getPropertySingle(Map<String, Boolean> properties) {
+        String enumValue = properties.entrySet().stream()
+                .filter(entry -> entry.getValue())
+                .map(Map.Entry::getKey)
+                .findFirst()
+                .get();
+        //TODO найти Enum с помощью Reflection API
+
     }
 
     private Map<String, Boolean> getProperties(Class<? extends Enum> type) throws NoSuchFieldException {

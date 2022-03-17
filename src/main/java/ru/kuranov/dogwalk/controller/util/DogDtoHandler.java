@@ -71,6 +71,6 @@ public class DogDtoHandler {
 
     public boolean validDate(String walkDate) {
         LocalDate date = LocalDate.parse(walkDate);
-        return date.isBefore(ChronoLocalDate.from(date));
+        return date.isBefore(ChronoLocalDate.from(LocalDate.now()));
     }
 }

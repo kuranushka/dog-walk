@@ -277,7 +277,7 @@
                     <div class="form-floating mb-4">
                         <label for="walkDate"></label>
                         <input type="date" class="form-check-label" th:field="${dogDto.walkDate}">
-                        <h5 th:if="${errorMessage}" th:text="${errorMessage}"></h5>
+                        <h5 th:if="${dateValidationError}" th:text="${dateValidationError}"></h5>
                         <h5 th:errorclass="error" th:errors="*{walkDate}" th:if="${#fields.hasErrors('walkDate')}"/>
                     </div>
                 </div>
@@ -287,7 +287,7 @@
                     <p>ВЫБЕРИТЕ ВРЕМЯ ПРОГУЛКИ, ОБЯЗАТЕЛЬНОЕ ПОЛЕ</p>
                     <div class="form-floating mb-4">
                         <label for="walkBegin"></label>
-                        <input type="time" class="form-control" th:field="${dogDto.walkBegin}">
+                        <input type="time" class="form-control" th:field="${dogDto.walkBegin}" th:placeholder="${dogDto.walkBegin}">
                         <h5 th:if="${errorMessage}" th:text="${errorMessage}"></h5>
                         <h5 th:errorclass="error" th:errors="*{walkBegin}" th:if="${#fields.hasErrors('walkBegin')}"/>
                     </div>
