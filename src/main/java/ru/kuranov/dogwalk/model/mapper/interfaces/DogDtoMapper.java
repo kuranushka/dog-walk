@@ -10,5 +10,5 @@ public interface DogDtoMapper {
 
     Dog getDog(DogDto dogDto, Owner owner);
 
-    DogDto getDogDto();
+    DogDto getDogDto() throws NoSuchFieldException;
 }

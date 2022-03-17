@@ -29,7 +29,7 @@ public class DogRegistrationController {
     private final DogDtoHandler dogDtoHandler;
 
     @GetMapping
-    public String registrationDog(DogDto dogDto, Model model) {
+    public String registrationDog(DogDto dogDto, Model model) throws NoSuchFieldException {
         dogDto = dogDtoMapper.getDogDto();
         model.addAttribute("dogDto", dogDto);
         return "registration-dog";
@@ -38,7 +38,9 @@ public class DogRegistrationController {
     @PostMapping
     public String registrationDog(@Valid DogDto dogDto,
                                   BindingResult bindingResult,
-                                  Model model) throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
+                                  Model model)
+            throws NoSuchFieldException, IllegalAccessException {
+
         if (bindingResult.hasErrors()) {
             model.addAttribute("dogDto", dogDtoHandler.updateDogDto(dogDto));
             return "registration-dog";

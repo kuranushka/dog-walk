@@ -159,15 +159,14 @@
                     </div>
                 </div>
 
-
                 <!--ПОДБИРАЕТ ЛИ С ЗЕМЛИ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>ПОДБИРАЕТ ЛИ ПИТОМЕЦ С ЗЕМЛИ ВО ВРЕМЯ ПРОГУЛКИ?</p>
-                        <div th:each="pickUpFromGround : ${dogDto.getPickUpFromGround()}">
-                            <input name="pickUpFromGround" type="radio" th:value="${pickUpFromGround}"
-                                   th:id="${pickUpFromGround.name}">
-                            <label th:for="${pickUpFromGround.name}" th:text="${pickUpFromGround.name}"></label>
+                        <div th:each="pickUpFromGround : ${dogDto.pickUpFromGround}">
+                            <input th:field="*{returnedPickUpFromGround}" type="radio" th:value="${pickUpFromGround.getKey()}" th:id="${pickUpFromGround.key}"
+                                   th:checked="${pickUpFromGround}"/>
+                            <label th:for="${pickUpFromGround.key}" th:text="${pickUpFromGround.key}"></label>
                         </div>
                     </div>
                 </div>
@@ -176,9 +175,10 @@
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>ОТБИРАТЬ ЛИ ТО, ЧТО ПИТОМЕЦ ПОДОБРАЛ С ЗЕМЛИ ВО ВРЕМЯ ПРОГУЛКИ?</p>
-                        <div th:each="pickItUp : ${dogDto.getPickItUp()}">
-                            <input name="pickItUp" type="radio" th:value="${pickItUp}" th:id="${pickItUp.name}">
-                            <label th:for="${pickItUp.name}" th:text="${pickItUp.name}"></label>
+                        <div th:each="pickItUp : ${dogDto.pickItUp}">
+                            <input th:field="*{returnedPickItUp}" type="radio" th:value="${pickItUp.getKey()}" th:id="${pickItUp.key}"
+                                   th:checked="${pickItUp}"/>
+                            <label th:for="${pickItUp.key}" th:text="${pickItUp.key}"></label>
                         </div>
                     </div>
                 </div>
@@ -198,53 +198,58 @@
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>К КОМУ ИЛИ ЧЕМУ ПИТОМЕЦ ИСПЫТЫВАЕТ АГРЕССИЮ?</p>
-                        <div th:each="aggression : ${dogDto.getAggression()}">
-                            <div class="form-check">
-                                <input class="form-check-input" name="aggression" type="checkbox"
-                                       th:value="${aggression}" th:id="${aggression.name}">
-                                <label class="form-check-label" th:for="${aggression.name}"
-                                       th:text="${aggression.name}">
-                                </label>
-                            </div>
+                        <div th:each="item : ${dogDto.aggression}">
+                            <input type="checkbox"
+                                   th:value="item.value"
+                                   th:field="*{aggression['__${item.key}__']}"
+                                   th:id="${item.key}"
+                                   th:checked="*{aggression['__${item.key}__']}"/>
+                            <label th:for="${item.key}"
+                                   th:text="${item.key}"></label>
                         </div>
                     </div>
                 </div>
 
-                <!--МОЖНО ДИ ОТПУСКАТЬ-->
+                <!--МОЖНО ЛИ ОТПУСКАТЬ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>МОЖНО ЛИ ОТПУСКАТЬ ПИТОМЦА БЕЗ ПОВОДКА НА СОБАЧЬЕЙ ПЛОЩАДКЕ?</p>
-                        <div th:each="goWithoutLeash : ${dogDto.getGoWithoutLeash()}">
-                            <input name="goWithoutLeash" type="radio" th:value="${goWithoutLeash}"
-                                   th:id="${goWithoutLeash.name}"/>
-                            <label th:for="${goWithoutLeash.name}" th:text="${goWithoutLeash.name}"></label>
+                        <div th:each="goWithoutLeash : ${dogDto.goWithoutLeash}">
+                            <input th:field="*{returnedGoWithoutLeash}" type="radio" th:value="${goWithoutLeash.getKey()}" th:id="${goWithoutLeash.key}"
+                                   th:checked="${goWithoutLeash}"/>
+                            <label th:for="${goWithoutLeash.key}" th:text="${goWithoutLeash.key}"></label>
                         </div>
                     </div>
                 </div>
+
+
 
                 <!--КОНТАКТИРОВАТЬ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>МОЖНО ЛИ КОНТАКТИРОВАТЬ С ДРУГИМИ СОБАКАМИ?</p>
-                        <div th:each="interactWithOtherDogs : ${dogDto.getInteractWithOtherDogs()}">
-                            <input name="interactWithOtherDogs" type="radio" th:value="${interactWithOtherDogs}"
-                                   th:id="${interactWithOtherDogs.name}"/>
-                            <label th:for="${interactWithOtherDogs.name}"
-                                   th:text="${interactWithOtherDogs.name}"></label>
+                        <div th:each="interactWithOtherDogs : ${dogDto.interactWithOtherDogs}">
+                            <input th:field="*{returnedInteractWithOtherDogs}" type="radio" th:value="${interactWithOtherDogs.getKey()}" th:id="${interactWithOtherDogs.key}"
+                                   th:checked="${interactWithOtherDogs}"/>
+                            <label th:for="${interactWithOtherDogs.key}" th:text="${interactWithOtherDogs.key}"></label>
                         </div>
                     </div>
                 </div>
+
+
 
                 <!--МЫТЬ ЛАПЫ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>НУЖНО ЛИ МЫТЬ ЛАПКИ ПОСЛЕ ПРОГУЛКИ?</p>
-                        <div th:each="washPaws : ${dogDto.getWashPaws()}">
-                            <input name="washPaws" type="radio" th:value="${washPaws}" th:id="${washPaws.name}"/>
-                            <label th:for="${washPaws.name}" th:text="${washPaws.name}"></label>
+                        <div th:each="washPaws : ${dogDto.washPaws}">
+                            <input th:field="*{returnedWashPaws}" type="radio" th:value="${washPaws.getKey()}" th:id="${washPaws.key}"
+                                   th:checked="${washPaws}"/>
+                            <label th:for="${washPaws.key}" th:text="${washPaws.key}"></label>
                         </div>
                     </div>
                 </div>
+
 
                 <!--КОРМИТЬ-->
                 <div class="col-12">
@@ -306,30 +311,28 @@
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>КАК ВЫ ПЛНИРУЕТЕ ПОЗНАКОМИТЬСЯ С ВЫГУЛЬЩИКОМ?</p>
-                        <th:block th:each="meet : ${dogDto.meetingToWalker}">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="meetRadio"
-                                       th:value="${meet.name}" th:id="${meet.name}">
-                                <label class="form-check-label" th:for="${meet.name}" th:text="${meet.name}"></label>
-                            </div>
-                        </th:block>
+                        <div th:each="meetingToWalker : ${dogDto.meetingToWalker}">
+                            <input th:field="*{returnedMeetingToWalker}" type="radio" th:value="${meetingToWalker.getKey()}" th:id="${meetingToWalker.key}"
+                                   th:checked="${meetingToWalker}"/>
+                            <label th:for="${meetingToWalker.key}" th:text="${meetingToWalker.key}"></label>
+                        </div>
                     </div>
                 </div>
+
+
 
                 <!--КАК ПОПАСТЬ К ПИТОМЦУ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>КАК ПОПАСТЬ К ПИТОМЦУ?</p>
-                        <th:block th:each="getKeys : ${dogDto.howGetKeys}">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="getKeysRadio"
-                                       th:value="${getKeys.name}" th:id="${getKeys.name}">
-                                <label class="form-check-label" th:for="${getKeys.name}"
-                                       th:text="${getKeys.name}"></label>
-                            </div>
-                        </th:block>
+                        <div th:each="howGetKeys : ${dogDto.howGetKeys}">
+                            <input th:field="*{returnedHowGetKeys}" type="radio" th:value="${howGetKeys.getKey()}" th:id="${howGetKeys.key}"
+                                   th:checked="${howGetKeys}"/>
+                            <label th:for="${howGetKeys.key}" th:text="${howGetKeys.key}"></label>
+                        </div>
                     </div>
                 </div>
+
 
                 <!--ЧТО ЕЩЕ-->
                 <div class="col-12">

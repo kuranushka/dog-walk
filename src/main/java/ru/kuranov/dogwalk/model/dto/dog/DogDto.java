@@ -2,7 +2,6 @@ package ru.kuranov.dogwalk.model.dto.dog;
 
 import lombok.*;
 import org.springframework.stereotype.Component;
-import ru.kuranov.dogwalk.model.entity.addition.*;
 import ru.kuranov.dogwalk.model.entity.location.City;
 
 import javax.validation.constraints.NotBlank;
@@ -40,21 +39,32 @@ public class DogDto {
     private String injury;
 
     private Map<String, Boolean> pullingLeash;
+
     private String returnedPullingLeash;
 
-    private List<PickUpFromGround> pickUpFromGround;
+    private Map<String, Boolean> pickUpFromGround;
 
-    private List<PickItUp> pickItUp;
+    private String returnedPickUpFromGround;
+
+    private Map<String, Boolean> pickItUp;
+
+    private String returnedPickItUp;
 
     private String fear;
 
-    private List<Aggression> aggression;
+    private Map<String, Boolean> aggression;
 
-    private List<GoWithoutLeash> goWithoutLeash;
+    private Map<String, Boolean> goWithoutLeash;
 
-    private List<InteractWithOtherDogs> interactWithOtherDogs;
+    private String returnedGoWithoutLeash;
 
-    private List<WashPaws> washPaws;
+    private Map<String, Boolean> interactWithOtherDogs;
+
+    private String returnedInteractWithOtherDogs;
+
+    private Map<String, Boolean> washPaws;
+
+    private String returnedWashPaws;
 
     private String feedAfterWalk;
 
@@ -70,9 +80,13 @@ public class DogDto {
     //    @Min(value = 20, message = "ДЛИТЕЛЬНОСТЬ ПРОГУЛКИ НЕ ДОЛЖНА БЫТЬ МЕНЕЕ 20 МИНУТ")
     private int walkingPeriod;
 
-    private List<MeetingToWalker> meetingToWalker;
+    private Map<String, Boolean> meetingToWalker;
 
-    private List<HowGetKeys> howGetKeys;
+    private String returnedMeetingToWalker;
+
+    private Map<String, Boolean> howGetKeys;
+
+    private String returnedHowGetKeys;
 
     //    @Length(max = 1024, message = "МАКСИМАЛЬНОЕ КОЛИЧЕСТВО ЗНАКОВ В ПОЛЕ ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ 1024 СИМВОЛА")
     private String additionInfo;

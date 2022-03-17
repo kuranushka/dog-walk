@@ -16,9 +16,13 @@ import ru.kuranov.dogwalk.model.mapper.interfaces.DogDtoMapper;
 import ru.kuranov.dogwalk.model.service.interfaces.CityService;
 import ru.kuranov.dogwalk.model.service.interfaces.OwnerService;
 
+import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -76,37 +80,22 @@ public class DogDtoMapperImpl implements DogDtoMapper {
     }
 
     @Override
-    public DogDto getDogDto() {
+    public DogDto getDogDto() throws NoSuchFieldException {
         return DogDto.builder()
-                .gender(getGender())
-                .dogDocuments(getDogDocumentsMap())
-                .pullingLeash(getPullingLeash())
-                .pickUpFromGround(getPickUpFromGround())
-                .pickItUp(getPickItUp())
-                .aggression(getAggression())
-                .goWithoutLeash(getGoWithoutLeash())
-                .interactWithOtherDogs(getInteractWithOtherDogs())
-                .washPaws(getWashPaws())
-                .meetingToWalker(getMeetingToWalker())
-                .howGetKeys(getHowGetKeys())
+                .gender(getProperties(Gender.class))
+                .dogDocuments(getProperties(DogDocument.class))
+                .pullingLeash(getProperties(PullingLeash.class))
+                .pickUpFromGround(getProperties(PickUpFromGround.class))
+                .pickItUp(getProperties(PickItUp.class))
+                .aggression(getProperties(Aggression.class))
+                .goWithoutLeash(getProperties(GoWithoutLeash.class))
+                .interactWithOtherDogs(getProperties(InteractWithOtherDogs.class))
+                .washPaws(getProperties(WashPaws.class))
+                .meetingToWalker(getProperties(MeetingToWalker.class))
+                .howGetKeys(getProperties(HowGetKeys.class))
                 .cities(getCities())
                 .build();
 
-    }
-
-    private List<InteractWithOtherDogs> getInteractWithOtherDogs() {
-        InteractWithOtherDogs[] values = InteractWithOtherDogs.values();
-        return Arrays.stream(values).collect(Collectors.toList());
-    }
-
-    private List<GoWithoutLeash> getGoWithoutLeash() {
-        GoWithoutLeash[] values = GoWithoutLeash.values();
-        return Arrays.stream(values).collect(Collectors.toList());
-    }
-
-    private Map<String, Boolean> getGender() {
-        return Arrays.stream(Gender.values())
-                .collect(Collectors.toMap(Gender::getName, v -> false));
     }
 
 
@@ -114,46 +103,21 @@ public class DogDtoMapperImpl implements DogDtoMapper {
         return citiService.findAll();
     }
 
-    private List<HowGetKeys> getHowGetKeys() {
-        HowGetKeys[] values = HowGetKeys.values();
-        return Arrays.stream(values).collect(Collectors.toList());
+    private Map<String, Boolean> getProperties(Class<? extends Enum> type) throws NoSuchFieldException {
+        Object[] values = type.getEnumConstants();
+        Field field = type.getDeclaredField("name");
+        field.setAccessible(true);
+        return Arrays.stream(values)
+                .map(value -> {
+                    try {
+                        return field.get(value);
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                    return value;
+                })
+                .collect(Collectors.toMap(Object::toString, val -> false));
     }
-
-    private List<MeetingToWalker> getMeetingToWalker() {
-        MeetingToWalker[] values = MeetingToWalker.values();
-        return Arrays.stream(values).collect(Collectors.toList());
-    }
-
-    private List<WashPaws> getWashPaws() {
-        WashPaws[] values = WashPaws.values();
-        return Arrays.stream(values).collect(Collectors.toList());
-    }
-
-    private List<Aggression> getAggression() {
-        Aggression[] values = Aggression.values();
-        return Arrays.stream(values).collect(Collectors.toList());
-    }
-
-    private List<PickItUp> getPickItUp() {
-        PickItUp[] values = PickItUp.values();
-        return Arrays.stream(values).collect(Collectors.toList());
-    }
-
-    private List<PickUpFromGround> getPickUpFromGround() {
-        PickUpFromGround[] values = PickUpFromGround.values();
-        return Arrays.stream(values).collect(Collectors.toList());
-    }
-
-    private Map<String, Boolean> getPullingLeash() {
-        return Arrays.stream(PullingLeash.values())
-                .collect(Collectors.toMap(PullingLeash::getName, v -> false));
-    }
-
-    private Map<String, Boolean> getDogDocumentsMap() {
-        return Arrays.stream(DogDocument.values())
-                .collect(Collectors.toMap(DogDocument::getName, v -> false));
-    }
-
 
     private WeightGroup getWeightGroup(DogDto dogDto) {
         WeightGroup weightGroup;

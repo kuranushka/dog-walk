@@ -3,11 +3,10 @@ package ru.kuranov.dogwalk.controller.util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.kuranov.dogwalk.model.dto.dog.DogDto;
-import ru.kuranov.dogwalk.model.entity.addition.Gender;
-import ru.kuranov.dogwalk.model.entity.addition.PullingLeash;
+import ru.kuranov.dogwalk.model.entity.addition.*;
+import ru.kuranov.dogwalk.model.service.interfaces.CityService;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -16,24 +15,27 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class DogDtoHandler {
 
+    private final CityService cityService;
 
-    public DogDto updateDogDto(DogDto dogDto) throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
+    public DogDto updateDogDto(DogDto dogDto) throws
+            NoSuchFieldException, IllegalAccessException {
+
         dogDto.setDogDocuments(
                 updateProperties(dogDto.getDogDocuments()));
-
-//        dogDto.setGender(
-//                updateProperties(Arrays.stream(Gender.values())
-//                        .map(Gender::getName)
-//                        .collect(Collectors.toList()), dogDto.getReturnedGender()));
+        dogDto.setAggression(
+                updateProperties(dogDto.getAggression()));
+        dogDto.setCities(cityService.findAll());
 
         dogDto.setGender(updateProperties(Gender.class, dogDto.getReturnedGender()));
         dogDto.setPullingLeash(updateProperties(PullingLeash.class, dogDto.getReturnedPullingLeash()));
+        dogDto.setPickUpFromGround(updateProperties(PickUpFromGround.class, dogDto.getReturnedPickUpFromGround()));
+        dogDto.setPickItUp(updateProperties(PickItUp.class, dogDto.getReturnedPickItUp()));
+        dogDto.setGoWithoutLeash(updateProperties(GoWithoutLeash.class, dogDto.getReturnedGoWithoutLeash()));
+        dogDto.setInteractWithOtherDogs(updateProperties(InteractWithOtherDogs.class, dogDto.getReturnedInteractWithOtherDogs()));
+        dogDto.setWashPaws(updateProperties(WashPaws.class, dogDto.getReturnedWashPaws()));
+        dogDto.setMeetingToWalker(updateProperties(MeetingToWalker.class, dogDto.getReturnedMeetingToWalker()));
+        dogDto.setHowGetKeys(updateProperties(HowGetKeys.class, dogDto.getReturnedHowGetKeys()));
 
-
-//        dogDto.setPullingLeash(
-//                updateProperties(Arrays.stream(PullingLeash.values())
-//                        .map(PullingLeash::getName)
-//                        .collect(Collectors.toList()), dogDto.getReturnedPullingLeash()));
         return dogDto;
     }
 
@@ -48,23 +50,8 @@ public class DogDtoHandler {
         }).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
-    private Map<String, Boolean> updateProperties(Class<? extends Enum> type, String property) throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
-
-
-//        Class<?> c = Class.forName(type.getName());
-//        Object[] objects = c.getEnumConstants();
-//        for (Object obj : objects) {
-//            try {
-//                Field keyField = obj.getClass().getDeclaredField("name");
-//                keyField.setAccessible(true);
-//                String sstr = keyField.get(obj).toString();
-//            } catch (NoSuchFieldException e) {
-//                System.out.println("value : " + obj);
-//            } catch (IllegalAccessException e) {
-//                e.printStackTrace();
-//            }
-//        }
-
+    private Map<String, Boolean> updateProperties(Class<? extends Enum> type, String property)
+            throws NoSuchFieldException, IllegalAccessException {
 
         Object[] values = type.getEnumConstants();
         Field field = type.getDeclaredField("name");
@@ -79,16 +66,4 @@ public class DogDtoHandler {
         }
         return properties;
     }
-
-
-//    private Map<String, Boolean> updateProperties(List<String> values, String property) {
-//        Map<String, Boolean> properties = values.stream()
-//                .collect(Collectors.toMap(key -> key, value -> false));
-//        for (Map.Entry<String, Boolean> entry : properties.entrySet()) {
-//            if (entry.getKey().equals(property)) {
-//                entry.setValue(true);
-//            }
-//        }
-//        return properties;
-//    }
 }
