@@ -77,11 +77,13 @@ public class Dog {
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Aggression> aggression;
 
-    @Column(name = "is_go_without_leash")
-    private boolean isGoWithoutLeash;
+    @Column(name = "go_without_leash")
+    @Enumerated(value = EnumType.STRING)
+    private GoWithoutLeash goWithoutLeash;
 
-    @Column(name = "is_interact_with_other_dogs")
-    private boolean isInteractWithOtherDogs;
+    @Column(name = "interact_with_other_dogs")
+    @Enumerated(value = EnumType.STRING)
+    private InteractWithOtherDogs interactWithOtherDogs;
 
     @Column(name = "wash_paws")
     @Enumerated(value = EnumType.STRING)

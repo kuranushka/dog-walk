@@ -18,8 +18,8 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     @Transactional
-    public Owner findByName(String ownerName) {
-        Optional<Owner> optionalOwner = ownerRepository.findByName(ownerName);
+    public Owner findByUsername(String ownerName) {
+        Optional<Owner> optionalOwner = ownerRepository.findByUsername(ownerName);
         return optionalOwner.orElseThrow(() -> new NoSuchOwnerException(ownerName));
     }
 

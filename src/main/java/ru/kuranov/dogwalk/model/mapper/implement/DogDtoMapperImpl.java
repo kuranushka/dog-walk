@@ -35,7 +35,7 @@ public class DogDtoMapperImpl implements DogDtoMapper {
     private int middleWeight;
 
     @Override
-    public Dog getDog(DogDto dogDto, Owner owner) {
+    public Dog getDog(DogDto dogDto, Owner owner) throws NoSuchFieldException {
 
         return Dog.builder()
                 .id(dogDto.getId())
@@ -43,33 +43,57 @@ public class DogDtoMapperImpl implements DogDtoMapper {
                 .name(dogDto.getName())
                 .breed(dogDto.getBreed())
                 .age(dogDto.getAge())
-                .gender(getPropertySingle(Gender.class, dogDto.getGender()))
+                .gender(getPropertySingle(
+                        Gender.class,
+                        getProperties(Gender.class),
+                        dogDto.getReturnedGender()))
                 .weightGroup(getWeightGroup(dogDto.getWeight()))
-
-
-
-//                .weight(dogDto.getWeight())
-//                .weightGroup(getWeightGroup(dogDto))
-//                .dogDocuments(dogDto.getDogDocuments())
-//                .vet(dogDto.getVet())
-//                .injury(dogDto.getInjury())
-//                .pullingLeash(dogDto.getPullingLeash())
-//                .pickUpFromGround(dogDto.getPickUpFromGround())
-//                .pickItUp(dogDto.getPickItUp())
-//                .fear(dogDto.getFear())
-//                .aggression(dogDto.getAggression())
-//                .isGoWithoutLeash(dogDto.isGoWithoutLeash())
-//                .isInteractWithOtherDogs(dogDto.isInteractWithOtherDogs())
-//                .washPaws(dogDto.getWashPaws())
-//                .isFeedAfterWalk(dogDto.isFeedAfterWalk())
-//                .feed(dogDto.getFeedAfterWalk())
-//                .walkingPeriod(dogDto.getWalkingPeriod())
-//                .schedule(
-//                        getSchedule(dogDto.getWalkDate(),
-//                                dogDto.getWalkBegin(),
-//                                dogDto.getWalkingPeriod()))
-//                .meetingToWalker(dogDto.getMeetingToWalker())
-//                .howGetKeys(dogDto.getHowGetKeys())
+                .dogDocuments(getPropertyList(
+                        DogDocument.class,
+                        dogDto.getDogDocuments()))
+                .vet(dogDto.getVet())
+                .injury(dogDto.getInjury())
+                .pullingLeash(getPropertySingle(
+                        PullingLeash.class,
+                        getProperties(PullingLeash.class),
+                        dogDto.getReturnedPullingLeash()))
+                .pickUpFromGround(getPropertySingle(
+                        PickUpFromGround.class,
+                        getProperties(PickUpFromGround.class),
+                        dogDto.getReturnedPickUpFromGround()))
+                .pickItUp(getPropertySingle(
+                        PickItUp.class,
+                        getProperties(PickItUp.class),
+                        dogDto.getReturnedPickItUp()))
+                .fear(dogDto.getFear())
+                .aggression(getPropertyList(
+                        Aggression.class,
+                        dogDto.getAggression()))
+                .goWithoutLeash(getPropertySingle(
+                        GoWithoutLeash.class,
+                        getProperties(GoWithoutLeash.class),
+                        dogDto.getReturnedGoWithoutLeash()))
+                .interactWithOtherDogs(getPropertySingle(
+                        InteractWithOtherDogs.class,
+                        getProperties(InteractWithOtherDogs.class),
+                        dogDto.getReturnedInteractWithOtherDogs()))
+                .washPaws(getPropertySingle(
+                        WashPaws.class,
+                        getProperties(WashPaws.class),
+                        dogDto.getReturnedWashPaws()))
+                .feedAfterWalk(dogDto.getFeedAfterWalk())
+                .schedule(
+                        getSchedule(getDate(dogDto.getWalkDate()),
+                                dogDto.getWalkBegin(),
+                                dogDto.getWalkingPeriod()))
+                .meetingToWalker(getPropertySingle(
+                        MeetingToWalker.class,
+                        getProperties(MeetingToWalker.class),
+                        dogDto.getReturnedMeetingToWalker()))
+                .howGetKeys(getPropertySingle(
+                        HowGetKeys.class,
+                        getProperties(HowGetKeys.class),
+                        dogDto.getReturnedHowGetKeys()))
                 .additionInfo(dogDto.getAdditionInfo())
                 .walkingPlace(Collections
                         .singleton(
@@ -78,6 +102,10 @@ public class DogDtoMapperImpl implements DogDtoMapper {
                                         dogDto.getLocation(),
                                         dogDto.getAddress())))
                 .build();
+    }
+
+    private LocalDate getDate(String walkDate) {
+        return LocalDate.parse(walkDate);
     }
 
     @Override
@@ -105,16 +133,28 @@ public class DogDtoMapperImpl implements DogDtoMapper {
     }
 
 
-    private <T extends Enum<T>> T getPropertySingle(Class<T> type, Map<String, Boolean> properties) {
-        String enumValue = properties.entrySet().stream()
-                .filter(entry -> entry.getValue())
-                .map(Map.Entry::getKey)
+    private <T extends Enum<T>> T getPropertySingle(Class<T> type, Map<String, Boolean> properties, String returnedProperty) {
+        System.out.println();
+
+        return properties.entrySet().stream()
+                .filter(entry -> entry.getValue().equals(returnedProperty))
+                .map(entry -> Enum.valueOf(type, entry.getKey()))
                 .findFirst()
                 .get();
-        return Enum.valueOf(type, enumValue);
+    }
+
+    private <T extends Enum<T>> Set<T> getPropertyList(Class<T> type, Map<String, Boolean> properties) {
+
+        System.out.println();
+        return properties.entrySet()
+                .stream()
+                .filter(Map.Entry::getValue)
+                .map(property -> Enum.valueOf(type, property.getKey()))
+                .collect(Collectors.toSet());
     }
 
     private Map<String, Boolean> getProperties(Class<? extends Enum> type) throws NoSuchFieldException {
+
         Object[] values = type.getEnumConstants();
         Field field = type.getDeclaredField("name");
         field.setAccessible(true);
@@ -142,7 +182,11 @@ public class DogDtoMapperImpl implements DogDtoMapper {
         return weightGroup;
     }
 
-    private Schedule getSchedule(LocalDate walkDate, LocalTime walkBegin, int walkingPeriod) {
+    private Schedule getSchedule(
+            LocalDate walkDate,
+            LocalTime walkBegin,
+            int walkingPeriod) {
+
         WalkTime walkTime = WalkTime.builder()
                 .walkBegin(walkBegin)
                 .walkEnd(walkBegin.plusMinutes(walkingPeriod))
@@ -153,7 +197,10 @@ public class DogDtoMapperImpl implements DogDtoMapper {
                 .build();
     }
 
-    private WalkingPlace getWalkingPlace(String cityName, String location, String address) {
+    private WalkingPlace getWalkingPlace(
+            String cityName,
+            String location,
+            String address) {
         City city = City.builder()
                 .name(cityName)
                 .build();

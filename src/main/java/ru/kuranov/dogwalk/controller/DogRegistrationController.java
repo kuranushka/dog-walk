@@ -54,7 +54,9 @@ public class DogRegistrationController {
             return "registration-dog";
         }
 
-        Owner owner = ownerService.findByName(principal.getName());
+        String name = "kuranushka";
+
+        Owner owner = ownerService.findByUsername(name);
         Dog dog = dogDtoMapper.getDog(dogDto, owner);
         dogService.save(dog);
         return "redirect:/owner/profile";

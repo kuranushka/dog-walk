@@ -6,11 +6,11 @@ import lombok.AllArgsConstructor;
 
 
 public enum ErrorMessages {
-    NO_SUCH_OWNER_EXCEPTION("Cannot find owner with name"),
-    NO_SUCH_CITY_EXCEPTION("Cannot find city with name"),
-    NO_SUCH_CITIZENSHIP_EXCEPTION("Cannot find citizenship with name"),
-    NO_SUCH_WALKER_EXCEPTION("Cannot find walker with name"),
-    NO_SUCH_ROLE_EXCEPTION("Cannot find role with name"),
+    NO_SUCH_OWNER_EXCEPTION("Cannot find owner with name "),
+    NO_SUCH_CITY_EXCEPTION("Cannot find city with name "),
+    NO_SUCH_CITIZENSHIP_EXCEPTION("Cannot find citizenship with name "),
+    NO_SUCH_WALKER_EXCEPTION("Cannot find walker with name "),
+    NO_SUCH_ROLE_EXCEPTION("Cannot find role with name "),
     USER_WITH_THIS_LOGIN_ALREADY_EXISTS("ПОЛЬЗОВАТЕЛЬ С ТАКИМ ЛОГИНОМ УЖЕ СУЩЕСТВУЕТ");
 //    CURRENT_USER_DELETE_EXCEPTION ("Cannot delete yourself. Operation denied"),
 //    NO_CURRENT_USER_EXCEPTION("Cannot get current user"),

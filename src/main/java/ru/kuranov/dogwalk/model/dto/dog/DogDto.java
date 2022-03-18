@@ -70,13 +70,10 @@ public class DogDto {
 
     private String feedAfterWalk;
 
-    //    @DateTimeFormat(pattern = "dd.MM.yyyy")
-//    @FutureOrPresent(message = "УКАЖИТЕ ДАТУ ПРОГУЛКИ, СЕГОДНЯ ЛИБО ПОЗЖЕ")
-    @NotBlank(message = "НЕ ВЫБРАНА ДАТА ПРОГУЛКИ")
+//    @NotBlank(message = "НЕ ВЫБРАНА ДАТА ПРОГУЛКИ")
     private String walkDate;
-    //private String walkDate;
-//    @DateTimeFormat(pattern = "HH:mm")
-//    @FutureOrPresent(message = "ВРЕМЯ ПРОГУЛКИ, СЕЙЧАС ЛИБО ПОЗЖЕ")
+
+//    @NotBlank(message = "НЕ ВЫБРАНО ВРЕМЯ ПРОГУЛКИ")
     private LocalTime walkBegin;
 
     @Min(value = 20, message = "ДЛИТЕЛЬНОСТЬ ПРОГУЛКИ НЕ ДОЛЖНА БЫТЬ МЕНЕЕ 20 МИНУТ")

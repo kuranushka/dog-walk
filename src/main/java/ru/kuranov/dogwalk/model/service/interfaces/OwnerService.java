@@ -6,7 +6,7 @@ import ru.kuranov.dogwalk.model.entity.main.Owner;
 @Service
 public interface OwnerService {
 
-    Owner findByName(String ownerName);
+    Owner findByUsername(String ownerName);
 
     void save(Owner owner);
 }

@@ -8,7 +8,7 @@ import ru.kuranov.dogwalk.model.entity.main.Owner;
 @Service
 public interface DogDtoMapper {
 
-    Dog getDog(DogDto dogDto, Owner owner);
+    Dog getDog(DogDto dogDto, Owner owner) throws NoSuchFieldException;
 
     DogDto getDogDto() throws NoSuchFieldException;
 }
