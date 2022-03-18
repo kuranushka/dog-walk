@@ -19,10 +19,7 @@ import ru.kuranov.dogwalk.model.service.interfaces.OwnerService;
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,16 +43,20 @@ public class DogDtoMapperImpl implements DogDtoMapper {
                 .name(dogDto.getName())
                 .breed(dogDto.getBreed())
                 .age(dogDto.getAge())
-                .gender(getPropertySingle(dogDto.getGender()))
-                .weight(dogDto.getWeight())
-                .weightGroup(getWeightGroup(dogDto))
+                .gender(getPropertySingle(Gender.class, dogDto.getGender()))
+                .weightGroup(getWeightGroup(dogDto.getWeight()))
+
+
+
+//                .weight(dogDto.getWeight())
+//                .weightGroup(getWeightGroup(dogDto))
 //                .dogDocuments(dogDto.getDogDocuments())
-                .vet(dogDto.getVet())
-                .injury(dogDto.getInjury())
+//                .vet(dogDto.getVet())
+//                .injury(dogDto.getInjury())
 //                .pullingLeash(dogDto.getPullingLeash())
 //                .pickUpFromGround(dogDto.getPickUpFromGround())
 //                .pickItUp(dogDto.getPickItUp())
-                .fear(dogDto.getFear())
+//                .fear(dogDto.getFear())
 //                .aggression(dogDto.getAggression())
 //                .isGoWithoutLeash(dogDto.isGoWithoutLeash())
 //                .isInteractWithOtherDogs(dogDto.isInteractWithOtherDogs())
@@ -103,14 +104,14 @@ public class DogDtoMapperImpl implements DogDtoMapper {
         return citiService.findAll();
     }
 
-    private Class<? extends Enum> getPropertySingle(Map<String, Boolean> properties) {
+
+    private <T extends Enum<T>> T getPropertySingle(Class<T> type, Map<String, Boolean> properties) {
         String enumValue = properties.entrySet().stream()
                 .filter(entry -> entry.getValue())
                 .map(Map.Entry::getKey)
                 .findFirst()
                 .get();
-        //TODO найти Enum с помощью Reflection API
-
+        return Enum.valueOf(type, enumValue);
     }
 
     private Map<String, Boolean> getProperties(Class<? extends Enum> type) throws NoSuchFieldException {
@@ -129,11 +130,11 @@ public class DogDtoMapperImpl implements DogDtoMapper {
                 .collect(Collectors.toMap(Object::toString, val -> false));
     }
 
-    private WeightGroup getWeightGroup(DogDto dogDto) {
+    private WeightGroup getWeightGroup(int weight) {
         WeightGroup weightGroup;
-        if (dogDto.getWeight() < lightWeight) {
+        if (weight < lightWeight) {
             weightGroup = WeightGroup.LIGHT_WEIGHT;
-        } else if (dogDto.getWeight() > middleWeight) {
+        } else if (weight > middleWeight) {
             weightGroup = WeightGroup.HEAVY_WEIGHT;
         } else {
             weightGroup = WeightGroup.MIDDLE_WEIGHT;
