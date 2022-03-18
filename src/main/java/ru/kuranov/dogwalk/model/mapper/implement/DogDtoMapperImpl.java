@@ -136,6 +136,16 @@ public class DogDtoMapperImpl implements DogDtoMapper {
     private <T extends Enum<T>> T getPropertySingle(Class<T> type, Map<String, Boolean> properties, String returnedProperty) {
         System.out.println();
 
+        for (Map.Entry<String, Boolean> entry : properties.entrySet()) {
+            if (entry.getValue().equals(returnedProperty)) {
+                T t = Enum.valueOf(type, returnedProperty);
+                return t;
+            }
+        }
+
+
+
+
         return properties.entrySet().stream()
                 .filter(entry -> entry.getValue().equals(returnedProperty))
                 .map(entry -> Enum.valueOf(type, entry.getKey()))
