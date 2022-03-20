@@ -52,6 +52,7 @@
             <form class="contact-form row" method="post" role="form" th:action="@{/profile/owner/registration/dog}"
                   th:object="${dogDto}">
 
+
                 <!--КЛИЧКА-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
@@ -62,6 +63,7 @@
                                type="text"/>
                         <h5 th:if="${errorMessage}" th:text="${errorMessage}"></h5>
                         <h5 th:errorclass="error" th:errors="*{name}" th:if="${#fields.hasErrors('name')}"/>
+                        <!--                        <input type="hidden" th:field="pageId" th:value="1"/>-->
                     </div>
                 </div>
 
@@ -85,14 +87,15 @@
                     </div>
                 </div>
 
+
                 <!--ПОЛ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>ПОЛ</p>
-                        <div th:each="gender : ${dogDto.gender}">
-                            <input th:field="*{returnedGender}" type="radio" th:value="${gender.getKey()}" th:id="${gender.key}"
-                                   th:checked="${gender}"/>
-                            <label th:for="${gender.key}" th:text="${gender.key}"></label>
+                        <div th:each="gender : ${T(ru.kuranov.dogwalk.model.entity.addition.Gender).values()}">
+                            <input th:field="*{gender}" type="radio" th:value="${gender}" th:id="${gender}"
+                                   th:checked="${gender.getStatus()}"/>
+                            <label th:for="${gender}" th:text="${gender.name}"></label>
                         </div>
                     </div>
                 </div>
@@ -113,14 +116,14 @@
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>ДОКУМЕНТЫ</p>
-                        <div th:each="item : ${dogDto.dogDocuments}">
+                        <div th:each="dogDocument : ${T(ru.kuranov.dogwalk.model.entity.addition.DogDocument).values()}">
                             <input type="checkbox"
-                                   th:value="item.value"
-                                   th:field="*{dogDocuments['__${item.key}__']}"
-                                   th:id="${item.key}"
-                                   th:checked="*{dogDocuments['__${item.key}__']}"/>
-                            <label th:for="${item.key}"
-                                   th:text="${item.key}"></label>
+                                   th:value="${{dogDocument}}"
+                                   th:field="*{dogDocuments}"
+                                   th:id="${{dogDocument}}"
+                                   th:checked="${dogDocument.getStatus()}"/>
+                            <label th:for="${{dogDocument}}"
+                                   th:text="${dogDocument.name}"></label>
                         </div>
                     </div>
                 </div>
@@ -151,10 +154,10 @@
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>ТЯНЕТ ЛИ ПИТОМЕЦ ЗА ПОВОДОК НА ПРОГУЛКЕ?</p>
-                        <div th:each="pullingLeash : ${dogDto.pullingLeash}">
-                            <input th:field="*{returnedPullingLeash}" type="radio" th:value="${pullingLeash.getKey()}" th:id="${pullingLeash.key}"
-                                   th:checked="${pullingLeash}"/>
-                            <label th:for="${pullingLeash.key}" th:text="${pullingLeash.key}"></label>
+                        <div th:each="pullingLeash : ${T(ru.kuranov.dogwalk.model.entity.addition.PullingLeash).values()}">
+                            <input th:field="*{pullingLeash}" type="radio" th:value="${pullingLeash}" th:id="${pullingLeash}"
+                                   th:checked="${pullingLeash.getStatus()}"/>
+                            <label th:for="${pullingLeash}" th:text="${pullingLeash.name}"></label>
                         </div>
                     </div>
                 </div>
@@ -163,10 +166,10 @@
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>ПОДБИРАЕТ ЛИ ПИТОМЕЦ С ЗЕМЛИ ВО ВРЕМЯ ПРОГУЛКИ?</p>
-                        <div th:each="pickUpFromGround : ${dogDto.pickUpFromGround}">
-                            <input th:field="*{returnedPickUpFromGround}" type="radio" th:value="${pickUpFromGround.getKey()}" th:id="${pickUpFromGround.key}"
-                                   th:checked="${pickUpFromGround}"/>
-                            <label th:for="${pickUpFromGround.key}" th:text="${pickUpFromGround.key}"></label>
+                        <div th:each="pickUpFromGround : ${T(ru.kuranov.dogwalk.model.entity.addition.PickUpFromGround).values()}">
+                            <input th:field="*{pickUpFromGround}" type="radio" th:value="${pickUpFromGround}" th:id="${pickUpFromGround}"
+                                   th:checked="${pickUpFromGround.getStatus()}"/>
+                            <label th:for="${pickUpFromGround}" th:text="${pickUpFromGround.name}"></label>
                         </div>
                     </div>
                 </div>
@@ -175,10 +178,10 @@
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>ОТБИРАТЬ ЛИ ТО, ЧТО ПИТОМЕЦ ПОДОБРАЛ С ЗЕМЛИ ВО ВРЕМЯ ПРОГУЛКИ?</p>
-                        <div th:each="pickItUp : ${dogDto.pickItUp}">
-                            <input th:field="*{returnedPickItUp}" type="radio" th:value="${pickItUp.getKey()}" th:id="${pickItUp.key}"
-                                   th:checked="${pickItUp}"/>
-                            <label th:for="${pickItUp.key}" th:text="${pickItUp.key}"></label>
+                        <div th:each="pickItUp : ${T(ru.kuranov.dogwalk.model.entity.addition.PickItUp).values()}">
+                            <input th:field="*{pickItUp}" type="radio" th:value="${pickItUp}" th:id="${pickItUp}"
+                                   th:checked="${pickItUp.getStatus()}"/>
+                            <label th:for="${pickItUp}" th:text="${pickItUp.name}"></label>
                         </div>
                     </div>
                 </div>
@@ -198,14 +201,14 @@
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>К КОМУ ИЛИ ЧЕМУ ПИТОМЕЦ ИСПЫТЫВАЕТ АГРЕССИЮ?</p>
-                        <div th:each="item : ${dogDto.aggression}">
+                        <div th:each="aggression : ${T(ru.kuranov.dogwalk.model.entity.addition.Aggression).values()}">
                             <input type="checkbox"
-                                   th:value="item.value"
-                                   th:field="*{aggression['__${item.key}__']}"
-                                   th:id="${item.key}"
-                                   th:checked="*{aggression['__${item.key}__']}"/>
-                            <label th:for="${item.key}"
-                                   th:text="${item.key}"></label>
+                                   th:value="${{aggression}}"
+                                   th:field="*{aggression}"
+                                   th:id="${{aggression}}"
+                                   th:checked="${aggression.getStatus()}"/>
+                            <label th:for="${{aggression}}"
+                                   th:text="${aggression.name}"></label>
                         </div>
                     </div>
                 </div>
@@ -214,40 +217,38 @@
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>МОЖНО ЛИ ОТПУСКАТЬ ПИТОМЦА БЕЗ ПОВОДКА НА СОБАЧЬЕЙ ПЛОЩАДКЕ?</p>
-                        <div th:each="goWithoutLeash : ${dogDto.goWithoutLeash}">
-                            <input th:field="*{returnedGoWithoutLeash}" type="radio" th:value="${goWithoutLeash.getKey()}" th:id="${goWithoutLeash.key}"
-                                   th:checked="${goWithoutLeash}"/>
-                            <label th:for="${goWithoutLeash.key}" th:text="${goWithoutLeash.key}"></label>
+                        <div th:each="goWithoutLeash : ${T(ru.kuranov.dogwalk.model.entity.addition.GoWithoutLeash).values()}">
+                            <input th:field="*{goWithoutLeash}" type="radio" th:value="${goWithoutLeash}" th:id="${goWithoutLeash}"
+                                   th:checked="${goWithoutLeash.getStatus()}"/>
+                            <label th:for="${goWithoutLeash}" th:text="${goWithoutLeash.name}"></label>
                         </div>
                     </div>
                 </div>
-
 
                 <!--КОНТАКТИРОВАТЬ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>МОЖНО ЛИ КОНТАКТИРОВАТЬ С ДРУГИМИ СОБАКАМИ?</p>
-                        <div th:each="interactWithOtherDogs : ${dogDto.interactWithOtherDogs}">
-                            <input th:field="*{returnedInteractWithOtherDogs}" type="radio" th:value="${interactWithOtherDogs.getKey()}" th:id="${interactWithOtherDogs.key}"
-                                   th:checked="${interactWithOtherDogs}"/>
-                            <label th:for="${interactWithOtherDogs.key}" th:text="${interactWithOtherDogs.key}"></label>
+                        <div th:each="interactWithOtherDogs : ${T(ru.kuranov.dogwalk.model.entity.addition.InteractWithOtherDogs).values()}">
+                            <input th:field="*{interactWithOtherDogs}" type="radio" th:value="${interactWithOtherDogs}"
+                                   th:id="${interactWithOtherDogs}"
+                                   th:checked="${interactWithOtherDogs.getStatus()}"/>
+                            <label th:for="${interactWithOtherDogs}" th:text="${interactWithOtherDogs.name}"></label>
                         </div>
                     </div>
                 </div>
-
 
                 <!--МЫТЬ ЛАПЫ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>НУЖНО ЛИ МЫТЬ ЛАПКИ ПОСЛЕ ПРОГУЛКИ?</p>
-                        <div th:each="washPaws : ${dogDto.washPaws}">
-                            <input th:field="*{returnedWashPaws}" type="radio" th:value="${washPaws.getKey()}" th:id="${washPaws.key}"
-                                   th:checked="${washPaws}"/>
-                            <label th:for="${washPaws.key}" th:text="${washPaws.key}"></label>
+                        <div th:each="washPaws : ${T(ru.kuranov.dogwalk.model.entity.addition.WashPaws).values()}">
+                            <input th:field="*{washPaws}" type="radio" th:value="${washPaws}" th:id="${washPaws}"
+                                   th:checked="${washPaws.getStatus()}"/>
+                            <label th:for="${washPaws}" th:text="${washPaws.name}"></label>
                         </div>
                     </div>
                 </div>
-
 
                 <!--КОРМИТЬ-->
                 <div class="col-12">
@@ -258,38 +259,24 @@
                     </div>
                 </div>
 
-
-                <!--                <div class="col-12">-->
-                <!--                    <div class="form-floating mb-4">-->
-                <!--                        <p>ПРЕДПОЛАГАЕМАЯ ДАТА ПРОГУЛКИ, ФОРМАТ 10.10.2022</p>-->
-                <!--                        <input-->
-                <!--                                class="form-control form-control-lg light-300" th:field="*{walkDate}"-->
-                <!--                                th:placeholder="${dogDto.walkDate}"-->
-                <!--                                type="text"/>-->
-                <!--                        <p th:if="${errorMessage}" th:text="${errorMessage}"></p>-->
-                <!--                        <p th:errorclass="error" th:errors="*{weight}" th:if="${#fields.hasErrors('weight')}"/>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-
-
+                <!--ДАТА ПРОГУЛКИ-->
                 <div class="col-12">
                     <p>ВЫБЕРИТЕ ДАТУ ПРОГУЛКИ, ОБЯЗАТЕЛЬНОЕ ПОЛЕ</p>
                     <div class="form-floating mb-4">
                         <label for="walkDate"></label>
                         <input type="date" class="form-check-label" th:field="${dogDto.walkDate}">
                         <h5 th:if="${dateValidationError}" th:text="${dateValidationError}"></h5>
-                        <h5 th:errorclass="error" th:errors="*{walkDate}" th:if="${#fields.hasErrors('walkDate')}"/>
                     </div>
                 </div>
 
-
+                <!--ВРЕМЯ ПРОГУЛКИ-->
                 <div class="col-12">
                     <p>ВЫБЕРИТЕ ВРЕМЯ ПРОГУЛКИ, ОБЯЗАТЕЛЬНОЕ ПОЛЕ</p>
                     <div class="form-floating mb-4">
                         <label for="walkBegin"></label>
-                        <input type="time" class="form-control" th:field="${dogDto.walkBegin}" th:placeholder="${dogDto.walkBegin}">
-                        <h5 th:if="${errorMessage}" th:text="${errorMessage}"></h5>
-                        <h5 th:errorclass="error" th:errors="*{walkBegin}" th:if="${#fields.hasErrors('walkBegin')}"/>
+                        <input type="time" class="form-control" th:field="${dogDto.walkBegin}"
+                               th:placeholder="${dogDto.walkBegin}">
+                        <h5 th:if="${timeValidationError}" th:text="${timeValidationError}"></h5>
                     </div>
                 </div>
 
@@ -309,27 +296,25 @@
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>КАК ВЫ ПЛНИРУЕТЕ ПОЗНАКОМИТЬСЯ С ВЫГУЛЬЩИКОМ?</p>
-                        <div th:each="meetingToWalker : ${dogDto.meetingToWalker}">
-                            <input th:field="*{returnedMeetingToWalker}" type="radio" th:value="${meetingToWalker.getKey()}" th:id="${meetingToWalker.key}"
-                                   th:checked="${meetingToWalker}"/>
-                            <label th:for="${meetingToWalker.key}" th:text="${meetingToWalker.key}"></label>
+                        <div th:each="meetingToWalker : ${T(ru.kuranov.dogwalk.model.entity.addition.MeetingToWalker).values()}">
+                            <input th:field="*{meetingToWalker}" type="radio" th:value="${meetingToWalker}" th:id="${meetingToWalker}"
+                                   th:checked="${meetingToWalker.getStatus()}"/>
+                            <label th:for="${meetingToWalker}" th:text="${meetingToWalker.name}"></label>
                         </div>
                     </div>
                 </div>
-
 
                 <!--КАК ПОПАСТЬ К ПИТОМЦУ-->
                 <div class="col-12">
                     <div class="form-floating mb-4">
                         <p>КАК ПОПАСТЬ К ПИТОМЦУ?</p>
-                        <div th:each="howGetKeys : ${dogDto.howGetKeys}">
-                            <input th:field="*{returnedHowGetKeys}" type="radio" th:value="${howGetKeys.getKey()}" th:id="${howGetKeys.key}"
-                                   th:checked="${howGetKeys}"/>
-                            <label th:for="${howGetKeys.key}" th:text="${howGetKeys.key}"></label>
+                        <div th:each="howGetKeys : ${T(ru.kuranov.dogwalk.model.entity.addition.HowGetKeys).values()}">
+                            <input th:field="*{howGetKeys}" type="radio" th:value="${howGetKeys}" th:id="${howGetKeys}"
+                                   th:checked="${howGetKeys.getStatus()}"/>
+                            <label th:for="${howGetKeys}" th:text="${howGetKeys.name}"></label>
                         </div>
                     </div>
                 </div>
-
 
                 <!--ЧТО ЕЩЕ-->
                 <div class="col-12">
@@ -361,6 +346,8 @@
                                 class="form-control form-control-lg light-300" th:field="*{location}"
                                 th:placeholder="${dogDto.location}"
                                 type="text"/>
+                        <h5 th:if="${errorMessage}" th:text="${errorMessage}"></h5>
+                        <h5 th:errorclass="error" th:errors="*{location}" th:if="${#fields.hasErrors('location')}"/>
                     </div>
                 </div>
 
@@ -374,7 +361,6 @@
                                 type="text"/>
                     </div>
                 </div>
-
 
                 <div class="col-md-12 col-12 m-auto text-end">
                     <button class="btn btn-secondary rounded-pill px-md-5 px-4 py-2 radius-0 text-light light-300"

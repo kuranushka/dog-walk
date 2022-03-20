@@ -5,22 +5,20 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import ru.kuranov.dogwalk.model.dto.dog.DogDto;
-import ru.kuranov.dogwalk.model.entity.addition.*;
+import ru.kuranov.dogwalk.model.entity.addition.WeightGroup;
 import ru.kuranov.dogwalk.model.entity.location.City;
 import ru.kuranov.dogwalk.model.entity.location.WalkingPlace;
 import ru.kuranov.dogwalk.model.entity.main.Dog;
-import ru.kuranov.dogwalk.model.entity.main.Owner;
 import ru.kuranov.dogwalk.model.entity.time.Schedule;
 import ru.kuranov.dogwalk.model.entity.time.WalkTime;
 import ru.kuranov.dogwalk.model.mapper.interfaces.DogDtoMapper;
 import ru.kuranov.dogwalk.model.service.interfaces.CityService;
 import ru.kuranov.dogwalk.model.service.interfaces.OwnerService;
 
-import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Collections;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -35,148 +33,57 @@ public class DogDtoMapperImpl implements DogDtoMapper {
     private int middleWeight;
 
     @Override
-    public Dog getDog(DogDto dogDto, Owner owner) throws NoSuchFieldException {
+    public Dog getDog(DogDto dogDto, String ownerName) {
 
         return Dog.builder()
                 .id(dogDto.getId())
-                .owner(owner)
                 .name(dogDto.getName())
                 .breed(dogDto.getBreed())
                 .age(dogDto.getAge())
-                .gender(getPropertySingle(
-                        Gender.class,
-                        getProperties(Gender.class),
-                        dogDto.getReturnedGender()))
+                .gender(dogDto.getGender())
+                .weight(dogDto.getWeight())
                 .weightGroup(getWeightGroup(dogDto.getWeight()))
-                .dogDocuments(getPropertyList(
-                        DogDocument.class,
-                        dogDto.getDogDocuments()))
+                .dogDocuments(dogDto.getDogDocuments())
                 .vet(dogDto.getVet())
                 .injury(dogDto.getInjury())
-                .pullingLeash(getPropertySingle(
-                        PullingLeash.class,
-                        getProperties(PullingLeash.class),
-                        dogDto.getReturnedPullingLeash()))
-                .pickUpFromGround(getPropertySingle(
-                        PickUpFromGround.class,
-                        getProperties(PickUpFromGround.class),
-                        dogDto.getReturnedPickUpFromGround()))
-                .pickItUp(getPropertySingle(
-                        PickItUp.class,
-                        getProperties(PickItUp.class),
-                        dogDto.getReturnedPickItUp()))
+                .pullingLeash(dogDto.getPullingLeash())
+                .pickUpFromGround(dogDto.getPickUpFromGround())
+                .pickItUp(dogDto.getPickItUp())
                 .fear(dogDto.getFear())
-                .aggression(getPropertyList(
-                        Aggression.class,
-                        dogDto.getAggression()))
-                .goWithoutLeash(getPropertySingle(
-                        GoWithoutLeash.class,
-                        getProperties(GoWithoutLeash.class),
-                        dogDto.getReturnedGoWithoutLeash()))
-                .interactWithOtherDogs(getPropertySingle(
-                        InteractWithOtherDogs.class,
-                        getProperties(InteractWithOtherDogs.class),
-                        dogDto.getReturnedInteractWithOtherDogs()))
-                .washPaws(getPropertySingle(
-                        WashPaws.class,
-                        getProperties(WashPaws.class),
-                        dogDto.getReturnedWashPaws()))
+                .aggression(dogDto.getAggression())
+                .goWithoutLeash(dogDto.getGoWithoutLeash())
+                .interactWithOtherDogs(dogDto.getInteractWithOtherDogs())
+                .washPaws(dogDto.getWashPaws())
                 .feedAfterWalk(dogDto.getFeedAfterWalk())
-                .schedule(
-                        getSchedule(getDate(dogDto.getWalkDate()),
-                                dogDto.getWalkBegin(),
-                                dogDto.getWalkingPeriod()))
-                .meetingToWalker(getPropertySingle(
-                        MeetingToWalker.class,
-                        getProperties(MeetingToWalker.class),
-                        dogDto.getReturnedMeetingToWalker()))
-                .howGetKeys(getPropertySingle(
-                        HowGetKeys.class,
-                        getProperties(HowGetKeys.class),
-                        dogDto.getReturnedHowGetKeys()))
+                .walkingPeriod(dogDto.getWalkingPeriod())
+                .schedule(getSchedule(
+                        parseDate(dogDto.getWalkDate()),
+                        dogDto.getWalkBegin(),
+                        dogDto.getWalkingPeriod()))
+                .meetingToWalker(dogDto.getMeetingToWalker())
+                .howGetKeys(dogDto.getHowGetKeys())
                 .additionInfo(dogDto.getAdditionInfo())
-                .walkingPlace(Collections
-                        .singleton(
-                                getWalkingPlace(
-                                        dogDto.getCity(),
-                                        dogDto.getLocation(),
-                                        dogDto.getAddress())))
+                .walkingPlace(Collections.singleton(
+                        getWalkingPlace(
+                                dogDto.getCity(),
+                                dogDto.getLocation(),
+                                dogDto.getAddress())))
                 .build();
-    }
-
-    private LocalDate getDate(String walkDate) {
-        return LocalDate.parse(walkDate);
     }
 
     @Override
-    public DogDto getDogDto() throws NoSuchFieldException {
+    public DogDto getDogDto() {
         return DogDto.builder()
-                .gender(getProperties(Gender.class))
-                .dogDocuments(getProperties(DogDocument.class))
-                .pullingLeash(getProperties(PullingLeash.class))
-                .pickUpFromGround(getProperties(PickUpFromGround.class))
-                .pickItUp(getProperties(PickItUp.class))
-                .aggression(getProperties(Aggression.class))
-                .goWithoutLeash(getProperties(GoWithoutLeash.class))
-                .interactWithOtherDogs(getProperties(InteractWithOtherDogs.class))
-                .washPaws(getProperties(WashPaws.class))
-                .meetingToWalker(getProperties(MeetingToWalker.class))
-                .howGetKeys(getProperties(HowGetKeys.class))
                 .cities(getCities())
                 .build();
-
     }
 
+    private LocalDate parseDate(String walkDate) {
+        return LocalDate.parse(walkDate);
+    }
 
-    private List<City> getCities() {
+    public List<City> getCities() {
         return citiService.findAll();
-    }
-
-
-    private <T extends Enum<T>> T getPropertySingle(Class<T> type, Map<String, Boolean> properties, String returnedProperty) {
-        System.out.println();
-        returnedProperty = "FEMALE";
-        for (Map.Entry<String, Boolean> entry : properties.entrySet()) {
-            if (entry.getKey().equals(returnedProperty)) {
-                T t = Enum.valueOf(type, returnedProperty);
-                return t;
-            }
-        }
-        T t = Enum.valueOf(type, returnedProperty);
-        return t;
-
-//        return properties.entrySet().stream()
-//                .filter(entry -> entry.getValue().equals(returnedProperty))
-//                .map(entry -> Enum.valueOf(type, entry.getKey()))
-//                .findFirst()
-//                .get();
-    }
-
-    private <T extends Enum<T>> Set<T> getPropertyList(Class<T> type, Map<String, Boolean> properties) {
-
-        System.out.println();
-        return properties.entrySet()
-                .stream()
-                .filter(Map.Entry::getValue)
-                .map(property -> Enum.valueOf(type, property.getKey()))
-                .collect(Collectors.toSet());
-    }
-
-    private Map<String, Boolean> getProperties(Class<? extends Enum> type) throws NoSuchFieldException {
-
-        Object[] values = type.getEnumConstants();
-        Field field = type.getDeclaredField("name");
-        field.setAccessible(true);
-        return Arrays.stream(values)
-                .map(value -> {
-                    try {
-                        return field.get(value);
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
-                    return value;
-                })
-                .collect(Collectors.toMap(Object::toString, val -> false));
     }
 
     private WeightGroup getWeightGroup(int weight) {

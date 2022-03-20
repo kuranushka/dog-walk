@@ -3,6 +3,7 @@ package ru.kuranov.dogwalk.model.dto.dog;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Component;
+import ru.kuranov.dogwalk.model.entity.addition.*;
 import ru.kuranov.dogwalk.model.entity.location.City;
 
 import javax.validation.constraints.Min;
@@ -10,6 +11,7 @@ import javax.validation.constraints.NotBlank;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Component
 @Getter
@@ -28,64 +30,44 @@ public class DogDto {
 
     private String age;
 
-    private Map<String, Boolean> gender;
-
-    private String returnedGender;
+    private Gender gender;
 
     private int weight;
 
-    public Map<String, Boolean> dogDocuments;
+    public Set<DogDocument> dogDocuments;
 
     private String vet;
 
     private String injury;
 
-    private Map<String, Boolean> pullingLeash;
+    private PullingLeash pullingLeash;
 
-    private String returnedPullingLeash;
+    private PickUpFromGround pickUpFromGround;
 
-    private Map<String, Boolean> pickUpFromGround;
-
-    private String returnedPickUpFromGround;
-
-    private Map<String, Boolean> pickItUp;
-
-    private String returnedPickItUp;
+    private PickItUp pickItUp;
 
     private String fear;
 
-    private Map<String, Boolean> aggression;
+    private Set<Aggression> aggression;
 
-    private Map<String, Boolean> goWithoutLeash;
+    private GoWithoutLeash goWithoutLeash;
 
-    private String returnedGoWithoutLeash;
+    private InteractWithOtherDogs interactWithOtherDogs;
 
-    private Map<String, Boolean> interactWithOtherDogs;
-
-    private String returnedInteractWithOtherDogs;
-
-    private Map<String, Boolean> washPaws;
-
-    private String returnedWashPaws;
+    private WashPaws washPaws;
 
     private String feedAfterWalk;
 
-//    @NotBlank(message = "НЕ ВЫБРАНА ДАТА ПРОГУЛКИ")
     private String walkDate;
 
-//    @NotBlank(message = "НЕ ВЫБРАНО ВРЕМЯ ПРОГУЛКИ")
     private LocalTime walkBegin;
 
     @Min(value = 20, message = "ДЛИТЕЛЬНОСТЬ ПРОГУЛКИ НЕ ДОЛЖНА БЫТЬ МЕНЕЕ 20 МИНУТ")
     private int walkingPeriod;
 
-    private Map<String, Boolean> meetingToWalker;
+    private MeetingToWalker meetingToWalker;
 
-    private String returnedMeetingToWalker;
-
-    private Map<String, Boolean> howGetKeys;
-
-    private String returnedHowGetKeys;
+    private HowGetKeys howGetKeys;
 
     @Length(max = 1024, message = "МАКСИМАЛЬНОЕ КОЛИЧЕСТВО ЗНАКОВ В ПОЛЕ ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ 1024 СИМВОЛА")
     private String additionInfo;

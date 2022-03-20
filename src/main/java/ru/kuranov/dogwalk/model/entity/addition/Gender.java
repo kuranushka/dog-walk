@@ -1,18 +1,20 @@
 package ru.kuranov.dogwalk.model.entity.addition;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-import java.io.Serializable;
 
 @AllArgsConstructor
 public enum Gender {
-    MALE("САМЕЦ"),
-    FEMALE("САМОЧКА");
+    MALE("САМЕЦ", false),
+    FEMALE("САМОЧКА", false);
 
     private String name;
+    private boolean status;
 
     public String getName() {
         return name;
+    }
+
+    public boolean getStatus() {
+        return status;
     }
 }

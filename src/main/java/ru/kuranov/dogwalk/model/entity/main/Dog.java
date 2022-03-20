@@ -6,6 +6,7 @@ import ru.kuranov.dogwalk.model.entity.location.WalkingPlace;
 import ru.kuranov.dogwalk.model.entity.time.Schedule;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
