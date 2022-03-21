@@ -20,10 +20,7 @@ import ru.kuranov.dogwalk.model.service.interfaces.OwnerService;
 
 import java.time.LocalDate;
 import java.time.chrono.ChronoLocalDate;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -160,9 +157,12 @@ public class DogService {
     }
 
     private Schedule getSchedule(Walking savedWalking, Dog savedDog) {
+        Set<Walking> walkingSet = new HashSet<>();
+        walkingSet.add(savedWalking);
+
         return Schedule.builder()
                 .dog(savedDog)
-                .walking(Collections.singleton(savedWalking))
+                .walking(walkingSet)
                 .build();
     }
 
