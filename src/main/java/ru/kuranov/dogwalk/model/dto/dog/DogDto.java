@@ -10,7 +10,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalTime;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 @Component
@@ -21,21 +20,14 @@ import java.util.Set;
 @AllArgsConstructor
 public class DogDto {
 
+    public Set<DogDocument> dogDocuments;
     private Long id;
-
     @NotBlank(message = "ПОЛЕ КЛИЧКА НЕ ЗАПОЛНЕНО")
     private String name;
-
     private String breed;
-
     private String age;
-
     private Gender gender;
-
     private int weight;
-
-    public Set<DogDocument> dogDocuments;
-
     private String vet;
 
     private String injury;
@@ -58,12 +50,12 @@ public class DogDto {
 
     private String feedAfterWalk;
 
-    private String walkDate;
+    private String walkingDate;
 
-    private LocalTime walkBegin;
+    private LocalTime walkingBegin;
 
     @Min(value = 20, message = "ДЛИТЕЛЬНОСТЬ ПРОГУЛКИ НЕ ДОЛЖНА БЫТЬ МЕНЕЕ 20 МИНУТ")
-    private int walkingPeriod;
+    private int walkingDuration;
 
     private MeetingToWalker meetingToWalker;
 
@@ -81,4 +73,7 @@ public class DogDto {
     private String location;
 
     private String address;
+
+    @Min(value = 100L, message = "МИНИМАЛЬНАЯ СТОИМОСТЬ 100 РУБЛЕЙ")
+    private int walkingPrice;
 }

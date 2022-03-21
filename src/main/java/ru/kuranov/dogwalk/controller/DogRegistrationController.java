@@ -7,11 +7,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.kuranov.dogwalk.controller.util.DogDtoValidator;
 import ru.kuranov.dogwalk.model.dto.dog.DogDto;
-import ru.kuranov.dogwalk.model.mapper.interfaces.DogDtoMapper;
-import ru.kuranov.dogwalk.model.service.interfaces.DogService;
-import ru.kuranov.dogwalk.model.service.interfaces.OwnerService;
+import ru.kuranov.dogwalk.model.mapper.implement.DogService;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -20,14 +17,11 @@ import java.security.Principal;
 @RequiredArgsConstructor
 @RequestMapping("/profile/owner/registration/dog")
 public class DogRegistrationController {
-
     private final DogService dogService;
-    private final DogDtoMapper dogDtoMapper;
-    private final DogDtoValidator dogDtoValidator;
 
     @GetMapping
     public String registrationDog(DogDto dogDto, Model model) {
-        dogDto = dogDtoMapper.getDogDto();
+        dogDto = dogService.getDogDto();
         System.out.println();
         model.addAttribute("dogDto", dogDto);
         return "registration-dog";
@@ -39,21 +33,19 @@ public class DogRegistrationController {
                                   Model model,
                                   Principal principal) {
 
-        if (!dogDtoValidator.validDate(dogDto.getWalkDate())) {
-            model.addAttribute("dateValidationError", "ВЫ ДОЛЖНЫ ВЫБРАТЬ ДАТУ, НАЧИНАЯ С ЗАВТРАШНЕГО ДНЯ");
+        if (!dogService.validDate(dogDto.getWalkingDate())) {
+            model.addAttribute("dateValidationError",
+                    "ВЫ ДОЛЖНЫ ВЫБРАТЬ ДАТУ, НАЧИНАЯ С ЗАВТРАШНЕГО ДНЯ");
         }
-        if (dogDto.getWalkBegin() == null) {
-            model.addAttribute("timeValidationError", "НЕ ВЫБРАНО ВРЕМЯ ПРОГУЛКИ");
+        if (dogDto.getWalkingBegin() == null) {
+            model.addAttribute("timeValidationError",
+                    "НЕ ВЫБРАНО ВРЕМЯ ПРОГУЛКИ");
         }
         if (bindingResult.hasErrors()) {
-            dogDto.setCities(dogDtoMapper.getCities());
+            dogDto.setCities(dogService.getCities());
             return "registration-dog";
         }
-
-        //TODO сохраняем DTO
-        System.out.println();
-
-        dogService.saveDog(dogDto, principal.getName());
+        dogService.saveNewDog(dogDto, principal.getName());
         return "redirect:/owner/profile";
     }
 }

@@ -16,6 +16,7 @@ public class AccountUserRepository implements AccountUserService {
     private final JdbcTemplate jdbcTemplate;
     private final UsernameRowMapper usernameRowMapper;
 
+    //TODO переписать не ищет при одиннаковых idу Walker и Owner
     public Optional<User> findByUsername(String username) {
         String query = "SELECT a.id, a.username, a.password, r.role_id as role " +
                 "FROM (SELECT id, username, password FROM owner " +

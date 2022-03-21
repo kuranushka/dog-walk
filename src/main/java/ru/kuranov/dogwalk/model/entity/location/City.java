@@ -1,6 +1,7 @@
 package ru.kuranov.dogwalk.model.entity.location;
 
 import lombok.*;
+import ru.kuranov.dogwalk.model.entity.main.Walking;
 
 import javax.persistence.*;
 
@@ -14,14 +15,14 @@ import javax.persistence.*;
 public class City {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
     @Column(name = "name")
     private String name;
 
-    @OneToOne(targetEntity = WalkingPlace.class,
+    @OneToOne(targetEntity = Walking.class,
             mappedBy = "city")
-    private WalkingPlace walkingPlace;
+    private Walking walking;
 }

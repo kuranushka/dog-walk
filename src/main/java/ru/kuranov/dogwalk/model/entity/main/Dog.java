@@ -2,11 +2,9 @@ package ru.kuranov.dogwalk.model.entity.main;
 
 import lombok.*;
 import ru.kuranov.dogwalk.model.entity.addition.*;
-import ru.kuranov.dogwalk.model.entity.location.WalkingPlace;
 import ru.kuranov.dogwalk.model.entity.time.Schedule;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,6 +20,9 @@ public class Dog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
+    @Column(name = "uuid")
+    private String uuid;
 
     @ManyToOne(targetEntity = Owner.class)
     @JoinColumn(name = "owner_id")
@@ -93,13 +94,9 @@ public class Dog {
     @Column(name = "feed")
     private String feedAfterWalk;
 
-    @Column(name = "walking_period")
-    private int walkingPeriod;
-
     @OneToOne(targetEntity = Schedule.class,
-            cascade = CascadeType.ALL,
-            optional = false)
-    @JoinColumn(name = "schedule_id")
+            cascade = CascadeType.ALL)
+    @JoinColumn(name = "schedule_id", nullable = true)
     private Schedule schedule;
 
     @Column(name = "meeting_to_walker")
@@ -112,13 +109,4 @@ public class Dog {
 
     @Column(name = "addition_info", length = 1024)
     private String additionInfo;
-
-    @Column(name = "walking_place")
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER,
-            mappedBy = "dog")
-    private Set<WalkingPlace> walkingPlace;
-
-    @Column(name = "price")
-    private int price;
 }
