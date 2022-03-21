@@ -124,8 +124,6 @@ CREATE TABLE schedule
 
 ALTER TABLE dog
     ADD COLUMN schedule_id BIGINT
---         CONSTRAINT uk_dog_schedule_id
---             UNIQUE
         CONSTRAINT fk_dog_schedule_id
             REFERENCES schedule;
 
@@ -156,8 +154,6 @@ CREATE TABLE walking
     walking_duration INTEGER,
     walking_price    INTEGER,
     city_id          BIGINT NOT NULL
---         CONSTRAINT uk_walking_city_id
---             UNIQUE
         CONSTRAINT fk_walking_city
             REFERENCES city,
     dog_id           BIGINT
