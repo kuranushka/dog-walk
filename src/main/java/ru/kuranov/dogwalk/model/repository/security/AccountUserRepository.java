@@ -17,6 +17,7 @@ public class AccountUserRepository implements AccountUserService {
     private final UsernameRowMapper usernameRowMapper;
 
     //TODO переписать не ищет при одиннаковых idу Walker и Owner
+//    org.springframework.security.authentication.InternalAuthenticationServiceException: Incorrect result size: expected 1, actual 2
     public Optional<User> findByUsername(String username) {
         String query = "SELECT a.id, a.username, a.password, r.role_id as role " +
                 "FROM (SELECT id, username, password FROM owner " +

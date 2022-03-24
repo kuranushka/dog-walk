@@ -167,7 +167,10 @@ CREATE TABLE walking
             REFERENCES dog (id),
     schedule_id      BIGINT
         CONSTRAINT fk_walking_schedule
-            REFERENCES schedule (id)
+            REFERENCES schedule (id),
+    owner_id         BIGINT
+        CONSTRAINT fk_walking_owner_id
+            REFERENCES owner (id)
 );
 
 CREATE TABLE owners_comment
@@ -191,7 +194,8 @@ CREATE TABLE walkers_comment
             REFERENCES walker (id),
     owner_id  BIGINT NOT NULL
         CONSTRAINT fk_walkers_comment_owner_id
-            REFERENCES owner (id)
+            REFERENCES owner (id),
+    message   VARCHAR(2048)
 );
 
 insert into role (id, role)
@@ -273,13 +277,15 @@ values (1, 'Москва'),
 
 
 insert into owner (mail, name, password, phone, username)
-values ('mail@mail.ru','Андрей', '$2a$12$yWRpJY12bNvkHUlW0Nx0r.FdyaWGm7AtNFS7LgfV6CVssGXby1Qbi', '495 09837 4765','owner');
+values ('mail@mail.ru', 'Андрей', '$2a$12$yWRpJY12bNvkHUlW0Nx0r.FdyaWGm7AtNFS7LgfV6CVssGXby1Qbi', '495 09837 4765',
+        'owner');
 insert into owner_role (owner_id, role_id)
 values (1, 1);
 
 
 insert into walker (mail, name, password, phone, username, city_id)
-values ('mail@mail.ru','Валентина', '$2a$12$yWRpJY12bNvkHUlW0Nx0r.FdyaWGm7AtNFS7LgfV6CVssGXby1Qbi','92879237', 'walker', 3);
+values ('mail@mail.ru', 'Валентина', '$2a$12$yWRpJY12bNvkHUlW0Nx0r.FdyaWGm7AtNFS7LgfV6CVssGXby1Qbi', '92879237',
+        'walker', 3);
 insert into walker_role (walker_id, role_id)
 values (1, 2);
 

@@ -32,8 +32,11 @@ public class Walker extends AccountUser {
     private String password;
 
     @Singular
-    @ManyToMany(targetEntity = Role.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "walker_role", joinColumns = @JoinColumn(name = "walker_id", referencedColumnName = "id"),
+    @ManyToMany(targetEntity = Role.class,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER)
+    @JoinTable(name = "walker_role",
+            joinColumns = @JoinColumn(name = "walker_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Set<Role> roles;
 

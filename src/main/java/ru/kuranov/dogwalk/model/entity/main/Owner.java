@@ -30,8 +30,10 @@ public class Owner extends AccountUser {
     private String password;
 
     @Singular
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "owner_role", joinColumns = @JoinColumn(name = "owner_id", referencedColumnName = "id"),
+    @ManyToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER)
+    @JoinTable(name = "owner_role",
+            joinColumns = @JoinColumn(name = "owner_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Set<Role> roles;
 
