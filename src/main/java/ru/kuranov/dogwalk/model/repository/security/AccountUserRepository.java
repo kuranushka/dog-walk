@@ -16,17 +16,16 @@ public class AccountUserRepository implements AccountUserService {
     private final JdbcTemplate jdbcTemplate;
     private final UsernameRowMapper usernameRowMapper;
 
-    //TODO переписать не ищет при одиннаковых idу Walker и Owner
-//    org.springframework.security.authentication.InternalAuthenticationServiceException: Incorrect result size: expected 1, actual 2
+
+    //    TODO обработать ошибку, если не находит Username
     public Optional<User> findByUsername(String username) {
-        String query = "SELECT a.id, a.username, a.password, r.role_id as role " +
-                "FROM (SELECT id, username, password FROM owner " +
-                "UNION SELECT id, username, password FROM walker) as a " +
-                "         JOIN (SELECT owner_id as id, role_id FROM owner_role " +
-                "UNION SELECT walker_id, role_id FROM walker_role) as r ON a.id=r.id " +
-                "WHERE a.username = ?";
+        String query = "SELECT * FROM (SELECT * FROM\n" +
+                "(SELECT o.id, o.username, o.password, ro.role_id as role FROM owner as o JOIN owner_role as ro ON o.id = ro.owner_id) as so\n" +
+                "UNION\n" +
+                "(SELECT w.id, w.username, w.password, rw.role_id as role FROM walker as w JOIN walker_role as rw ON w.id = rw.walker_id)) as foo WHERE username=?";
         return Optional.ofNullable(jdbcTemplate.queryForObject(query, usernameRowMapper, username));
     }
+
 
     public boolean isThereSuchUsername(String username) {
         String query = "SELECT * FROM (SELECT username FROM owner " +

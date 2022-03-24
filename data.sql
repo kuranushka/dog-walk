@@ -310,3 +310,37 @@ WHERE a.username = 'TimurRudnev';
 SELECT *
 FROM (SELECT username FROM owner UNION SELECT username FROM walker) as a
 WHERE username = 'walker';
+
+
+
+SELECT a.id, a.username, a.password, r.role_id as role
+FROM (SELECT id, username, password
+      FROM owner
+      UNION
+      SELECT id, username, password
+      FROM walker) as a
+         JOIN (SELECT owner_id as id, role_id
+               FROM owner_role
+               UNION
+               SELECT walker_id, role_id
+               FROM walker_role) as r ON a.id = r.id
+WHERE a.username = 'owner';
+
+SELECT * FROM (SELECT * FROM
+(SELECT o.id, o.username, o.password, ro.role_id as role FROM owner as o JOIN owner_role as ro ON o.id = ro.owner_id) as so
+UNION
+(SELECT w.id, w.username, w.password, rw.role_id as role FROM walker as w JOIN walker_role as rw ON w.id = rw.walker_id)) as foo WHERE username=?;
+
+
+SELECT us.id, us.username, us.password, rol.role_id FROM
+(SELECT o.id, o.username, o.password
+FROM owner as o WHERE username = 'walker'
+UNION
+SELECT w.id, w.username, w.password
+FROM walker as w WHERE username = 'walker') as us
+JOIN
+(SELECT ow.owner_id, ow.role_id
+FROM owner_role as ow
+UNION
+SELECT wr.walker_id, wr.role_id
+FROM walker_role as wr) as rol ON us.id=rol.role_id;
