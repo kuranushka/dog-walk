@@ -1,11 +1,13 @@
 DROP TABLE IF EXISTS citizenship,
     city,dog, dog_aggression, dog_dog_documents,
     owner, owner_role, role, schedule, vet,
-    walker, walker_role, walker_social_links, walking CASCADE;
+    walker, walker_role, walker_social_links, walking,
+    owners_comment, walkers_comment CASCADE;
+
 CREATE TABLE city
 (
     id   BIGSERIAL PRIMARY KEY,
-    name VARCHAR(255)
+    name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE citizenship
@@ -17,35 +19,35 @@ CREATE TABLE citizenship
 CREATE TABLE owner
 (
     id       BIGSERIAL PRIMARY KEY,
-    mail     VARCHAR(255),
-    name     VARCHAR(255),
-    password VARCHAR(255),
-    phone    VARCHAR(255),
+    mail     VARCHAR(255) NOT NULL,
+    name     VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    phone    VARCHAR(255) NOT NULL,
     surname  VARCHAR(255),
-    username VARCHAR(255)
+    username VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE role
 (
     id   BIGSERIAL PRIMARY KEY,
-    role VARCHAR(255)
+    role VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE vet
 (
-    id      BIGSERIAL,
+    id      BIGSERIAL PRIMARY KEY,
     address VARCHAR(255),
     phone   VARCHAR(255)
 );
 
 CREATE TABLE owner_role
 (
-    owner_id BIGSERIAL
+    owner_id BIGINT NOT NULL
         CONSTRAINT fk_owner_role_owner
-            REFERENCES owner,
-    role_id  BIGSERIAL
+            REFERENCES owner (id),
+    role_id  BIGINT NOT NULL
         CONSTRAINT fk_owner_role_role
-            REFERENCES role,
+            REFERENCES role (id),
     PRIMARY KEY (owner_id, role_id)
 );
 
@@ -54,25 +56,25 @@ CREATE TABLE walker
     id          BIGSERIAL PRIMARY KEY,
     birthday    DATE,
     citizenship VARCHAR(255),
-    mail        VARCHAR(255),
+    mail        VARCHAR(255) NOT NULL,
     name        VARCHAR(255),
-    password    VARCHAR(255),
-    phone       VARCHAR(255),
+    password    VARCHAR(255) NOT NULL,
+    phone       VARCHAR(255) NOT NULL,
     surname     VARCHAR(255),
-    username    VARCHAR(255),
+    username    VARCHAR(255) NOT NULL,
     city_id     BIGINT
         CONSTRAINT fk_walker_city
-            REFERENCES city
+            REFERENCES city (id)
 );
 
 CREATE TABLE walker_role
 (
     walker_id BIGINT NOT NULL
         CONSTRAINT fk_walker_role_walker
-            REFERENCES walker,
+            REFERENCES walker (id),
     role_id   BIGINT NOT NULL
         CONSTRAINT fk_walker_role_role
-            REFERENCES role,
+            REFERENCES role (id),
     PRIMARY KEY (walker_id, role_id)
 );
 
@@ -80,7 +82,7 @@ CREATE TABLE walker_social_links
 (
     walker_id    BIGINT NOT NULL
         CONSTRAINT fk_walker_social_links_walker
-            REFERENCES walker,
+            REFERENCES walker (id),
     social_links VARCHAR(255)
 );
 
@@ -105,11 +107,11 @@ CREATE TABLE dog
     uuid                     VARCHAR(255),
     vet                      VARCHAR(255),
     wash_paws                VARCHAR(255),
-    weight                   INTEGER,
+    weight                   BIGINT,
     weight_group             VARCHAR(255),
     owner_id                 BIGINT
         CONSTRAINT fk_dog_owner_id
-            REFERENCES owner
+            REFERENCES owner (id)
 
 );
 
@@ -119,53 +121,77 @@ CREATE TABLE schedule
     uuid   VARCHAR(255),
     dog_id BIGINT
         CONSTRAINT fk_schedule_dog
-            REFERENCES dog
+            REFERENCES dog (id)
 );
 
 ALTER TABLE dog
     ADD COLUMN schedule_id BIGINT
         CONSTRAINT fk_dog_schedule_id
-            REFERENCES schedule;
+            REFERENCES schedule (id);
 
 CREATE TABLE dog_aggression
 (
-    dog_id     BIGSERIAL
+    dog_id     BIGINT
         CONSTRAINT fk_dog_aggression_dog
-            REFERENCES dog,
+            REFERENCES dog (id),
     aggression VARCHAR(255)
 );
 
 CREATE TABLE dog_dog_documents
 (
-    dog_id    BIGSERIAL
+    dog_id    BIGINT
         CONSTRAINT fk_dog_dog_documents_dog
-            REFERENCES dog,
+            REFERENCES dog (id),
     documents VARCHAR(255)
 );
 
 CREATE TABLE walking
 (
-    id               BIGSERIAL,
+    id               BIGSERIAL PRIMARY KEY,
     address          VARCHAR(255),
     location         VARCHAR(255),
     uuid             VARCHAR(255),
-    walking_begin    TIME,
-    walking_date     DATE,
-    walking_duration INTEGER,
-    walking_price    INTEGER,
+    walking_begin    TIME   NOT NULL,
+    walking_date     DATE   NOT NULL,
+    walking_duration BIGINT NOT NULL,
+    walking_price    BIGINT NOT NULL,
     walking_status   VARCHAR(255),
-    walker_id        INTEGER
+    walker_id        BIGINT
         CONSTRAINT fk_waking_walker
-            REFERENCES walker,
+            REFERENCES walker (id),
     city_id          BIGINT NOT NULL
         CONSTRAINT fk_walking_city
-            REFERENCES city,
-    dog_id           BIGINT
+            REFERENCES city (id),
+    dog_id           BIGINT NOT NULL
         CONSTRAINT fk_walking_dog
-            REFERENCES dog,
+            REFERENCES dog (id),
     schedule_id      BIGINT
         CONSTRAINT fk_walking_schedule
-            REFERENCES schedule
+            REFERENCES schedule (id)
+);
+
+CREATE TABLE owners_comment
+(
+    id        BIGSERIAL PRIMARY KEY,
+    owner_id  BIGINT NOT NULL
+        CONSTRAINT fk_owners_comment_owners_id
+            REFERENCES owner (id),
+    walker_id BIGINT NOT NULL
+        CONSTRAINT fk_owners_comment_walker_id
+            REFERENCES walker (id),
+    message   VARCHAR(2048)
+
+);
+
+CREATE TABLE walkers_comment
+(
+    id        BIGSERIAL PRIMARY KEY,
+    walker_id BIGINT NOT NULL
+        CONSTRAINT fk_walkers_comment_walker_id
+            REFERENCES walker (id),
+    owner_id  BIGINT NOT NULL
+        CONSTRAINT fk_walkers_comment_owner_id
+            REFERENCES owner (id)
 );
 
 insert into role (id, role)
@@ -245,15 +271,15 @@ values (1, 'Москва'),
        (71, 'Мурманск'),
        (72, 'Петрозаводск');
 
-insert into owner (name, password, username)
-values ('Андрей', '$2a$12$yWRpJY12bNvkHUlW0Nx0r.FdyaWGm7AtNFS7LgfV6CVssGXby1Qbi', 'owner');
+
+insert into owner (mail, name, password, phone, username)
+values ('mail@mail.ru','Андрей', '$2a$12$yWRpJY12bNvkHUlW0Nx0r.FdyaWGm7AtNFS7LgfV6CVssGXby1Qbi', '495 09837 4765','owner');
 insert into owner_role (owner_id, role_id)
 values (1, 1);
 
 
-
-insert into walker (name, password, username)
-values ('Валентина', '$2a$12$yWRpJY12bNvkHUlW0Nx0r.FdyaWGm7AtNFS7LgfV6CVssGXby1Qbi', 'walker');
+insert into walker (mail, name, password, phone, username, city_id)
+values ('mail@mail.ru','Валентина', '$2a$12$yWRpJY12bNvkHUlW0Nx0r.FdyaWGm7AtNFS7LgfV6CVssGXby1Qbi','92879237', 'walker', 3);
 insert into walker_role (walker_id, role_id)
 values (1, 2);
 

@@ -11,4 +11,5 @@ public interface CityService {
     City findByName(String name);
 
     List<City> findAll();
+    //TODO разобраться с интерфейсами
 }

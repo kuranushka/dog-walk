@@ -2,7 +2,7 @@ package ru.kuranov.dogwalk.model.entity.main;
 
 import lombok.*;
 import ru.kuranov.dogwalk.model.entity.location.City;
-import ru.kuranov.dogwalk.model.entity.main.Dog;
+import ru.kuranov.dogwalk.model.entity.status.WalkingStatus;
 import ru.kuranov.dogwalk.model.entity.time.Schedule;
 
 import javax.persistence.*;

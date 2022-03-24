@@ -1,4 +1,4 @@
-package ru.kuranov.dogwalk.model.entity.main;
+package ru.kuranov.dogwalk.model.entity.status;
 
 import lombok.AllArgsConstructor;
 

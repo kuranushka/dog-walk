@@ -1,6 +1,8 @@
 package ru.kuranov.dogwalk.model.entity.main;
 
 import lombok.*;
+import ru.kuranov.dogwalk.model.entity.comment.OwnersComment;
+import ru.kuranov.dogwalk.model.entity.comment.WalkersComment;
 import ru.kuranov.dogwalk.model.entity.location.City;
 import ru.kuranov.dogwalk.model.entity.security.AccountUser;
 import ru.kuranov.dogwalk.model.entity.security.Role;
@@ -68,4 +70,17 @@ public class Walker extends AccountUser {
             fetch = FetchType.LAZY,
             mappedBy = "walker")
     private Set<Walking> walkings;
+
+    @OneToMany(targetEntity = WalkersComment.class,
+            cascade = CascadeType.MERGE,
+            fetch = FetchType.LAZY,
+            mappedBy = "author")
+    private Set<WalkersComment> walkersComments;
+
+    @OneToMany(targetEntity = OwnersComment.class,
+            cascade = CascadeType.MERGE,
+            fetch = FetchType.LAZY,
+            mappedBy = "recipient")
+    private Set<OwnersComment> ownersComments;
+
 }
