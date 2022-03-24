@@ -25,12 +25,9 @@ public class WalkerRegistrationController {
     private final CityService cityService;
     private final AccountUserService accountUserService;
 
-    //TODO переписать вывести логику создания WalkerDto в WalkerMapper
     @GetMapping("/registration/walker")
     public String registrationWalker(WalkerDto walkerDto, Model model) {
-        walkerDto = WalkerDto.builder()
-                .cities(cityService.findAll())
-                .build();
+        walkerDto = walkerService.getWalkerDto();
         model.addAttribute("walkerDto", walkerDto);
         return "registration-walker";
     }

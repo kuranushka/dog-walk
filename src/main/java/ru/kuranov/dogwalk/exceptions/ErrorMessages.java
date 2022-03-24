@@ -11,7 +11,10 @@ public enum ErrorMessages {
     NO_SUCH_CITIZENSHIP_EXCEPTION("Cannot find citizenship with name "),
     NO_SUCH_WALKER_EXCEPTION("Cannot find walker with name "),
     NO_SUCH_ROLE_EXCEPTION("Cannot find role with name "),
-    USER_WITH_THIS_LOGIN_ALREADY_EXISTS("ПОЛЬЗОВАТЕЛЬ С ТАКИМ ЛОГИНОМ УЖЕ СУЩЕСТВУЕТ");
+    USER_WITH_THIS_LOGIN_ALREADY_EXISTS("User with this username already exists "),
+    NO_SUCH_SCHEDULE_EXCEPTION("Cannot find schedule with uuid "),
+    NO_SUCH_WALKING_EXCEPTION("Cannot find walking with uuid "),
+    NO_SUCH_DOG_EXCEPTION("Cannot find dog with uuid ");
 //    CURRENT_USER_DELETE_EXCEPTION ("Cannot delete yourself. Operation denied"),
 //    NO_CURRENT_USER_EXCEPTION("Cannot get current user"),
 //    NO_SUCH_ORDER_EXCEPTION("Cannot find order with id "),

@@ -31,6 +31,10 @@ public class Walking {
     private Dog dog;
 
     @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private Owner owner;
+
+    @ManyToOne
     @JoinColumn(name = "schedule_id")
     private Schedule schedule;
 
@@ -57,4 +61,12 @@ public class Walking {
 
     @Column(name = "walking_duration")
     private int walkingDuration;
+
+    @Column(name = "walking_status")
+    @Enumerated(EnumType.STRING)
+    private WalkingStatus walkingStatus;
+
+    @ManyToOne
+    @JoinColumn(name = "walker_id")
+    private Walker walker;
 }

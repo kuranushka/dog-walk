@@ -153,6 +153,10 @@ CREATE TABLE walking
     walking_date     DATE,
     walking_duration INTEGER,
     walking_price    INTEGER,
+    walking_status   VARCHAR(255),
+    walker_id        INTEGER
+        CONSTRAINT fk_waking_walker
+            REFERENCES walker,
     city_id          BIGINT NOT NULL
         CONSTRAINT fk_walking_city
             REFERENCES city,
@@ -245,9 +249,6 @@ insert into owner (name, password, username)
 values ('Андрей', '$2a$12$yWRpJY12bNvkHUlW0Nx0r.FdyaWGm7AtNFS7LgfV6CVssGXby1Qbi', 'owner');
 insert into owner_role (owner_id, role_id)
 values (1, 1);
-
-
-
 
 
 

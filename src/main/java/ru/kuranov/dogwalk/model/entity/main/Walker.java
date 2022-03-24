@@ -62,4 +62,10 @@ public class Walker extends AccountUser {
 
     @Column(name = "citizenship")
     private String citizenship;
+
+    @OneToMany(targetEntity = Walking.class,
+            cascade = CascadeType.MERGE,
+            fetch = FetchType.LAZY,
+            mappedBy = "walker")
+    private Set<Walking> walkings;
 }

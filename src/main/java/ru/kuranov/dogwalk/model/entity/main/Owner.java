@@ -1,7 +1,6 @@
 package ru.kuranov.dogwalk.model.entity.main;
 
 import lombok.*;
-import ru.kuranov.dogwalk.model.entity.main.Dog;
 import ru.kuranov.dogwalk.model.entity.security.AccountUser;
 import ru.kuranov.dogwalk.model.entity.security.Role;
 
@@ -52,4 +51,9 @@ public class Owner extends AccountUser {
             mappedBy = "owner")
     private Set<Dog> dogs;
 
+    @OneToMany(targetEntity = Walking.class,
+            cascade = CascadeType.MERGE,
+            fetch = FetchType.LAZY,
+            mappedBy = "owner")
+    private Set<Walking> walkings;
 }

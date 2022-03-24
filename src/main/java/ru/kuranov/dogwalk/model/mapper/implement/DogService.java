@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.kuranov.dogwalk.exceptions.NoSuchDogException;
+import ru.kuranov.dogwalk.exceptions.NoSuchScheduleException;
+import ru.kuranov.dogwalk.exceptions.NoSuchWalkingException;
 import ru.kuranov.dogwalk.model.dto.dog.DogDto;
 import ru.kuranov.dogwalk.model.entity.addition.WeightGroup;
 import ru.kuranov.dogwalk.model.entity.location.City;
@@ -88,20 +91,17 @@ public class DogService {
     }
 
     private Schedule findScheduleByUuid(String scheduleUuid) {
-        //TODO сделать исключение
         Optional<Schedule> schedule = scheduleRepository.findByUuid(scheduleUuid);
-        return schedule.get();
+        return schedule.orElseThrow(() -> new NoSuchScheduleException(scheduleUuid));
     }
 
     private Walking findWalkingByUuid(String walkingUuid) {
-        //TODO сделать исключение
         Optional<Walking> walking = walkingRepository.findByUuid(walkingUuid);
-        return walking.get();
+        return walking.orElseThrow(() -> new NoSuchWalkingException(walkingUuid));
     }
 
     private Dog findDogIdByUuid(String dogUuid) {
-        //TODO сделать исключение
-        return dogRepository.findByUuid(dogUuid).get();
+        return dogRepository.findByUuid(dogUuid).orElseThrow(() -> new NoSuchDogException(dogUuid));
     }
 
 
