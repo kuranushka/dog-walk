@@ -24,7 +24,8 @@ CREATE TABLE owner
     password VARCHAR(255) NOT NULL,
     phone    VARCHAR(255) NOT NULL,
     surname  VARCHAR(255),
-    username VARCHAR(255) NOT NULL
+    username VARCHAR(255) NOT NULL,
+    rating   INTEGER DEFAULT 4
 );
 
 CREATE TABLE role
@@ -64,7 +65,8 @@ CREATE TABLE walker
     username    VARCHAR(255) NOT NULL,
     city_id     BIGINT
         CONSTRAINT fk_walker_city
-            REFERENCES city (id)
+            REFERENCES city (id),
+    rating      INTEGER DEFAULT 4
 );
 
 CREATE TABLE walker_role
@@ -291,6 +293,18 @@ values (1, 2);
 
 
 
+
+
+
+
+
+
+
+
+
+
+-- ////////////////////////////////
+
 SELECT CASE
            WHEN EXISTS(SELECT a.username
                        FROM (SELECT username FROM walker UNION SELECT username FROM owner) as a
@@ -326,21 +340,29 @@ FROM (SELECT id, username, password
                FROM walker_role) as r ON a.id = r.id
 WHERE a.username = 'owner';
 
-SELECT * FROM (SELECT * FROM
-(SELECT o.id, o.username, o.password, ro.role_id as role FROM owner as o JOIN owner_role as ro ON o.id = ro.owner_id) as so
-UNION
-(SELECT w.id, w.username, w.password, rw.role_id as role FROM walker as w JOIN walker_role as rw ON w.id = rw.walker_id)) as foo WHERE username=?;
+SELECT *
+FROM (SELECT *
+      FROM (SELECT o.id, o.username, o.password, ro.role_id as role
+            FROM owner as o
+                     JOIN owner_role as ro ON o.id = ro.owner_id) as so
+      UNION
+      (SELECT w.id, w.username, w.password, rw.role_id as role
+       FROM walker as w
+                JOIN walker_role as rw ON w.id = rw.walker_id)) as foo
+WHERE username=?;
 
 
-SELECT us.id, us.username, us.password, rol.role_id FROM
-(SELECT o.id, o.username, o.password
-FROM owner as o WHERE username = 'walker'
-UNION
-SELECT w.id, w.username, w.password
-FROM walker as w WHERE username = 'walker') as us
-JOIN
-(SELECT ow.owner_id, ow.role_id
-FROM owner_role as ow
-UNION
-SELECT wr.walker_id, wr.role_id
-FROM walker_role as wr) as rol ON us.id=rol.role_id;
+SELECT us.id, us.username, us.password, rol.role_id
+FROM (SELECT o.id, o.username, o.password
+      FROM owner as o
+      WHERE username = 'walker'
+      UNION
+      SELECT w.id, w.username, w.password
+      FROM walker as w
+      WHERE username = 'walker') as us
+         JOIN
+     (SELECT ow.owner_id, ow.role_id
+      FROM owner_role as ow
+      UNION
+      SELECT wr.walker_id, wr.role_id
+      FROM walker_role as wr) as rol ON us.id = rol.role_id;

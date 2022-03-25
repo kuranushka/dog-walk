@@ -29,6 +29,9 @@
             <img alt="Card image" class="service card-img" src="../assets/img/services-01.jpg">
         </div>
         <div class="col-lg-8 ">
+            <div th:if="${param.error}" class="alert alert-danger">
+                НЕ ВЕРНЫЙ ЛОГИН ИЛИ ПАРОЛЬ
+            </div>
             <form class="form-signin" method="post" th:action="@{/user-login}">
                 <h2 class="col-12 col-xl-8 h4 text-left regular-400">Введите Ваш логин и пароль</h2>
                 <p>

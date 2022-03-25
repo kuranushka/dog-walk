@@ -16,8 +16,6 @@ public class AccountUserRepository implements AccountUserService {
     private final JdbcTemplate jdbcTemplate;
     private final UsernameRowMapper usernameRowMapper;
 
-
-    //    TODO обработать ошибку, если не находит Username
     public Optional<User> findByUsername(String username) {
         String query = "SELECT * FROM (SELECT * FROM\n" +
                 "(SELECT o.id, o.username, o.password, ro.role_id as role FROM owner as o JOIN owner_role as ro ON o.id = ro.owner_id) as so\n" +

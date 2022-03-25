@@ -14,4 +14,6 @@ public class OwnerProfileController {
     public String getProfilePage() {
         return "owner";
     }
+    //TODO сделать личный кабинет
+    //TODO сделать активацию регистрации через почту
 }

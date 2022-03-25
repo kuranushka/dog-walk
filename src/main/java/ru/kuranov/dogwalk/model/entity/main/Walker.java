@@ -86,4 +86,7 @@ public class Walker extends AccountUser {
             mappedBy = "recipient")
     private Set<OwnersComment> ownersComments;
 
+    @Column(name = "rating")
+    private int rating;
+
 }

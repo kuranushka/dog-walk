@@ -72,4 +72,7 @@ public class Owner extends AccountUser {
             fetch = FetchType.LAZY,
             mappedBy = "recipient")
     private Set<WalkersComment> walkersComments;
+
+    @Column(name = "rating")
+    private int rating;
 }
