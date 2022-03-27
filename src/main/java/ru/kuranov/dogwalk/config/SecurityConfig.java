@@ -11,14 +11,14 @@ import org.springframework.security.config.annotation.web.configurers.Expression
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import ru.kuranov.dogwalk.model.service.implement.UserServiceImpl;
+import ru.kuranov.dogwalk.service.UserService;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final UserServiceImpl userService;
+    private final UserService userService;
     private final SuccessHandler successHandler;
 
     @Bean

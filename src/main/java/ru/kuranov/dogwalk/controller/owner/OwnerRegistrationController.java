@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.kuranov.dogwalk.exceptions.ErrorMessages;
 import ru.kuranov.dogwalk.model.dto.owner.OwnerDto;
 import ru.kuranov.dogwalk.model.entity.main.Owner;
-import ru.kuranov.dogwalk.model.mapper.interfaces.OwnerDtoMapper;
-import ru.kuranov.dogwalk.model.repository.security.AccountUserService;
-import ru.kuranov.dogwalk.model.service.interfaces.OwnerService;
+import ru.kuranov.dogwalk.model.mapper.OwnerDtoMapper;
+import ru.kuranov.dogwalk.repository.security.AccountUserService;
+import ru.kuranov.dogwalk.service.OwnerService;
 
 import javax.validation.Valid;
 

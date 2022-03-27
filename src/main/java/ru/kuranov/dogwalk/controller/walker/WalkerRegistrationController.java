@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ru.kuranov.dogwalk.exceptions.ErrorMessages;
 import ru.kuranov.dogwalk.model.dto.walker.WalkerDto;
 import ru.kuranov.dogwalk.model.entity.main.Walker;
-import ru.kuranov.dogwalk.model.mapper.interfaces.WalkerDtoMapper;
-import ru.kuranov.dogwalk.model.repository.security.AccountUserService;
-import ru.kuranov.dogwalk.model.service.interfaces.CityService;
-import ru.kuranov.dogwalk.model.service.interfaces.WalkerService;
+import ru.kuranov.dogwalk.model.mapper.WalkerDtoMapper;
+import ru.kuranov.dogwalk.repository.security.AccountUserService;
+import ru.kuranov.dogwalk.service.CityService;
+import ru.kuranov.dogwalk.service.WalkerService;
 
 import javax.validation.Valid;
 
